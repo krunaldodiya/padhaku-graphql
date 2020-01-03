@@ -19,9 +19,6 @@ class CreateQuizzesTable extends Migration
             $table->uuid('host_id');
             $table->foreign('host_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->bigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-
             $table->uuid('quiz_info_id')->nullable();
             $table->foreign('quiz_info_id')->references('id')->on('quiz_infos')->onUpdate('cascade')->onDelete('cascade');
 

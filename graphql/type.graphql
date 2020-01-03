@@ -1,0 +1,75 @@
+type Country {
+    id: ID!
+    name: String!
+    phonecode: String!
+    shortname: String!
+}
+
+type Transaction {
+    id: ID!
+    amount: Int!
+    transaction_id: ID!
+    transaction_type: String!
+    status: Boolean!
+    meta: JSON
+}
+
+type Wallet {
+    id: ID!
+    balance: Int!
+    transactions: [Transaction] @hasMany
+}
+
+type Language {
+    id: ID!
+    name: String!
+    nickname: String!
+    shortname: String!
+    background_image: String
+    background_color: String
+}
+
+type Attachment {
+    id: ID!
+    source: String
+    path: String!
+    thumbnail: String!
+    size: String!
+    mime: String!
+    height: String!
+    width: String!
+    owner: User! @belongsTo
+    category: Category! @belongsTo
+    attachable: Attachable! @morphTo
+    status: Boolean
+}
+
+type Category {
+    id: ID!
+    name: String!
+    background_image: String
+    background_color: String
+}
+
+type User {
+    id: ID!
+    name: String!
+    username: String!
+    email: String!
+    mobile: String!
+    dob: String!
+    gender: Gender!
+    avatar: Attachment
+    bio: String
+    language: String
+    wallet: Wallet @hasOne
+    country: Country @belongsTo
+    followers: [User!]! @belongsToMany
+    followings: [User!]! @belongsToMany
+    is_following: Boolean!
+    is_follower: Boolean!
+    version: String
+    status: Boolean
+    created_at: DateTime!
+    updated_at: DateTime!
+}
