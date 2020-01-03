@@ -7,11 +7,19 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "krunaldodiya/wallet": "^1.1",
         "laravel/framework": "^6.2",
+        "laravel/nova": "^2.9",
+        "laravel/telescope": "^2.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.1",
         "mll-lab/graphql-php-scalars": "^2.1",
