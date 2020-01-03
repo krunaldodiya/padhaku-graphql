@@ -20,11 +20,22 @@ class CreateQuestionsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
 
             $table->text('question');
-            $table->string('answer');
+            $table->text('question_hindi');
+
             $table->string('option_1');
+            $table->string('option_1_hindi');
+
             $table->string('option_2');
+            $table->string('option_2_hindi');
+
             $table->string('option_3');
+            $table->string('option_3_hindi');
+
             $table->string('option_4');
+            $table->string('option_4_hindi');
+
+            $table->string('answer');
+
             $table->timestamps();
         });
     }
