@@ -5,3 +5,4 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'TestController@test');
+Route::get('/categories', 'TestController@categories');
