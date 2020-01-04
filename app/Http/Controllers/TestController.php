@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-
+use App\Repositories\Contracts\QuizRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -15,8 +15,8 @@ class TestController extends Controller
         return $categories;
     }
 
-    public function test(Request $request)
+    public function test(QuizRepositoryInterface $quizRepo)
     {
-        //
+        return $quizRepo->generateQuiz();
     }
 }
