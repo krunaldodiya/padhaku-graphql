@@ -64,6 +64,7 @@ type Question {
     option_3_hindi: String
     option_4_hindi: String
     answer: String
+    answer_hindi: String
 }
 
 type Quiz {

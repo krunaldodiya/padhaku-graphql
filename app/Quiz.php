@@ -15,7 +15,7 @@ class Quiz extends Model
 
     protected $casts = [
         'expired_at' => 'datetime',
+        'all_questions_meta' => 'json',
         'answerable_questions_meta' => 'json',
-        'all_questions_meta' => 'json'
     ];
 }

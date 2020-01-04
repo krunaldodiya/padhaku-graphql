@@ -13,6 +13,13 @@ class Question extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['answer_hindi'];
+
+    public function getAnswerHindiAttribute()
+    {
+        return "{$this->answer}_hindi";
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

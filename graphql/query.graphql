@@ -8,5 +8,7 @@ type Query {
         @middleware(checks: ["auth:api"])
     categories: [Category!]! @all @middleware(checks: ["auth:api"])
     languages: [Language!]! @all @middleware(checks: ["auth:api"])
-    quizzes: [Quiz!]! @all @middleware(checks: ["auth:api"])
+    getActiveQuizzes: [Quiz!]!
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Queries\\QuizQuery@getActiveQuizzes")
 }
