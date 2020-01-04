@@ -21,6 +21,7 @@ class CreateQuizInfosTable extends Migration
             $table->integer('all_questions_count')->default(50);
             $table->integer('answerable_questions_count')->default(10);
             $table->text('image');
+            $table->integer('expiry')->default(1);
             $table->timestamps();
         });
     }

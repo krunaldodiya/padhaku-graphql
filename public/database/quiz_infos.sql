@@ -3,8 +3,8 @@
 --
 -- https://tableplus.com/
 --
--- Database: padhakoo
--- Generation Time: 2020-01-04 08:42:14.7860
+-- Database: padhaku
+-- Generation Time: 2020-01-04 13:12:42.4580
 -- -------------------------------------------------------------
 
 
@@ -22,11 +22,12 @@ CREATE TABLE "public"."quiz_infos" (
     "image" text NOT NULL,
     "created_at" timestamp(0),
     "updated_at" timestamp(0),
+    "expiry" int4 NOT NULL DEFAULT 1,
     PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."quiz_infos" ("id", "entry_fee", "total_participants", "total_winners", "all_questions_count", "answerable_questions_count", "image", "created_at", "updated_at") VALUES ('734c8844-cbdf-4e42-ae8c-469cb486d97f', '10', '100', '10', '50', '10', 'dMrYL6F4mOreb0Cq0IB8bBG06RiV859Phg0vr2Tn.jpeg', '2020-01-04 03:08:58', '2020-01-04 03:08:58'),
-('d684cb75-4a03-45f9-8d37-b8a7f6cd0c56', '20', '100', '10', '50', '10', 'MN9VcF7L4Pevmzh557cWyCcAhVTfxs0iwK07Dhqa.jpeg', '2020-01-04 03:10:10', '2020-01-04 03:10:10'),
-('df319c45-35dc-4ff8-bc77-c1dd6af781ff', '50', '100', '10', '50', '10', '4NQIp4HX7RmonQeJXVBdDCZMiJC1aSYMcphq46HH.jpeg', '2020-01-04 03:11:02', '2020-01-04 03:11:02'),
-('e3c32daa-cf6a-46d4-9051-d91306088f0e', '30', '100', '10', '50', '10', 'KD9oHVeN9xJNzCrAZSX78GHH2qOYpXNQYd6pUeUg.jpeg', '2020-01-04 03:10:26', '2020-01-04 03:10:26'),
-('e91370dc-cb69-4c24-9f5f-ba4b2e28eb02', '100', '1000', '50', '100', '20', 'aORcxXV9Mp3NiwtD3C5YRnM71nd28YiyvftB7g13.jpeg', '2020-01-04 03:11:26', '2020-01-04 03:11:26');
+INSERT INTO "public"."quiz_infos" ("id", "entry_fee", "total_participants", "total_winners", "all_questions_count", "answerable_questions_count", "image", "created_at", "updated_at", "expiry") VALUES ('734c8844-cbdf-4e42-ae8c-469cb486d97f', '10', '100', '10', '50', '10', 'W80GiEJFBpB4ueTqiPJAA6Lf2pYBCBTx2Tq9RJCc.jpeg', '2020-01-04 03:08:58', '2020-01-04 03:18:40', '1'),
+('d684cb75-4a03-45f9-8d37-b8a7f6cd0c56', '20', '100', '10', '50', '10', 'ZEmpbZHgNeOxI2hNx66k3MAEIeIJMNI1gorJTMcY.jpeg', '2020-01-04 03:10:10', '2020-01-04 03:18:30', '1'),
+('df319c45-35dc-4ff8-bc77-c1dd6af781ff', '50', '100', '10', '50', '10', 'bf7uLJMCsHWwXJyDyfJQJBVPeSxqcj2PES7uEXEc.jpeg', '2020-01-04 03:11:02', '2020-01-04 03:18:19', '1'),
+('e3c32daa-cf6a-46d4-9051-d91306088f0e', '30', '100', '10', '50', '10', 'BvD6Y9PimruZijKwnGa2vboZVMrQbawK0yTGrM74.jpeg', '2020-01-04 03:10:26', '2020-01-04 03:18:01', '1'),
+('e91370dc-cb69-4c24-9f5f-ba4b2e28eb02', '100', '1000', '50', '100', '20', 'tM305iM1O3mESw9nZhcysbPVfTWdfjGLTTLcwVFl.jpeg', '2020-01-04 03:11:26', '2020-01-04 03:17:23', '1');
