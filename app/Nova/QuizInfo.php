@@ -47,6 +47,7 @@ class QuizInfo extends Resource
             Text::make('total_winners'),
             Text::make('all_questions_count'),
             Text::make('answerable_questions_count'),
+            Text::make('Expiry (hours)', 'expiry'),
             Avatar::make('image'),
         ];
     }
