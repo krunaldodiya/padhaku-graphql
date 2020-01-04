@@ -51,6 +51,28 @@ type Category {
     background_color: String
 }
 
+type Question {
+    id: ID!
+    question: String
+    question_hindi: String
+    option_1: String
+    option_2: String
+    option_3: String
+    option_4: String
+    option_1_hindi: String
+    option_2_hindi: String
+    option_3_hindi: String
+    option_4_hindi: String
+    answer: String
+}
+
+type Quiz {
+    id: ID!
+    all_questions_meta: [Question]
+    answerable_questions_meta: [Question]
+    expired_at: DateTime
+}
+
 type User {
     id: ID!
     name: String!

@@ -12,4 +12,10 @@ class Quiz extends Model
     public $incrementing = false;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'expired_at' => 'datetime',
+        'answerable_questions_meta' => 'json',
+        'all_questions_meta' => 'json'
+    ];
 }
