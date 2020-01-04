@@ -3,9 +3,12 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Textarea;
 
 class Question extends Resource
 {
@@ -43,19 +46,30 @@ class Question extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('question'),
-            Text::make('option_1'),
-            Text::make('option_2'),
-            Text::make('option_3'),
-            Text::make('option_4'),
+            BelongsTo::make('Category'),
 
-            Text::make('question_hindi'),
-            Text::make('option_1_hindi'),
-            Text::make('option_2_hindi'),
-            Text::make('option_3_hindi'),
-            Text::make('option_4_hindi'),
+            Textarea::make('question')->showOnIndex()->alwaysShow(),
+            Text::make('option_1')->hideFromIndex(),
+            Text::make('option_2')->hideFromIndex(),
+            Text::make('option_3')->hideFromIndex(),
+            Text::make('option_4')->hideFromIndex(),
 
-            Text::make('answer'),
+            Textarea::make('question_hindi')->hideFromIndex()->alwaysShow(),
+            Text::make('option_1_hindi')->hideFromIndex(),
+            Text::make('option_2_hindi')->hideFromIndex(),
+            Text::make('option_3_hindi')->hideFromIndex(),
+            Text::make('option_4_hindi')->hideFromIndex(),
+
+            Text::make('answer')->hideFromIndex(),
+            Avatar::make('Image')->hideFromIndex(),
+
+            Date::make('Created At')
+                ->hideFromIndex()
+                ->sortable(),
+
+            Date::make('Updated At')
+                ->hideFromIndex()
+                ->sortable(),
         ];
     }
 
