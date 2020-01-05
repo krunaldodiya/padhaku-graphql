@@ -65,12 +65,16 @@ type Question {
     option_4_hindi: String
     answer: String
     answer_hindi: String
+    pivot: QuizQuestion
+}
+
+type QuizQuestion {
+    is_answerable: Boolean!
 }
 
 type Quiz {
     id: ID!
-    all_questions_meta: [Question]
-    answerable_questions_meta: [Question]
+    questions: [Question] @belongsToMany
     expired_at: DateTime
 }
 

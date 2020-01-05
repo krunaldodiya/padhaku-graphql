@@ -22,8 +22,6 @@ class CreateQuizzesTable extends Migration
             $table->uuid('quiz_info_id')->nullable();
             $table->foreign('quiz_info_id')->references('id')->on('quiz_infos')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->json('all_questions_meta')->nullable();
-            $table->json('answerable_questions_meta')->nullable();
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
