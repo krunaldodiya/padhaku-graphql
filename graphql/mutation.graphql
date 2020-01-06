@@ -32,5 +32,5 @@ type Mutation {
     ): User! @middleware(checks: ["auth:api"])
 
     joinQuiz(quiz_id: ID! @rules(apply: ["required"])): Quiz!
-        @field(resolver: "App\\GraphQL\\Queries\\QuizMutation@joinQuiz")
+        @field(resolver: "App\\GraphQL\\Mutations\\QuizMutation@joinQuiz")
 }
