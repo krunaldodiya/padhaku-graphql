@@ -3,7 +3,7 @@
 return [
     'user_registered' => [
         'type' => 'user_registered',
-        'points' => 5
+        'points' => 50
     ],
 
     'profile_updated' => [

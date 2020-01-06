@@ -30,4 +30,7 @@ type Mutation {
         avatar: String
         bio: String
     ): User! @middleware(checks: ["auth:api"])
+
+    joinQuiz(quiz_id: ID! @rules(apply: ["required"])): Quiz!
+        @field(resolver: "App\\GraphQL\\Queries\\QuizMutation@joinQuiz")
 }

@@ -17,8 +17,30 @@ class Quiz extends Model
         'expired_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'is_joined',
+    ];
+
+    public function getIsJoinedAttribute()
+    {
+        return !!auth()->user()
+            ->quizzes
+            ->where('id', $this->id)
+            ->count();
+    }
+
     public function questions()
     {
-        return $this->belongsToMany(Question::class, 'quiz_questions')->withPivot('is_answerable');;
+        return $this->belongsToMany(Question::class, 'quiz_questions')->withPivot('is_answerable');
+    }
+
+    public function quiz_infos()
+    {
+        return $this->belongsTo(QuizInfo::class, 'quiz_info_id');
+    }
+
+    public function participants()
+    {
+        return $this->belongsToMany(User::class, 'quiz_participants');
     }
 }
