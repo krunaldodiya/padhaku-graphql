@@ -86,7 +86,7 @@ type User {
     mobile: String!
     dob: String!
     gender: Gender!
-    avatar: Attachment
+    avatar: String
     bio: String
     language: String
     wallet: Wallet @hasOne
