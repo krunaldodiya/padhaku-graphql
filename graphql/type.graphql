@@ -72,10 +72,25 @@ type QuizQuestion {
     is_answerable: Boolean!
 }
 
+type QuizInfo {
+    id: ID!
+    entry_fee: Int!
+    total_particiapants: Int!
+    total_winners: Int!
+    all_questions_count: Int!
+    answerable_questions_count: Int!
+    image: String!
+    expiry: Int!
+    reading: Int!
+}
+
 type Quiz {
     id: ID!
-    questions: [Question] @belongsToMany
-    expired_at: DateTime
+    is_joined: Boolean!
+    questions: [Question!]! @belongsToMany
+    participants: [User!]! @belongsToMany
+    quiz_infos: QuizInfo! @belongsTo
+    expired_at: DateTime!
 }
 
 type User {
