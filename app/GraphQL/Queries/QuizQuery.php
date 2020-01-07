@@ -11,6 +11,9 @@ class QuizQuery
 {
     public function getActiveQuizzes($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return Quiz::with('questions')->where('expired_at', '>=', Carbon::now())->get();
+        $timezone = "Asia/Kolkata";
+        $now = Carbon::now($timezone);
+
+        return Quiz::with('questions')->where('expired_at', '>=', $now)->get();
     }
 }
