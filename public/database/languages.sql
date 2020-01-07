@@ -3,8 +3,8 @@
 --
 -- https://tableplus.com/
 --
--- Database: pauzr
--- Generation Time: 2019-11-12 19:21:06.9480
+-- Database: padhaku
+-- Generation Time: 2020-01-07 11:09:59.0960
 -- -------------------------------------------------------------
 
 
@@ -24,5 +24,4 @@ CREATE TABLE "public"."languages" (
 );
 
 INSERT INTO "public"."languages" ("id", "name", "nickname", "shortname", "background_image", "background_color", "order") VALUES ('2cbe9328-d671-4c16-9341-057cd0240ced', 'Hindi', 'हिन्दी', 'hi', NULL, NULL, NULL),
-('640a547f-97c9-4b05-8b8e-e2b10f797b0f', 'English', 'English', 'en', NULL, NULL, NULL),
-('8f85e551-28a6-4212-9be9-7e70fcc04d8c', 'Gujarati', 'ગુજરાતી', 'gu', NULL, NULL, NULL);
+('640a547f-97c9-4b05-8b8e-e2b10f797b0f', 'English', 'English', 'en', NULL, NULL, NULL);

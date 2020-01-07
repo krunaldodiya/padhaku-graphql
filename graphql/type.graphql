@@ -75,7 +75,7 @@ type QuizQuestion {
 type QuizInfo {
     id: ID!
     entry_fee: Int!
-    total_particiapants: Int!
+    total_participants: Int!
     total_winners: Int!
     all_questions_count: Int!
     answerable_questions_count: Int!
