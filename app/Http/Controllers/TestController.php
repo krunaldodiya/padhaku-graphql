@@ -23,13 +23,19 @@ class TestController extends Controller
     public function test(Request $request, QuizRepositoryInterface $quizRepo)
     {
         $quiz_id = $request->quiz_id;
-        $user = auth()->user();
 
-        $count = $user
-            ->quizzes
-            ->where('id', $quiz_id)
-            ->count();
+        $timezone = 'Asia/Kolkata';
+        $now = Carbon::now($timezone);
 
-        return !!$count;
+        $quiz = Quiz::with('quiz_infos', 'participants')->where('id', $quiz_id)->first();
+
+
+        // check if registation is not closed
+        $registration_on_till = Carbon::parse($quiz->expired_at, $timezone)->subMinutes($quiz->quiz_infos->reading);
+        dd($registration_on_till);
+
+        if ($now <= $registration_on_till) {
+            throw new Error("Registration line is closed");
+        }
     }
 }
