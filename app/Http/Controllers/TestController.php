@@ -34,7 +34,7 @@ class TestController extends Controller
         $registration_on_till = Carbon::parse($quiz->expired_at, $timezone)->subMinutes($quiz->quiz_infos->reading);
         dd($registration_on_till);
 
-        if ($now <= $registration_on_till) {
+        if ($now >= $registration_on_till) {
             throw new Error("Registration line is closed");
         }
     }
