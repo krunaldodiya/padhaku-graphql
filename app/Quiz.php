@@ -23,10 +23,12 @@ class Quiz extends Model
 
     public function getIsJoinedAttribute()
     {
-        return !!auth()->user()
+        $count = auth()->user()
             ->quizzes
             ->where('id', $this->id)
             ->count();
+
+        return !!$count;
     }
 
     public function questions()

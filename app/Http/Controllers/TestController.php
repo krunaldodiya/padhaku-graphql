@@ -25,11 +25,11 @@ class TestController extends Controller
         $quiz_id = $request->quiz_id;
         $user = auth()->user();
 
-        $timezone = 'Asia/Kolkata';
-        $now = Carbon::now($timezone);
+        $count = $user
+            ->quizzes
+            ->where('id', $quiz_id)
+            ->count();
 
-        $quiz = Quiz::with('quiz_infos', 'participants')->where('id', $quiz_id)->first();
-
-        return $quiz->fresh();
+        return !!$count;
     }
 }
