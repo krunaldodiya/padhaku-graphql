@@ -24,6 +24,8 @@ class CreateQuizParticipantsTable extends Migration
             $table->integer('rank')->nullable();
             $table->integer('prize_amount')->nullable();
 
+            $table->enum('quiz_status', ['finished', 'canceled', 'pending'])->default('pending');
+
             $table->timestamps();
 
             $table->primary(['quiz_id', 'user_id']);

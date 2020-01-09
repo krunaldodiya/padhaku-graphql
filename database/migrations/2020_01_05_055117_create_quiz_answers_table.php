@@ -28,6 +28,8 @@ class CreateQuizAnswersTable extends Migration
             $table->integer('time')->nullable();
             $table->string('answer')->nullable();
 
+            $table->boolean('attempted')->default(false);
+
             $table->timestamps();
 
             $table->primary(['quiz_id', 'user_id', 'question_id']);
