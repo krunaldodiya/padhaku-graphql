@@ -72,6 +72,13 @@ type QuizQuestion {
     is_answerable: Boolean!
 }
 
+type QuizParticipant {
+    question: Question! @belongsTo
+    time: Int!
+    current_answer: String!
+    answer: String!
+}
+
 type QuizInfo {
     id: ID!
     entry_fee: Int!
