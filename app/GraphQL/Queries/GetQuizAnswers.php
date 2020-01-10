@@ -12,7 +12,7 @@ class GetQuizAnswers
     {
         $user = auth()->user();
 
-        return DB::table('quiz_participants')
+        return DB::table('quiz_answers')
             ->where([
                 'quiz_id' => $args['quiz_id'],
                 'user_id' => $user->id

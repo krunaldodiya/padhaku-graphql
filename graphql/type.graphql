@@ -72,7 +72,7 @@ type QuizQuestion {
     is_answerable: Boolean!
 }
 
-type QuizParticipant {
+type QuizAnswer {
     question: Question! @belongsTo
     time: Int!
     current_answer: String!
