@@ -71,6 +71,13 @@ type Question {
 type QuizQuestion {
     is_answerable: Boolean!
 }
+type QuizMeta {
+    quiz_id: ID!
+    question_id: ID!
+    current_answer: String!
+    answer: String!
+    seconds: Int!
+}
 
 type QuizInfo {
     id: ID!
