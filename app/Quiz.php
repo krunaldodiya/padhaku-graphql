@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Quiz extends Model
 {
@@ -18,17 +19,17 @@ class Quiz extends Model
     ];
 
     protected $appends = [
-        'is_joined',
+        'quiz_status',
     ];
 
-    public function getIsJoinedAttribute()
+    public function getQuizStatusAttribute()
     {
-        $count = auth()->user()
-            ->quizzes
-            ->where('id', $this->id)
-            ->count();
+        $quiz_participant = DB::table('quiz_participants')
+            ->where('quiz_id', $this->id)
+            ->where('user_id', auth()->id())
+            ->first();
 
-        return !!$count;
+        return $quiz_participant ? $quiz_participant->quiz_status : "pending";
     }
 
     public function questions()

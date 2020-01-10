@@ -86,7 +86,7 @@ type QuizInfo {
 
 type Quiz {
     id: ID!
-    is_joined: Boolean!
+    quiz_status: String!
     questions: [Question!]! @belongsToMany
     participants: [User!]! @belongsToMany
     quiz_infos: QuizInfo! @belongsTo
