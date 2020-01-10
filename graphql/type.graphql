@@ -73,7 +73,6 @@ type QuizQuestion {
 }
 
 type QuizAnswer {
-    question: Question! @belongsTo
     time: Int!
     current_answer: String!
     answer: String!
