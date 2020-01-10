@@ -22,15 +22,24 @@ class SubmitQuiz
                     'question_id' => $answer['question_id'],
                     'points' => $points,
                     'time' => $answer['seconds'],
+                    'current_answer' => $answer['current_answer'],
                     'answer' => $answer['answer'],
                     'attempted' => !!$answer['answer'],
                 ];
             })
             ->toArray();
 
+        DB::table("quiz_answers")
+            ->where([
+                'quiz_id' => $answers[0]['quiz_id'],
+                'user_id' => $user->id,
+            ])
+            ->delete();
+
         DB::table("quiz_answers")->insert($answers);
 
         $total_points = collect($answers)->sum('point');
+
         DB::table("quiz_participants")
             ->where([
                 'quiz_id' => $answers[0]['quiz_id'],

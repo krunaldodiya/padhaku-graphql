@@ -26,6 +26,7 @@ class CreateQuizAnswersTable extends Migration
             $table->integer('points')->default(0);
 
             $table->integer('time')->nullable();
+            $table->string('current_answer')->nullable();
             $table->string('answer')->nullable();
 
             $table->boolean('attempted')->default(false);
