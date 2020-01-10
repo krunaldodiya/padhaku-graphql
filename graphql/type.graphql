@@ -73,6 +73,7 @@ type QuizQuestion {
 }
 
 type QuizAnswer {
+    question_id: ID!
     time: Int!
     current_answer: String!
     answer: String!
