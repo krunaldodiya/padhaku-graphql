@@ -35,6 +35,6 @@ type Mutation {
         @middleware(checks: ["auth:api"])
         @field(resolver: "App\\GraphQL\\Mutations\\QuizMutation@joinQuiz")
 
-    submitQuiz(meta: [QuizMeta!]! @rules(apply: ["required"])): Quiz!
+    submitQuiz(meta: [QuizMetaInput!]! @rules(apply: ["required"])): Boolean!
         @middleware(checks: ["auth:api"])
 }

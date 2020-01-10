@@ -9,3 +9,11 @@ input AttachmentInput {
     width: String!
     status: Boolean
 }
+
+input QuizMetaInput {
+    quiz_id: ID!
+    question_id: ID!
+    current_answer: String!
+    answer: String!
+    seconds: Int!
+}

@@ -71,6 +71,7 @@ type Question {
 type QuizQuestion {
     is_answerable: Boolean!
 }
+
 type QuizMeta {
     quiz_id: ID!
     question_id: ID!
