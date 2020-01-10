@@ -24,7 +24,6 @@ class SubmitQuiz
                     'time' => $answer['seconds'],
                     'current_answer' => $answer['current_answer'],
                     'answer' => $answer['answer'],
-                    'attempted' => !!$answer['answer'],
                 ];
             })
             ->toArray();
