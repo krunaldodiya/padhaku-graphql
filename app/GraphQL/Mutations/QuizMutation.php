@@ -20,7 +20,7 @@ class QuizMutation
         $timezone = 'Asia/Kolkata';
         $now = Carbon::now($timezone);
 
-        $quiz = Quiz::with('quiz_infos', 'participants')->where('id', $quiz_id)->first();
+        $quiz = Quiz::with('quiz_infos', 'participants', 'questions')->where('id', $quiz_id)->first();
 
         // check if already joined
         if ($quiz->is_joined) {

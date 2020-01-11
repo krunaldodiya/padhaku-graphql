@@ -13,4 +13,6 @@ type Query {
         @field(resolver: "App\\GraphQL\\Queries\\QuizQuery@getActiveQuizzes")
     getQuizAnswers(quiz_id: ID! @rules(apply: ["required"])): [QuizAnswer!]!
         @middleware(checks: ["auth:api"])
+    getQuizById(quiz_id: ID! @rules(apply: ["required"])): Quiz!
+        @middleware(checks: ["auth:api"])
 }
