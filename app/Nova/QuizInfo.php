@@ -49,6 +49,7 @@ class QuizInfo extends Resource
             Text::make('answerable_questions_count'),
             Text::make('Expiry (hours)', 'expiry'),
             Text::make('Reading (Minutes)', 'reading'),
+            Text::make('Time (Seconds)', 'time'),
             Avatar::make('image'),
         ];
     }

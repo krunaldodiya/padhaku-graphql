@@ -23,6 +23,7 @@ class CreateQuizInfosTable extends Migration
             $table->text('image');
             $table->integer('expiry')->default(1)->comment('expiry in hours');
             $table->integer('reading')->default(15)->comment('reading in minutes');
+            $table->integer('time')->default(10)->comment('time in seconds');
             $table->timestamps();
         });
     }

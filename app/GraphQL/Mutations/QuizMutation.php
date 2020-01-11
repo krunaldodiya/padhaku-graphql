@@ -45,22 +45,6 @@ class QuizMutation
 
         $quiz->participants()->attach($user->id);
 
-        $questions = $quiz
-            ->questions
-            ->filter(function ($question) {
-                return $question->pivot->is_answerable;
-            })
-            ->map(function ($question) use ($quiz, $user) {
-                return [
-                    'quiz_id' => $quiz->id,
-                    'question_id' => $question->id,
-                    'user_id' => $user->id,
-                ];
-            })
-            ->toArray();
-
-        DB::table('quiz_answers')->insert($questions);
-
         $transaction = $user->createTransaction($quiz->quiz_infos->entry_fee, 'withdraw', [
             'points' => [
                 'id' => $user->id,
