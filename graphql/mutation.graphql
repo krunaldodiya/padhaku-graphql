@@ -41,4 +41,9 @@ type Mutation {
     generatePaytmChecksum(
         checksum: ChecksumInput! @rules(apply: ["required"])
     ): String! @middleware(checks: ["auth:api"])
+
+    verifyPaytmChecksum(
+        checksum: ChecksumInput! @rules(apply: ["required"])
+        checksum_verify: String! @rules(apply: ["required"])
+    ): Boolean! @middleware(checks: ["auth:api"])
 }
