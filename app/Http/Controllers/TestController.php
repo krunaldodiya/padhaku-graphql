@@ -27,7 +27,7 @@ class TestController extends Controller
         $data = [
             "MID" => "dBhsxy51569465348988",
             "ORDER_ID" => "30698f4a-7d7f-42af-b9f5-2cf05b90df88",
-            "CALLBACK_URL" => "https=>//securegw.paytm.in/theia/paytmCallback?ORDER_ID=30698f4a-7d7f-42af-b9f5-2cf05b90df88",
+            "CALLBACK_URL" => "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=30698f4a-7d7f-42af-b9f5-2cf05b90df88",
             "CHANNEL_ID" => "WAP",
             "CUST_ID" => "11baadeb-09c4-4b2d-8558-37695dd98756",
             "INDUSTRY_TYPE_ID" => "Retail",
