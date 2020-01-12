@@ -22,8 +22,6 @@ class TestController extends Controller
 
     public function test(Request $request, QuizRepositoryInterface $quizRepo)
     {
-        $checksum = "ucXLtY2ipOTqrlIfR3PfjABANEXOFM8b+JRrEhO7OE30ysf6zv1Oia3yXmLkff7CeR9aq4w+3RdDSAoYFMrYYL39bfpWMxsAFs2qHBIoVO4=";
-
         $data = [
             "MID" => "dBhsxy51569465348988",
             "ORDER_ID" => "30698f4a-7d7f-42af-b9f5-2cf05b90df88",
@@ -36,7 +34,7 @@ class TestController extends Controller
         ];
 
         if ($request->type === "verify") {
-            $verify = verifychecksum_e($data, env('PAYTM_MERCHANT_KEY'), $checksum);
+            $verify = verifychecksum_e($data, env('PAYTM_MERCHANT_KEY'), $request->checksum_verify);
             return compact('verify');
         }
 
