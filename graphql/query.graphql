@@ -15,4 +15,6 @@ type Query {
         @middleware(checks: ["auth:api"])
     getQuizById(quiz_id: ID! @rules(apply: ["required"])): Quiz!
         @middleware(checks: ["auth:api"])
+    generatePaytmChecksum(ORDER_ID: ID! @rules(apply: ["required"])): String!
+        @middleware(checks: ["auth:api"])
 }

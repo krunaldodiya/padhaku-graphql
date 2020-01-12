@@ -22,20 +22,11 @@ class TestController extends Controller
 
     public function test(Request $request, QuizRepositoryInterface $quizRepo)
     {
-        $quiz_id = $request->quiz_id;
+        $checksum = getChecksumFromString(json_encode([
+            'MID' => env('PAYTM_MERCHANT_ID'),
+            'ORDERID' => '123456'
+        ]), env('PAYTM_MERCHANT_KEY'));
 
-        $timezone = 'Asia/Kolkata';
-        $now = Carbon::now($timezone);
-
-        $quiz = Quiz::with('quiz_infos', 'participants')->where('id', $quiz_id)->first();
-
-
-        // check if registation is not closed
-        $registration_on_till = Carbon::parse($quiz->expired_at, $timezone)->subMinutes($quiz->quiz_infos->reading);
-        dd($registration_on_till);
-
-        if ($now >= $registration_on_till) {
-            throw new Error("Registration line is closed");
-        }
+        return compact('checksum');
     }
 }
