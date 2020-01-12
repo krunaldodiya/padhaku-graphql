@@ -37,4 +37,7 @@ type Mutation {
 
     submitQuiz(meta: [QuizMetaInput!]! @rules(apply: ["required"])): Boolean!
         @middleware(checks: ["auth:api"])
+
+    generatePaytmChecksum(ORDER_ID: ID! @rules(apply: ["required"])): String!
+        @middleware(checks: ["auth:api"])
 }
