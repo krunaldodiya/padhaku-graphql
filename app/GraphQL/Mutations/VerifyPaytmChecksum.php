@@ -12,6 +12,6 @@ class VerifyPaytmChecksum
         $checksum = $args['checksum'];
         $checksum_verify = $args['checksum_verify'];
 
-        return verifychecksum_e($checksum, $checksum['MID'], $checksum_verify);
+        return verifychecksum_e($checksum, env('PAYTM_MERCHANT_KEY'), $checksum_verify);
     }
 }
