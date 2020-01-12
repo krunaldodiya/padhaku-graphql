@@ -20,5 +20,11 @@ input QuizMetaInput {
 
 input ChecksumInput {
     MID: String!
-    ORDER_ID: ID!
+    ORDER_ID: String!
+    CUST_ID: String!
+    CHANNEL_ID: String!
+    TXN_AMOUNT: String!
+    WEBSITE: String!
+    CALLBACK_URL: String!
+    INDUSTRY_TYPE_ID: String!
 }
