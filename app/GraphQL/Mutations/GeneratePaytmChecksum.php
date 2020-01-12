@@ -9,13 +9,6 @@ class GeneratePaytmChecksum
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $data = [
-            'MID' => env('PAYTM_MERCHANT_ID'),
-            'ORDERID' => $args['ORDER_ID'],
-            'EMAIL' => $args['EMAIL'],
-            'MOBILE_NO' => $args['MOBILE_NO'],
-        ];
-
-        return getChecksumFromString(json_encode($data), env('PAYTM_MERCHANT_KEY'));
+        return getChecksumFromArray($args['checksum_data'], $args['checksum_data']['MID']);
     }
 }

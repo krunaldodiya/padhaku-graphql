@@ -17,3 +17,8 @@ input QuizMetaInput {
     answer: String!
     seconds: Int!
 }
+
+input ChecksumInput {
+    ORDER_ID: ID!
+    MID: String!
+}

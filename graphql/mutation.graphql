@@ -39,8 +39,6 @@ type Mutation {
         @middleware(checks: ["auth:api"])
 
     generatePaytmChecksum(
-        ORDER_ID: ID! @rules(apply: ["required"])
-        EMAIL: String! @rules(apply: ["required"])
-        MOBILE_NO: String! @rules(apply: ["required"])
+        checksum: ChecksumInput! @rules(apply: ["required"])
     ): String! @middleware(checks: ["auth:api"])
 }
