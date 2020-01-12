@@ -9,6 +9,8 @@ class GeneratePaytmChecksum
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return getChecksumFromArray($args['checksum_data'], $args['checksum_data']['MID']);
+        $checksum = $args['checksum'];
+
+        return getChecksumFromArray($checksum, $checksum['MID']);
     }
 }

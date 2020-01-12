@@ -19,6 +19,6 @@ input QuizMetaInput {
 }
 
 input ChecksumInput {
-    ORDER_ID: ID!
     MID: String!
+    ORDER_ID: ID!
 }
