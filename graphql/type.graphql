@@ -1,3 +1,9 @@
+type Plan {
+    id: ID!
+    amount: Int!
+    coins: Int!
+}
+
 type Country {
     id: ID!
     name: String!
