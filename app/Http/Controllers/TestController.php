@@ -30,6 +30,8 @@ class TestController extends Controller
             "CUST_ID" => "11baadeb-09c4-4b2d-8558-37695dd98756",
             "INDUSTRY_TYPE_ID" => "Retail",
             "TXN_AMOUNT" => "10",
+            "MOBILE_NO" => "9426726815",
+            "EMAIL" => "kunal.dodiya1@gmail.com",
             "WEBSITE" => "WEBSTAGING"
         ];
 
