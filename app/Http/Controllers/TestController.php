@@ -29,12 +29,13 @@ class TestController extends Controller
             "WEBSITE" => "WEBSTAGING",
         ];
 
-        if ($request->type === "verify") {
-            $verify = verifychecksum_e($data, env('PAYTM_MERCHANT_KEY'), $request->checksum_verify);
-            return compact('verify');
-        }
+        $hash = getChecksumFromArray($data, env('PAYTM_MERCHANT_KEY'));
+        $verified = verifychecksum_e($data, env('PAYTM_MERCHANT_KEY'), $hash);
 
-        $generate = getChecksumFromArray($data, env('PAYTM_MERCHANT_KEY'));
-        return compact('generate');
+        if ($verified) {
+            return ['hash' => $hash, 'verified' => $verified];
+        } else {
+            $this->test($request);
+        }
     }
 }
