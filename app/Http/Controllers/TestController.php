@@ -23,6 +23,7 @@ class TestController extends Controller
     public function test(Request $request, QuizRepositoryInterface $quizRepo)
     {
         $data = [
+            "mode" => "Staging",
             "MID" => "dBhsxy51569465348988",
             "ORDER_ID" => "30698f4a-7d7f-42af-b9f5-2cf05b90df88",
             "CALLBACK_URL" => "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=30698f4a-7d7f-42af-b9f5-2cf05b90df88",
