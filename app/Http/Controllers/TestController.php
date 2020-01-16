@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Error;
-
 use App\Category;
-use App\Quiz;
-use App\Repositories\Contracts\QuizRepositoryInterface;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -20,7 +14,7 @@ class TestController extends Controller
         return $categories;
     }
 
-    public function test(Request $request, QuizRepositoryInterface $quizRepo)
+    public function test(Request $request)
     {
         $data = [
             "MID" => "dBhsxy51569465348988",
