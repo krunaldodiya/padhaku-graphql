@@ -32,6 +32,10 @@ class TestController extends Controller
         $hash = getChecksumFromArray($data, env('PAYTM_MERCHANT_KEY'));
         $verified = verifychecksum_e($data, env('PAYTM_MERCHANT_KEY'), $hash);
 
-        return ['hash' => $hash, 'verified' => $verified];
+        if ($verified) {
+            return ['hash' => $hash, 'verified' => $verified];
+        } else {
+            $this->test($request);
+        }
     }
 }
