@@ -46,4 +46,7 @@ type Mutation {
         checksum: ChecksumInput! @rules(apply: ["required"])
         checksum_verify: String! @rules(apply: ["required"])
     ): Boolean! @middleware(checks: ["auth:api"])
+
+    createOrder(plan_id: ID! @rules(apply: ["required"])): Order!
+        @middleware(checks: ["auth:api"])
 }
