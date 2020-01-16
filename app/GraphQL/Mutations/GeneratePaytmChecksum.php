@@ -11,6 +11,6 @@ class GeneratePaytmChecksum
     {
         $checksum = $args['checksum'];
 
-        return getChecksumFromArray($checksum, $checksum['MID']);
+        return getChecksumFromArray($checksum, env('PAYTM_MERCHANT_KEY'));
     }
 }
