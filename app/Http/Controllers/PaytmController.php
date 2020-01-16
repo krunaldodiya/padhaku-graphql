@@ -2,39 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use Anand\LaravelPaytmWallet\Facades\PaytmWallet;
 use Illuminate\Http\Request;
 
 class PaytmController extends Controller
 {
-    public function parseChecksumOptions($data)
+    public function createOrder(Request $request)
     {
-        return [
-            "MID" => $data['MID'],
-            "ORDER_ID" => $data['ORDER_ID'],
-            "CALLBACK_URL" => $data['CALLBACK_URL'],
-            "CHANNEL_ID" => $data['CHANNEL_ID'],
-            "CUST_ID" => $data['CUST_ID'],
-            "INDUSTRY_TYPE_ID" => $data['INDUSTRY_TYPE_ID'],
-            "TXN_AMOUNT" => $data['TXN_AMOUNT'],
-            "MOBILE_NO" => $data['MOBILE_NO'],
-            "EMAIL" => $data['EMAIL'],
-            "WEBSITE" => $data['WEBSITE'],
-        ];
+        $paytm_status = route('paytm-status');
+
+        $payment = PaytmWallet::with('receive');
+
+        $data = $request->all();
+
+        $payment->prepare([
+            'order' => $data['order_id'],
+            'user' => $data['user_id'],
+            'mobile_number' => $data['mobile_number'],
+            'email' => $data['email'],
+            'amount' => $data['amount'],
+            'callback_url' => $paytm_status
+        ]);
+
+        return $payment->receive();
     }
 
-    public function generateChecksum(Request $request)
+    public function checkStatus(Request $request)
     {
-        $data = $this->parseChecksumOptions($request->all());
-        $generate = getChecksumFromArray($data, env('PAYTM_MERCHANT_KEY'));
+        $transaction = PaytmWallet::with('receive');
 
-        return compact('generate');
-    }
-
-    public function verifyChecksum(Request $request)
-    {
-        $data = $this->parseChecksumOptions($request->all());
-        $verify = verifychecksum_e($data, env('PAYTM_MERCHANT_KEY'), $request->checksum_verify);
-
-        return compact('verify');
+        return $transaction->response();
     }
 }

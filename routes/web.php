@@ -4,7 +4,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/paytm-order', 'TestController@paytmOrder')->name('paytm-order');
-Route::post('/paytm-status', 'TestController@paytmStatus')->name('paytm-status');
+Route::get('/test', 'TestController@test');
+Route::get('/paytm/order', 'PaytmController@createOrder')->name('paytm-order');
+Route::post('/paytm/status', 'PaytmController@checkStatus')->name('paytm-status');
 
 Route::get('/categories', 'TestController@categories');
