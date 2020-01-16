@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->post('/checksum', function (Request $request) {
+Route::middleware('auth:api')->post('/generate-checksum', function (Request $request) {
     $data = [
         "MID" => $request->get('MID'),
         "ORDER_ID" => $request->get('ORDER_ID'),
