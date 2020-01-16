@@ -15,6 +15,7 @@
     ],
     "require": {
         "php": "^7.2",
+        "anandsiddharth/laravel-paytm-wallet": "^1.0",
         "fideloper/proxy": "^4.0",
         "krunaldodiya/wallet": "^1.1",
         "laravel/framework": "^6.2",
@@ -46,9 +47,6 @@
         }
     },
     "autoload": {
-        "files": [
-            "libs/encdec_paytm.php"
-        ],
         "psr-4": {
             "App\\": "app/"
         },
