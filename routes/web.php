@@ -5,7 +5,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'TestController@test');
-Route::get('/paytm/order', 'PaytmController@createOrder')->name('paytm-order');
-Route::post('/paytm/status', 'PaytmController@checkStatus')->name('paytm-status');
+Route::get('/paytm/order/create', 'PaytmController@createOrder')->name('paytm-create-order');
+Route::post('/paytm/order/process', 'PaytmController@processOrder')->name('paytm-process-order');
+Route::post('/paytm/order/{status}', 'PaytmController@orderStatus')->name('paytm-order-status');
 
 Route::get('/categories', 'TestController@categories');

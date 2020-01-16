@@ -20,31 +20,43 @@ class PaytmController extends Controller
             'mobile_number' => $order->user->mobile,
             'email' => $order->user->email,
             'amount' => $order->plan->amount,
-            'callback_url' => route('paytm-status')
+            'callback_url' => route('paytm-process-order')
         ]);
 
         return $payment->receive();
     }
 
-    public function checkStatus(Request $request)
+    public function processOrder(Request $request)
     {
         $transaction = PaytmWallet::with('receive');
 
         $order = Order::with('user', 'plan')->find($transaction->getOrderId());
 
-        dd($order);
+        $user = $order->user;
 
-        // if ($transaction->isSuccessful()) {
-        //     $transaction = $user->createTransaction($transaction->TXNAMOUNT, 'deposit', [
-        //         'points' => [
-        //             'id' => $user->id,
-        //             'type' => "Purchased Coins"
-        //         ]
-        //     ]);
+        $plan = $order->plan;
 
-        //     $user->deposit($transaction->transaction_id);
-        // }
+        if ($transaction->isSuccessful()) {
+            $order->status = true;
+            $order->save();
 
-        return $transaction->response();
+            $transaction = $user->createTransaction($plan->amount, 'deposit', [
+                'points' => [
+                    'id' => $user->id,
+                    'type' => "Purchased Coins"
+                ]
+            ]);
+
+            $user->deposit($transaction->transaction_id);
+
+            return redirect('/paytm/order/success');
+        }
+
+        return redirect('/paytm/order/failed');
+    }
+
+    public function orderStatus(Request $request)
+    {
+        return $request->status;
     }
 }
