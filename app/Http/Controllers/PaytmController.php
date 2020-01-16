@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use Anand\LaravelPaytmWallet\Facades\PaytmWallet;
+use App\Order;
 use Illuminate\Http\Request;
 
 class PaytmController extends Controller
 {
     public function createOrder(Request $request)
     {
-        $paytm_status = route('paytm-status');
+        $order = Order::with('user', 'plan')->find($request->order_id);
 
         $payment = PaytmWallet::with('receive');
 
-        $data = $request->all();
-
         $payment->prepare([
-            'order' => $data['order_id'],
-            'user' => $data['user_id'],
-            'mobile_number' => $data['mobile_number'],
-            'email' => $data['email'],
-            'amount' => $data['amount'],
-            'callback_url' => $paytm_status
+            'order' => $order->id,
+            'user' => $order->user->id,
+            'mobile_number' => $order->user->mobile,
+            'email' => $order->user->email,
+            'amount' => $order->plan->amount,
+            'callback_url' => route('paytm-status')
         ]);
 
         return $payment->receive();
@@ -30,18 +29,21 @@ class PaytmController extends Controller
     public function checkStatus(Request $request)
     {
         $transaction = PaytmWallet::with('receive');
-        dd($transaction->getUser());
 
-        if ($transaction->isSuccessful()) {
-            $transaction = $user->createTransaction($transaction->TXNAMOUNT, 'deposit', [
-                'points' => [
-                    'id' => $user->id,
-                    'type' => "Purchased Coins"
-                ]
-            ]);
+        $order = Order::with('user', 'plan')->find($transaction->getOrderId());
 
-            $user->deposit($transaction->transaction_id);
-        }
+        dd($order);
+
+        // if ($transaction->isSuccessful()) {
+        //     $transaction = $user->createTransaction($transaction->TXNAMOUNT, 'deposit', [
+        //         'points' => [
+        //             'id' => $user->id,
+        //             'type' => "Purchased Coins"
+        //         ]
+        //     ]);
+
+        //     $user->deposit($transaction->transaction_id);
+        // }
 
         return $transaction->response();
     }
