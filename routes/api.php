@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaytmController;
 use Illuminate\Http\Request;
 
 /*
@@ -17,19 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->post('/generate-checksum', function (Request $request) {
-    $data = [
-        "MID" => $request->get('MID'),
-        "ORDER_ID" => $request->get('ORDER_ID'),
-        "CALLBACK_URL" => $request->get('CALLBACK_URL'),
-        "CHANNEL_ID" => $request->get('CHANNEL_ID'),
-        "CUST_ID" => $request->get('CUST_ID'),
-        "INDUSTRY_TYPE_ID" => $request->get('INDUSTRY_TYPE_ID'),
-        "TXN_AMOUNT" => $request->get('TXN_AMOUNT'),
-        "MOBILE_NO" => $request->get('MOBILE_NO'),
-        "EMAIL" => $request->get('EMAIL'),
-        "WEBSITE" => $request->get('WEBSITE'),
-    ];
-
-    return getChecksumFromArray($data, env('PAYTM_MERCHANT_KEY'));
-});
+Route::middleware('auth:api')->post('/generate-checksum', PaytmController::class, 'generateChecksum');
+Route::middleware('auth:api')->post('/verify-checksum', PaytmController::class, 'verifyChecksum');

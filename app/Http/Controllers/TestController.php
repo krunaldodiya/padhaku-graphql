@@ -23,16 +23,16 @@ class TestController extends Controller
     public function test(Request $request, QuizRepositoryInterface $quizRepo)
     {
         $data = [
-            "MID" => "dBhsxy51569465348988",
-            "ORDER_ID" => "30698f4a-7d7f-42af-b9f5-2cf05b90df88",
-            "CALLBACK_URL" => "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=30698f4a-7d7f-42af-b9f5-2cf05b90df88",
-            "CHANNEL_ID" => "WAP",
-            "CUST_ID" => "11baadeb-09c4-4b2d-8558-37695dd98756",
-            "INDUSTRY_TYPE_ID" => "Retail",
-            "TXN_AMOUNT" => "10",
-            "MOBILE_NO" => "9426726815",
-            "EMAIL" => "kunal.dodiya1@gmail.com",
-            "WEBSITE" => "WEBSTAGING"
+            "MID" => $request->get('MID'),
+            "ORDER_ID" => $request->get('ORDER_ID'),
+            "CALLBACK_URL" => $request->get('CALLBACK_URL'),
+            "CHANNEL_ID" => $request->get('CHANNEL_ID'),
+            "CUST_ID" => $request->get('CUST_ID'),
+            "INDUSTRY_TYPE_ID" => $request->get('INDUSTRY_TYPE_ID'),
+            "TXN_AMOUNT" => $request->get('TXN_AMOUNT'),
+            "MOBILE_NO" => $request->get('MOBILE_NO'),
+            "EMAIL" => $request->get('EMAIL'),
+            "WEBSITE" => $request->get('WEBSITE'),
         ];
 
         if ($request->type === "verify") {
