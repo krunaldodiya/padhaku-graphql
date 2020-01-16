@@ -19,7 +19,6 @@ input QuizMetaInput {
 }
 
 input ChecksumInput {
-    mode: String!
     MID: String!
     CHANNEL_ID: String!
     INDUSTRY_TYPE_ID: String!
