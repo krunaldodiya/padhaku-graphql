@@ -36,6 +36,8 @@ class TestController extends Controller
 
     public function paytmStatus(Request $request)
     {
-        dd($request->all());
+        $transaction = PaytmWallet::with('receive');
+
+        return $transaction->response();
     }
 }
