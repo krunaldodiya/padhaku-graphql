@@ -30,6 +30,18 @@ class PaytmController extends Controller
     public function checkStatus(Request $request)
     {
         $transaction = PaytmWallet::with('receive');
+        dd($transaction->getUser());
+
+        if ($transaction->isSuccessful()) {
+            $transaction = $user->createTransaction($transaction->TXNAMOUNT, 'deposit', [
+                'points' => [
+                    'id' => $user->id,
+                    'type' => "Purchased Coins"
+                ]
+            ]);
+
+            $user->deposit($transaction->transaction_id);
+        }
 
         return $transaction->response();
     }
