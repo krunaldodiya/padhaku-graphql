@@ -23,7 +23,7 @@ type Transaction {
     amount: Int!
     transaction_id: ID!
     transaction_type: String!
-    status: Boolean!
+    status: String!
     meta: JSON
 }
 

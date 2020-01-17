@@ -12,6 +12,11 @@ class GetWallet
     {
         $user = auth()->user();
 
-        return Wallet::with('transactions')->where('user_id', $user->id)->first();
+        return Wallet::with('transactions')
+            ->where('user_id', $user->id)
+            ->whereHas('transactions', function ($query) {
+                return $query->where('status', 'success');
+            })
+            ->first();
     }
 }
