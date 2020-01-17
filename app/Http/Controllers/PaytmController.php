@@ -40,7 +40,7 @@ class PaytmController extends Controller
             $order->status = true;
             $order->save();
 
-            $transaction = $user->createTransaction($plan->amount, 'deposit', [
+            $transaction = $user->createTransaction($plan->coins, 'deposit', [
                 'points' => [
                     'id' => $user->id,
                     'type' => "Purchased Coins"

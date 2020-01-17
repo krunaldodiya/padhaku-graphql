@@ -16,4 +16,5 @@ type Query {
     getQuizById(quiz_id: ID! @rules(apply: ["required"])): Quiz!
         @middleware(checks: ["auth:api"])
     getPlans: [Plan!]! @middleware(checks: ["auth:api"])
+    getWallet: Wallet! @middleware(checks: ["auth:api"])
 }
