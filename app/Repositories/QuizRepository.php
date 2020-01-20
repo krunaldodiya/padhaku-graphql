@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Events\QuizFinished;
 use App\Quiz;
 use App\Question;
 use App\QuizInfo;
@@ -46,6 +47,8 @@ class QuizRepository implements QuizRepositoryInterface
                 ->where(['quiz_id' => $quiz->id])
                 ->whereIn('question_id', $answerable_questions)
                 ->update(['is_answerable' => true]);
+
+            QuizFinished::dispatch($quiz)->delay($expired_at);
         }
     }
 }
