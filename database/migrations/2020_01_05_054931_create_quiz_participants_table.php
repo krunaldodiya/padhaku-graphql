@@ -20,7 +20,7 @@ class CreateQuizParticipantsTable extends Migration
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->integer('points')->nullable();
+            $table->decimal('points', 8, 2)->default(0);
             $table->integer('rank')->nullable();
             $table->integer('prize_amount')->nullable();
 
