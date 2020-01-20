@@ -30,7 +30,7 @@ class SubmitQuiz
 
         DB::table("quiz_answers")->insert($answers);
 
-        $total_points = collect($answers)->sum('point');
+        $total_points = collect($answers)->sum('points');
 
         DB::table("quiz_participants")
             ->where([
