@@ -23,7 +23,7 @@ class CreateQuizAnswersTable extends Migration
             $table->uuid('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
 
-            $table->integer('points')->default(0);
+            $table->decimal('points', 8, 2)->default(0);
 
             $table->integer('time')->nullable();
             $table->string('current_answer')->nullable();
