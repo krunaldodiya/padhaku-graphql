@@ -14,6 +14,6 @@ class QuizQuery
         $timezone = "Asia/Kolkata";
         $now = Carbon::now($timezone);
 
-        return Quiz::with('questions')->where('expired_at', '>=', $now)->get();
+        return Quiz::with('quiz_infos', 'questions')->where('expired_at', '>=', $now)->get();
     }
 }
