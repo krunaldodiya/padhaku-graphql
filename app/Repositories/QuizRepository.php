@@ -50,9 +50,7 @@ class QuizRepository implements QuizRepositoryInterface
                 ->whereIn('question_id', $answerable_questions)
                 ->update(['is_answerable' => true]);
 
-            CalculateRanking::dispatch($quiz)->delay(now()->addSeconds(5));
-
-            // CalculateRanking::dispatch($quiz)->delay($expired_at);
+            CalculateRanking::dispatch($quiz)->delay($expired_at);
         }
     }
 }
