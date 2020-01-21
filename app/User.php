@@ -81,6 +81,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Quiz::class, 'quiz_participants');
     }
 
+    public function quiz_rankings()
+    {
+        return $this->hasMany(QuizRanking::class);
+    }
+
     public static function generate_username($name, $rand_num = 1000)
     {
         $parts = array_slice(array_filter(explode(" ", strtolower($name))), 0, 2);

@@ -18,4 +18,7 @@ type Query {
         @middleware(checks: ["auth:api"])
     getPlans: [Plan!]! @middleware(checks: ["auth:api"])
     getWallet: Wallet! @middleware(checks: ["auth:api"])
+    getRankings(period: String! @rules(apply: ["required"])): [QuizRanking!]!
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Queries\\RankingQuery@getRankings")
 }

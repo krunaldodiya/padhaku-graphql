@@ -11,7 +11,7 @@ class GetUserById
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return User::with('followers', 'followings', 'country')
+        return User::with('country', 'quiz_rankings')
             ->where('id', $args['user_id'])
             ->first();
     }

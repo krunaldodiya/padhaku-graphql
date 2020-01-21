@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Jobs\CalculateRanking;
-use App\Quiz;
+use App\User;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -16,16 +15,47 @@ class TestController extends Controller
         return $categories;
     }
 
+    public function filterPeriod($period)
+    {
+        switch ($period) {
+            case 'Today':
+                now()->startOfDay();
+                break;
+
+            case 'This Week':
+                now()->startOfWeek();
+                break;
+
+            case 'This Month':
+                now()->startOfMonth();
+                break;
+
+            default:
+                return 'All';
+                break;
+        }
+    }
+
     public function test(Request $request)
     {
-        if ($request->quiz_id) {
-            $quiz = Quiz::with('quiz_infos')->find($request->quiz_id);
+        $period = $this->filterPeriod($request->period);
 
-            CalculateRanking::dispatch($quiz)->delay(now()->addSeconds(5));
+        $users = User::with('country', 'quiz_rankings')->get();
 
-            return 'done';
-        }
+        return $users
+            ->map(function ($user) use ($period) {
+                $quiz_rankings = $user->quiz_rankings()->where(function ($query) use ($period) {
+                    if ($period !== 'All') {
+                        return $query->where('created_at', '>=', $period);
+                    }
+                });
 
-        return ['error' => 'invalid quiz'];
+                return [
+                    'user' => $user->toArray(),
+                    'earnings' => $quiz_rankings->sum('prize_amount')
+                ];
+            })
+            ->sortByDesc('earnings')
+            ->toArray();
     }
 }

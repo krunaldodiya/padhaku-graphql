@@ -10,7 +10,7 @@ class SearchUsers
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return User::with('followers', 'followings', 'country')
+        return User::with('country', 'quiz_rankings')
             ->where('id', '!=', auth()->id())
             ->where(function ($query) use ($args) {
                 $keywords = $args['keywords'];

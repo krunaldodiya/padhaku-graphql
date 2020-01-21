@@ -1,3 +1,8 @@
+type QuizRanking {
+    user: User!
+    earnings: Int!
+}
+
 type Distribution {
     rank: Int!
     price: Int!
@@ -132,10 +137,6 @@ type User {
     language: String
     wallet: Wallet @hasOne
     country: Country @belongsTo
-    followers: [User!]! @belongsToMany
-    followings: [User!]! @belongsToMany
-    is_following: Boolean!
-    is_follower: Boolean!
     version: String
     status: Boolean
     created_at: DateTime!
