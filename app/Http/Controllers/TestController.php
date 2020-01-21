@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Jobs\TestJob;
+use App\Jobs\CalculateRanking;
 use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
-use KD\Wallet\Models\Wallet;
 
 class TestController extends Controller
 {
@@ -20,8 +19,12 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $user = User::first();
+        if ($request->quiz_id) {
+            $quiz = Quiz::find($request->quiz_id);
 
-        TestJob::dispatch($user)->delay(now()->addSeconds(5));
+            CalculateRanking::dispatch($quiz)->delay(now()->addSeconds(5));
+        }
+
+        return ['error' => 'invalid quiz'];
     }
 }

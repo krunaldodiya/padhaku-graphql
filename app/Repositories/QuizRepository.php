@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Events\QuizFinished;
+use App\Jobs\CalculateRanking;
 use App\Quiz;
 use App\Question;
 use App\QuizInfo;
@@ -28,6 +28,8 @@ class QuizRepository implements QuizRepositoryInterface
             $quiz = Quiz::create([
                 'quiz_info_id' => $quizInfo->id,
                 'expired_at' => $expired_at,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
 
             $all_questions = Question::inRandomOrder()
@@ -48,7 +50,9 @@ class QuizRepository implements QuizRepositoryInterface
                 ->whereIn('question_id', $answerable_questions)
                 ->update(['is_answerable' => true]);
 
-            QuizFinished::dispatch($quiz)->delay($expired_at);
+            CalculateRanking::dispatch($quiz)->delay(now()->addSeconds(5));
+
+            // CalculateRanking::dispatch($quiz)->delay($expired_at);
         }
     }
 }

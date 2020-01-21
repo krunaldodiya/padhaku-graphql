@@ -8,12 +8,10 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 
 use App\Events\UserCreated;
-use App\Events\QuizFinished;
 
 use App\Listeners\GenerateUsername;
 use App\Listeners\AddBonusPoint;
 use App\Listeners\CheckInvitation;
-use App\Listeners\CalculateRanking;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -31,10 +29,6 @@ class EventServiceProvider extends ServiceProvider
             GenerateUsername::class,
             AddBonusPoint::class,
             CheckInvitation::class,
-        ],
-
-        QuizFinished::class => [
-            CalculateRanking::class,
         ],
     ];
 
