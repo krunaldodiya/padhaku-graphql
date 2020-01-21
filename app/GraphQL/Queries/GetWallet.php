@@ -17,6 +17,7 @@ class GetWallet
             ->whereHas('transactions', function ($query) {
                 return $query->where('status', 'success');
             })
+            ->orderBy('transactions.created_at')
             ->first();
     }
 }
