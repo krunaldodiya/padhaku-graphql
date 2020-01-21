@@ -12,12 +12,14 @@ class GetWallet
     {
         $user = auth()->user();
 
-        return Wallet::with('transactions')
+        $relations = ['transactions' => function ($query) {
+            return $query->orderBy('created_at', 'desc');
+        }];
+
+        return Wallet::with($relations)
             ->where('user_id', $user->id)
             ->whereHas('transactions', function ($query) {
-                return $query
-                    ->where('status', 'success')
-                    ->orderBy('created_at', 'desc');
+                return $query->where('status', 'success');
             })
             ->first();
     }
