@@ -25,6 +25,7 @@ type Transaction {
     transaction_type: String!
     status: String!
     meta: JSON
+    created_at: DateTime!
 }
 
 type Wallet {
