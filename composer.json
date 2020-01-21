@@ -15,6 +15,7 @@
     ],
     "require": {
         "php": "^7.2",
+        "64robots/nova-fields": "^0.15.0",
         "anandsiddharth/laravel-paytm-wallet": "^1.0",
         "fideloper/proxy": "^4.0",
         "krunaldodiya/wallet": "^1.1",

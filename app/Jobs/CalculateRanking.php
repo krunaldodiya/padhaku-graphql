@@ -49,8 +49,6 @@ class CalculateRanking implements ShouldQueue
             ];
         });
 
-        dump($quiz_data);
-
         DB::table("quiz_rankings")->insert($quiz_data->toArray());
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use R64\NovaFields\Number;
+use R64\NovaFields\Row;
 
 class QuizInfo extends Resource
 {
@@ -50,7 +51,10 @@ class QuizInfo extends Resource
             Text::make('Expiry (hours)', 'expiry'),
             Text::make('Reading (Minutes)', 'reading'),
             Text::make('Time (Seconds)', 'time'),
-            Avatar::make('image'),
+            Row::make('Price Distribution', [
+                Number::make('Rank'),
+                Number::make('Price'),
+            ], 'distribution'),
         ];
     }
 

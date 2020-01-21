@@ -1,3 +1,8 @@
+type Distribution {
+    rank: Int!
+    price: Int!
+}
+
 type Order {
     id: ID!
     user: User! @belongsTo
@@ -100,7 +105,7 @@ type QuizInfo {
     total_winners: Int!
     all_questions_count: Int!
     answerable_questions_count: Int!
-    image: String!
+    contribution: [Distribution!]!
     expiry: Int!
     reading: Int!
 }

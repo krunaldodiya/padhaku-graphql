@@ -22,6 +22,8 @@ class TestController extends Controller
             $quiz = Quiz::find($request->quiz_id);
 
             CalculateRanking::dispatch($quiz)->delay(now()->addSeconds(5));
+
+            return 'done';
         }
 
         return ['error' => 'invalid quiz'];

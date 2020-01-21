@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3b9041259f1af9cac251fe5d443c71b",
+    "content-hash": "e61cc4e3684434dff4730243445c5019",
     "packages": [
+        {
+            "name": "64robots/nova-fields",
+            "version": "0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/64robots/nova-fields.git",
+                "reference": "627cda5280e8ed20c939dd0414950a6a7aa90799"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/64robots/nova-fields/zipball/627cda5280e8ed20c939dd0414950a6a7aa90799",
+                "reference": "627cda5280e8ed20c939dd0414950a6a7aa90799",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "R64\\NovaFields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "R64\\NovaFields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-12-13T13:50:08+00:00"
+        },
         {
             "name": "anandsiddharth/laravel-paytm-wallet",
             "version": "v1.0.15",
