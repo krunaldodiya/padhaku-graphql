@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Jobs\TestJob;
 use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,11 +22,6 @@ class TestController extends Controller
     {
         $user = User::first();
 
-        return Quiz::with('questions')
-            ->whereHas('participants', function ($query) use ($user) {
-                return $query->where('user_id', $user->id);
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
+        TestJob::dispatch($user)->delay(now()->addSeconds(5));
     }
 }

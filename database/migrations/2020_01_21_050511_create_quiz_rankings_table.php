@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuizParticipantsTable extends Migration
+class CreateQuizRankingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateQuizParticipantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('quiz_participants', function (Blueprint $table) {
+        Schema::create('quiz_rankings', function (Blueprint $table) {
             $table->uuid('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
 
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->decimal('points', 8, 2)->default(0);
-
-            $table->enum('quiz_status', ['joined', 'finished', 'canceled', 'left'])->default('joined');
+            $table->integer('rank')->nullable();
+            $table->integer('prize_amount')->nullable();
 
             $table->timestamps();
 
@@ -37,6 +36,6 @@ class CreateQuizParticipantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quiz_participants');
+        Schema::dropIfExists('quiz_rankings');
     }
 }
