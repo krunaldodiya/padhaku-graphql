@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
 use KD\Wallet\Models\Wallet;
@@ -20,15 +21,11 @@ class TestController extends Controller
     {
         $user = User::first();
 
-        $relations = ['transactions' => function ($query) {
-            return $query->orderBy('created_at', 'desc');
-        }];
-
-        return Wallet::with($relations)
-            ->where('user_id', $user->id)
-            ->whereHas('transactions', function ($query) {
-                return $query->where('status', 'success');
+        return Quiz::with('questions')
+            ->whereHas('participants', function ($query) use ($user) {
+                return $query->where('user_id', $user->id);
             })
-            ->first();
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 }
