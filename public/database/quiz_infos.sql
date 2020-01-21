@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: padhaku
--- Generation Time: 2020-01-11 08:56:40.7200
+-- Generation Time: 2020-01-21 15:11:50.5210
 -- -------------------------------------------------------------
 
 
@@ -19,17 +19,18 @@ CREATE TABLE "public"."quiz_infos" (
     "total_winners" int4 NOT NULL DEFAULT 10,
     "all_questions_count" int4 NOT NULL DEFAULT 50,
     "answerable_questions_count" int4 NOT NULL DEFAULT 10,
-    "image" text NOT NULL,
-    "created_at" timestamp(0),
-    "updated_at" timestamp(0),
+    "distribution" json,
     "expiry" int4 NOT NULL DEFAULT 1,
     "reading" int4 NOT NULL DEFAULT 15,
-    "seconds" int4 NOT NULL DEFAULT 10,
+    "time" int4 NOT NULL DEFAULT 10,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
     PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."quiz_infos" ("id", "entry_fee", "total_participants", "total_winners", "all_questions_count", "answerable_questions_count", "image", "created_at", "updated_at", "expiry", "reading", "seconds") VALUES ('734c8844-cbdf-4e42-ae8c-469cb486d97f', '10', '100', '10', '50', '10', 'W80GiEJFBpB4ueTqiPJAA6Lf2pYBCBTx2Tq9RJCc.jpeg', '2020-01-04 03:08:58', '2020-01-04 03:18:40', '1', '15', '10'),
-('d684cb75-4a03-45f9-8d37-b8a7f6cd0c56', '20', '100', '10', '50', '10', 'ZEmpbZHgNeOxI2hNx66k3MAEIeIJMNI1gorJTMcY.jpeg', '2020-01-04 03:10:10', '2020-01-04 03:18:30', '1', '15', '10'),
-('df319c45-35dc-4ff8-bc77-c1dd6af781ff', '50', '100', '10', '50', '10', 'bf7uLJMCsHWwXJyDyfJQJBVPeSxqcj2PES7uEXEc.jpeg', '2020-01-04 03:11:02', '2020-01-04 03:18:19', '1', '15', '10'),
-('e3c32daa-cf6a-46d4-9051-d91306088f0e', '30', '100', '10', '50', '10', 'BvD6Y9PimruZijKwnGa2vboZVMrQbawK0yTGrM74.jpeg', '2020-01-04 03:10:26', '2020-01-04 03:18:01', '1', '15', '10'),
-('e91370dc-cb69-4c24-9f5f-ba4b2e28eb02', '100', '1000', '50', '100', '20', 'tM305iM1O3mESw9nZhcysbPVfTWdfjGLTTLcwVFl.jpeg', '2020-01-04 03:11:26', '2020-01-04 03:17:23', '1', '15', '10');
+-- Column Comment
+COMMENT ON COLUMN "public"."quiz_infos"."expiry" IS 'expiry in hours';
+COMMENT ON COLUMN "public"."quiz_infos"."reading" IS 'reading in minutes';
+COMMENT ON COLUMN "public"."quiz_infos"."time" IS 'time in seconds';
+
+INSERT INTO "public"."quiz_infos" ("id", "entry_fee", "total_participants", "total_winners", "all_questions_count", "answerable_questions_count", "distribution", "expiry", "reading", "time", "created_at", "updated_at") VALUES ('35518951-0458-4ad1-b99f-38fe44fa7c15', '10', '20', '5', '50', '10', '[{"rank":"1","price":"40","row_id":"eakt5i4r4"},{"rank":"2","price":"30","row_id":"jt6lv6nv0"},{"rank":"3","price":"20","row_id":"uaj7b8nu3"},{"rank":"4","price":"20","row_id":"a93cxge0t"},{"rank":"5","price":"10","row_id":"hhtuf0gpn"}]', '1', '15', '10', '2020-01-21 09:39:57', '2020-01-21 09:40:55');

@@ -12,4 +12,8 @@ class QuizInfo extends Model
     public $incrementing = false;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'distribution' => 'json',
+    ];
 }

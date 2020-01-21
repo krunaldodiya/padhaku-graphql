@@ -19,7 +19,7 @@ class TestController extends Controller
     public function test(Request $request)
     {
         if ($request->quiz_id) {
-            $quiz = Quiz::find($request->quiz_id);
+            $quiz = Quiz::with('quiz_infos')->find($request->quiz_id);
 
             CalculateRanking::dispatch($quiz)->delay(now()->addSeconds(5));
 

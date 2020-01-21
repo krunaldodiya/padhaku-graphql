@@ -33,22 +33,27 @@ class CalculateRanking implements ShouldQueue
      */
     public function handle()
     {
+        $quiz_data = Quiz::with('quiz_infos')->find($this->quiz->id);
+
         $quiz_participants = DB::table('quiz_participants')
             ->where('quiz_id', $this->quiz->id)
             ->orderBy('points', 'desc')
             ->get();
 
-        $quiz_data = $quiz_participants->map(function ($quiz_participant, $index) {
+        $quiz_rankings = $quiz_participants->map(function ($quiz_participant, $index) use ($quiz_data) {
+            $rank = $index + 1;
+            $contribution = collect($quiz_data->quiz_infos->distribution)->where('rank', $rank)->first();
+
             return [
                 'quiz_id' => $quiz_participant->quiz_id,
                 'user_id' => $quiz_participant->user_id,
-                'rank' => $index + 1,
-                'prize_amount' => 100,
+                'rank' => $rank,
+                'prize_amount' => $contribution['price'],
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         });
 
-        DB::table("quiz_rankings")->insert($quiz_data->toArray());
+        DB::table("quiz_rankings")->insert($quiz_rankings->toArray());
     }
 }
