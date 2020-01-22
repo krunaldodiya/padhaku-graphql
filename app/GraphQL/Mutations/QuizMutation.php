@@ -7,7 +7,6 @@ use Error;
 use App\Quiz;
 use Carbon\Carbon;
 use GraphQL\Type\Definition\ResolveInfo;
-use Illuminate\Support\Facades\DB;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class QuizMutation
@@ -17,9 +16,6 @@ class QuizMutation
         $quiz_id = $args['quiz_id'];
         $user = auth()->user();
 
-        $timezone = 'Asia/Kolkata';
-        $now = Carbon::now($timezone);
-
         $quiz = Quiz::with('quiz_infos', 'participants', 'questions')->where('id', $quiz_id)->first();
 
         // check if already joined
@@ -28,8 +24,8 @@ class QuizMutation
         }
 
         // check if registation is not closed
-        $registration_on_till = Carbon::parse($quiz->expired_at, $timezone)->subMinutes($quiz->quiz_infos->reading);
-        if ($now >= $registration_on_till) {
+        $registration_on_till = Carbon::parse($quiz->expired_at)->subMinutes($quiz->quiz_infos->reading);
+        if (now() >= $registration_on_till) {
             throw new Error("Registration line is closed");
         }
 

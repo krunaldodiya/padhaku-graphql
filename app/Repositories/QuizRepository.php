@@ -14,22 +14,19 @@ class QuizRepository implements QuizRepositoryInterface
 {
     public function generateQuiz()
     {
-        $timezone = 'Asia/Kolkata';
-        $now = Carbon::now($timezone);
-
-        $from = Carbon::parse('today 7am', $timezone);
-        $to = Carbon::parse('today 10pm', $timezone);
+        $from = Carbon::parse('today 7am');
+        $to = Carbon::parse('today 10pm');
 
         $quizInfo = QuizInfo::where('entry_fee', 10)->first();
 
-        if ($now->gte($from) && $now->lte($to)) {
-            $expired_at = $now->addHour($quizInfo->expiry);
+        if (now()->gte($from) && now()->lte($to)) {
+            $expired_at = now()->addHour($quizInfo->expiry);
 
             $quiz = Quiz::create([
                 'quiz_info_id' => $quizInfo->id,
                 'expired_at' => $expired_at,
-                'created_at' => $now,
-                'updated_at' => $now,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
             $all_questions = Question::inRandomOrder()
