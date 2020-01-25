@@ -113,6 +113,7 @@ type QuizInfo {
     distribution: [Distribution]
     expiry: Int!
     reading: Int!
+    time: Int!
 }
 
 type Quiz {
