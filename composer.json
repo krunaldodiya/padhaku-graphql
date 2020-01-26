@@ -20,6 +20,7 @@
         "fideloper/proxy": "^4.0",
         "krunaldodiya/wallet": "^1.1",
         "laravel/framework": "^6.2",
+        "laravel/horizon": "^3.4",
         "laravel/nova": "^2.9",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^2.0",
