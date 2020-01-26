@@ -22,7 +22,7 @@ class CreateQuizParticipantsTable extends Migration
 
             $table->decimal('points', 8, 2)->default(0);
 
-            $table->enum('quiz_status', ['joined', 'finished', 'canceled', 'left'])->default('joined');
+            $table->enum('quiz_status', ['joined', 'finished', 'canceled', 'left', 'started', 'pending'])->default('joined');
 
             $table->timestamps();
 
