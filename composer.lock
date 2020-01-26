@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "621af42fbdcf2b8a936a6ba00fe42cc5",
+    "content-hash": "3d93fb8749aa5950350a50ec3aa6073e",
     "packages": [
         {
             "name": "64robots/nova-fields",

@@ -7,6 +7,7 @@ use App\QuizInfo;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Nuwave\Lighthouse\Execution\Utils\Subscription;
 
 class TestController extends Controller
 {
@@ -19,8 +20,10 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $quizInfo = QuizInfo::where('entry_fee', 10)->first();
-        $expired_at = now()->addHour($quizInfo->expiry);
-        dd($expired_at, now());
+        $user = User::first();
+
+        Subscription::broadcast('userWasCreated', $user);
+
+        return 'done';
     }
 }

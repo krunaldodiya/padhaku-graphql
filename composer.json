@@ -28,6 +28,7 @@
         "mll-lab/graphql-php-scalars": "^2.1",
         "mll-lab/laravel-graphql-playground": "^2.0",
         "nuwave/lighthouse": "^4.7",
+        "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^4.1",
         "tymon/jwt-auth": "^1.0.0"
     },

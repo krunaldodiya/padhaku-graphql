@@ -3,8 +3,8 @@
 --
 -- https://tableplus.com/
 --
--- Database: padhaku
--- Generation Time: 2020-01-07 11:09:59.0960
+-- Database: pauzr
+-- Generation Time: 2020-01-26 14:48:34.1840
 -- -------------------------------------------------------------
 
 
@@ -23,5 +23,6 @@ CREATE TABLE "public"."languages" (
     PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."languages" ("id", "name", "nickname", "shortname", "background_image", "background_color", "order") VALUES ('2cbe9328-d671-4c16-9341-057cd0240ced', 'Hindi', 'हिन्दी', 'hi', NULL, NULL, NULL),
-('640a547f-97c9-4b05-8b8e-e2b10f797b0f', 'English', 'English', 'en', NULL, NULL, NULL);
+INSERT INTO "public"."languages" ("id", "name", "nickname", "shortname", "background_image", "background_color", "order") VALUES ('2cbe9328-d671-4c16-9341-057cd0240ced', 'Hindi', 'हिन्दी', 'hi', 'https://cdn.countryflags.com/thumbs/india/flag-3d-250.png', 'red', NULL),
+('640a547f-97c9-4b05-8b8e-e2b10f797b0f', 'English', 'English', 'en', 'https://cdn.countryflags.com/thumbs/india/flag-3d-250.png', 'blue', NULL),
+('8f85e551-28a6-4212-9be9-7e70fcc04d8c', 'Gujarati', 'ગુજરાતી', 'gu', 'https://cdn.countryflags.com/thumbs/india/flag-3d-250.png', 'green', NULL);
