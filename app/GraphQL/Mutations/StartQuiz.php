@@ -30,7 +30,7 @@ class StartQuiz
         }
 
         // check if not expired
-        if (now() >= $quiz->expired_at->addMinutes(15)) {
+        if (now() >= $quiz->expired_at->addMinutes(10)) {
             throw new Error("Quiz is expired");
         }
 
