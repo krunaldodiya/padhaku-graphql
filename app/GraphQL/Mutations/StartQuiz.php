@@ -29,12 +29,10 @@ class StartQuiz
             throw new Error("Can't start quiz because it is already {$quiz_participant->quiz_status}");
         }
 
-        // check if not expired
-        if (now() >= $quiz->expired_at->addMinutes(10)) {
+        if (now() >= $quiz->expired_at->addMinutes(15)) {
             throw new Error("Quiz is expired");
         }
 
-        // check if started
         if (now() <= $quiz->expired_at) {
             throw new Error("Quiz is not started yet");
         }
