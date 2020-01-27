@@ -2,6 +2,8 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Quiz;
+use Error;
 use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Support\Facades\DB;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -12,13 +14,23 @@ class SubmitQuiz
     {
         $user = auth()->user();
 
+        $quiz = Quiz::find($args['quiz_id']);
+
+        $quiz_participant = DB::table("quiz_participants")
+            ->where(['user_id' => $user->id, 'quiz_id' => $quiz->id])
+            ->first();
+
+        if ($quiz_participant->quiz_status !== 'started') {
+            throw new Error("Can not submit quiz");
+        }
+
         $answers = collect($args['meta'])
-            ->map(function ($answer) use ($user) {
+            ->map(function ($answer) use ($user, $quiz) {
                 $points = $answer['answer'] == $answer['current_answer'] ? 10 / ($answer['seconds'] + 1) : 0;
 
                 return [
                     'user_id' => $user->id,
-                    'quiz_id' => $answer['quiz_id'],
+                    'quiz_id' => $quiz->id,
                     'question_id' => $answer['question_id'],
                     'points' => $points,
                     'time' => $answer['seconds'],
