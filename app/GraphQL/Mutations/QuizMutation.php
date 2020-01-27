@@ -24,7 +24,7 @@ class QuizMutation
         }
 
         // check if registation is not closed
-        $registration_on_till = Carbon::parse($quiz->expired_at)->subMinutes($quiz->quiz_infos->reading);
+        $registration_on_till = Carbon::parse($quiz->expired_at);
         if (now() >= $registration_on_till) {
             throw new Error("Registration line is closed");
         }

@@ -31,6 +31,9 @@ type Mutation {
         bio: String
     ): User! @middleware(checks: ["auth:api"])
 
+    startQuiz(quiz_id: ID! @rules(apply: ["required"])): Boolean!
+        @middleware(checks: ["auth:api"])
+
     joinQuiz(quiz_id: ID! @rules(apply: ["required"])): Quiz!
         @middleware(checks: ["auth:api"])
         @field(resolver: "App\\GraphQL\\Mutations\\QuizMutation@joinQuiz")
