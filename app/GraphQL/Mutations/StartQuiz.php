@@ -16,7 +16,6 @@ class StartQuiz
         $user = auth()->user();
         $quiz = Quiz::find($args['quiz_id']);
 
-        // check if joined
         $quiz_participant = DB::table("quiz_participants")
             ->where(['user_id' => $user->id, 'quiz_id' => $quiz->id])
             ->first();
@@ -37,8 +36,9 @@ class StartQuiz
             throw new Error("Quiz is not started yet");
         }
 
-        $quiz_participant->quiz_status = 'started';
-        $quiz_participant->save();
+        DB::table("quiz_participants")
+            ->where(['user_id' => $user->id, 'quiz_id' => $quiz->id])
+            ->update(['quiz_status' => 'started']);
 
         return true;
     }
