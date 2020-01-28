@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Quiz;
 use App\Repositories\Contracts\QuizRepositoryInterface;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -40,10 +41,6 @@ class CalculateQuizRanking implements ShouldQueue
             return false;
         }
 
-        if ($quiz_data->participants()->where('quiz_status', 'started')->count() < $quiz_data->quiz_infos->total_winners) {
-            return $quizRepo->cancelQuiz($quiz_data);
-        }
-
         $quiz_participants = DB::table('quiz_participants')
             ->where('quiz_id', $this->quiz->id)
             ->orderBy('points', 'desc')
@@ -67,8 +64,19 @@ class CalculateQuizRanking implements ShouldQueue
 
         $quiz_data->participants()->where('quiz_status', '!=', 'started')->update(['status' => 'left']);
 
-        $quiz_data->participants->each(function ($user) {
-            // wallet
+        $quiz_rankings->each(function ($quiz_ranking) {
+            $user = User::find($quiz_ranking['user_id']);
+
+            $transaction = $user->createTransaction($quiz_ranking['prize_amount'], 'deposit', [
+                'points' => [
+                    'id' => $user->id,
+                    'type' => "Won Quiz"
+                ]
+            ]);
+
+            $user->deposit($transaction->transaction_id);
         });
+
+        Quiz::where('id', $quiz_data->id)->update(['status' => 'finished']);
     }
 }

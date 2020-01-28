@@ -15,11 +15,19 @@ class QuizRepository implements QuizRepositoryInterface
     public function cancelQuiz($quiz)
     {
         DB::table('quiz_particiants')->where('quiz_id', $quiz->id)->update(['status' => 'canceled']);
-        Quiz::where('id', $quiz->id)->update(['status' => 'canceled']);
 
-        $quiz->participants->each(function ($user) {
-            // wallet
+        $quiz->participants->each(function ($user) use ($quiz) {
+            $transaction = $user->createTransaction($quiz->quiz_infos->entry_Fee, 'deposit', [
+                'points' => [
+                    'id' => $user->id,
+                    'type' => "Quiz Canceled"
+                ]
+            ]);
+
+            $user->deposit($transaction->transaction_id);
         });
+
+        Quiz::where('id', $quiz->id)->update(['status' => 'canceled']);
     }
 
     public function generateQuiz()

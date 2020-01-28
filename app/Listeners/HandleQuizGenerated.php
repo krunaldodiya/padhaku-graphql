@@ -6,7 +6,7 @@ use App\Events\QuizGenerated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Jobs\CalculateQuizRanking;
-use App\Jobs\CalculateQuizStatus;
+use App\Jobs\CheckQuizStatus;
 use App\Jobs\SendQuizNotification;
 
 class HandleQuizGenerated
@@ -32,7 +32,7 @@ class HandleQuizGenerated
         $quiz = $event->quiz;
 
         SendQuizNotification::dispatch($quiz)->delay($quiz->expired_at->subMinutes(15));
-        CalculateQuizStatus::dispatch($quiz)->delay($quiz->expired_at);
+        CheckQuizStatus::dispatch($quiz)->delay($quiz->expired_at);
         CalculateQuizRanking::dispatch($quiz)->delay($quiz->expired_at->addMinutes(15));
     }
 }

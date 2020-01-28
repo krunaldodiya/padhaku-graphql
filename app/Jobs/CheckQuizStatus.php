@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 
-class CalculateQuizStatus implements ShouldQueue
+class CheckQuizStatus implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -36,7 +36,10 @@ class CalculateQuizStatus implements ShouldQueue
     {
         $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
-        if ($quiz_data->participants()->count() < $quiz_data->quiz_infos->total_participants) {
+        $minimum_participants = $quiz_data->participants()->count() >= $quiz_data->quiz_infos->total_participants;
+        $minimum_winners = $quiz_data->participants()->where('quiz_status', 'started')->count() >= $quiz_data->quiz_infos->total_winners;
+
+        if (!$minimum_participants || !$minimum_winners) {
             return $quizRepo->cancelQuiz($quiz_data);
         }
     }
