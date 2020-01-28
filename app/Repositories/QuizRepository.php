@@ -33,7 +33,7 @@ class QuizRepository implements QuizRepositoryInterface
     public function generateQuiz()
     {
         $from = Carbon::parse('today 7am');
-        $to = Carbon::parse('today 10pm');
+        $to = Carbon::parse('today 7pm');
 
         $quizInfo = QuizInfo::where('entry_fee', 10)->first();
 
