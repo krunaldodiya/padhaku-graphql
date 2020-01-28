@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\DB;
 
 class QuizRepository implements QuizRepositoryInterface
 {
+    public function cancelQuiz($quiz)
+    {
+        DB::table('quiz_particiants')->where('quiz_id', $quiz->id)->update(['status' => 'canceled']);
+        Quiz::where('id', $quiz->id)->update(['status' => 'canceled']);
+
+        $quiz->participants->each(function ($user) {
+            // wallet
+        });
+    }
+
     public function generateQuiz()
     {
         $from = Carbon::parse('today 7am');

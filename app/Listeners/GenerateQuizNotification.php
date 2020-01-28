@@ -5,11 +5,8 @@ namespace App\Listeners;
 use App\Events\QuizGenerated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Jobs\CalculateQuizRanking;
-use App\Jobs\CalculateQuizStatus;
-use App\Jobs\SendQuizNotification;
 
-class HandleQuizGenerated
+class GenerateQuizNotification
 {
     /**
      * Create the event listener.
@@ -30,9 +27,5 @@ class HandleQuizGenerated
     public function handle(QuizGenerated $event)
     {
         $quiz = $event->quiz;
-
-        SendQuizNotification::dispatch($quiz)->delay($quiz->expired_at->subMinutes(15));
-        CalculateQuizStatus::dispatch($quiz)->delay($quiz->expired_at);
-        CalculateQuizRanking::dispatch($quiz)->delay($quiz->expired_at->addMinutes(15));
     }
 }

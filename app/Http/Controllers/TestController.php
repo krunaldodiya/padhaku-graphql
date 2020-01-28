@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Quiz;
 use App\QuizInfo;
 use App\User;
 use Carbon\Carbon;
@@ -20,10 +21,8 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $user = User::first();
+        $quiz_data = Quiz::with('participants', 'quiz_infos')->find($request->quiz_id);
 
-        Subscription::broadcast('userWasCreated', $user);
-
-        return 'done';
+        return $quiz_data->participants()->where('quiz_status', 'started')->count();
     }
 }
