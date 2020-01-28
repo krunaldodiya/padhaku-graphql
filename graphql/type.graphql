@@ -123,6 +123,7 @@ type Quiz {
     participants: [User!]! @belongsToMany
     quiz_infos: QuizInfo! @belongsTo
     expired_at: DateTime!
+    status: String!
 }
 
 type User {
