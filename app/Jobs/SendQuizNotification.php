@@ -32,6 +32,6 @@ class SendQuizNotification implements ShouldQueue
      */
     public function handle()
     {
-        //
+        dump($this->quiz);
     }
 }
