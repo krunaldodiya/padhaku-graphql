@@ -22,10 +22,11 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $quiz = Quiz::first();
+        $quiz_data = Quiz::with('participants', 'quiz_infos')->first();
 
-        TestQuizStatus::dispatch($quiz)->delay(now()->addSeconds(10));
+        $minimum_participants = $quiz_data->participants()->count() >= $quiz_data->quiz_infos->total_participants;
+        $minimum_winners = $quiz_data->participants()->where('quiz_status', 'started')->count() >= $quiz_data->quiz_infos->total_winners;
 
-        return 'done';
+        return compact('minimum_participants', 'minimum_winners');
     }
 }
