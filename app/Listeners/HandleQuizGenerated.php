@@ -32,7 +32,7 @@ class HandleQuizGenerated
         $quiz = $event->quiz;
 
         SendQuizNotification::dispatch($quiz)->delay($quiz->expired_at->subMinutes(15));
-        CheckQuizStatus::dispatch($quiz)->delay($quiz->expired_at->subMinutes(1));
+        CheckQuizStatus::dispatch($quiz)->delay($quiz->expired_at->subSeconds(5));
         CalculateQuizRanking::dispatch($quiz)->delay($quiz->expired_at->addMinutes(15));
     }
 }
