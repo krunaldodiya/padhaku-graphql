@@ -36,10 +36,10 @@ class CheckQuizStatus implements ShouldQueue
     {
         $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
-        $minimum_participants = $quiz_data->participants()->count() >= $quiz_data->quiz_infos->total_participants;
-        $minimum_winners = $quiz_data->participants()->where('quiz_status', 'started')->count() >= $quiz_data->quiz_infos->total_winners;
+        $not_enough_participants = $quiz_data->participants()->count() < $quiz_data->quiz_infos->total_participants;
+        $not_enough_winners = $quiz_data->participants()->where('quiz_status', 'started')->count() < $quiz_data->quiz_infos->total_winners;
 
-        if (!$minimum_participants || !$minimum_winners) {
+        if ($not_enough_participants || $not_enough_winners) {
             return $quizRepo->cancelQuiz($quiz_data);
         }
     }
