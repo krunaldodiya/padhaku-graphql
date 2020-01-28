@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Jobs\TestQuizStatus;
 use App\Quiz;
 use App\QuizInfo;
 use App\User;
@@ -21,8 +22,10 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $quiz_data = Quiz::with('participants', 'quiz_infos')->find($request->quiz_id);
+        $quiz = Quiz::first();
 
-        return $quiz_data->participants()->where('quiz_status', 'started')->count();
+        TestQuizStatus::dispatch($quiz)->delay(now()->addSeconds(10));
+
+        return 'done';
     }
 }
