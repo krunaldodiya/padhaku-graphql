@@ -19,7 +19,7 @@ class Quiz extends Model
     ];
 
     protected $appends = [
-        'quiz_status',
+        'quiz_status', 'quiz_prize'
     ];
 
     public function getQuizStatusAttribute()
@@ -30,6 +30,11 @@ class Quiz extends Model
             ->first();
 
         return $quiz_participant ? $quiz_participant->quiz_status : "pending";
+    }
+
+    public function getQuizPrizeAttribute()
+    {
+        return collect($this->quiz_infos->distribution)->sum('price');
     }
 
     public function questions()

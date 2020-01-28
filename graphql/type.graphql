@@ -119,6 +119,7 @@ type QuizInfo {
 type Quiz {
     id: ID!
     quiz_status: String!
+    quiz_prize: Int!
     questions: [Question!]! @belongsToMany
     participants: [User!]! @belongsToMany
     quiz_infos: QuizInfo! @belongsTo
