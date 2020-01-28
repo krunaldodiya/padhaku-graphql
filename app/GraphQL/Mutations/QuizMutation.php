@@ -18,6 +18,10 @@ class QuizMutation
 
         $quiz = Quiz::with('quiz_infos', 'participants', 'questions')->where('id', $quiz_id)->first();
 
+        if ($quiz->status != 'pending') {
+            throw new Error("Quiz is expired");
+        }
+
         // check if already joined
         if ($quiz->is_joined) {
             throw new Error("Already joined");
