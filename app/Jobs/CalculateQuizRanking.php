@@ -37,8 +37,10 @@ class CalculateQuizRanking implements ShouldQueue
     {
         $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
-        if ($quiz_data->status !== 'started') {
-            return false;
+        $quiz_started_participants = $quiz_data->participants()->where('quiz_status', 'started')->count();
+
+        if ($quiz_started_participants < $quiz_data->quiz_infos->total_winners) {
+            return $quizRepo->cancelQuiz($quiz_data);
         }
 
         $quiz_participants = DB::table('quiz_participants')
