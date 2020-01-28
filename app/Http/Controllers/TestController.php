@@ -27,6 +27,10 @@ class TestController extends Controller
         $minimum_participants = $quiz_data->participants()->count() >= $quiz_data->quiz_infos->total_participants;
         $minimum_winners = $quiz_data->participants()->where('quiz_status', 'started')->count() >= $quiz_data->quiz_infos->total_winners;
 
-        return compact('minimum_participants', 'minimum_winners');
+        if (!$minimum_participants || !$minimum_winners) {
+            return compact('minimum_participants', 'minimum_winners');
+        }
+
+        return 'ban';
     }
 }
