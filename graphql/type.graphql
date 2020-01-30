@@ -28,6 +28,12 @@ type Country {
     shortname: String!
 }
 
+type Wallet {
+    id: ID!
+    balance: Int!
+    transactions: [Transaction] @hasMany
+}
+
 type Transaction {
     id: ID!
     amount: Int!
@@ -36,12 +42,6 @@ type Transaction {
     status: String!
     meta: JSON
     created_at: DateTime!
-}
-
-type Wallet {
-    id: ID!
-    balance: Int!
-    transactions: [Transaction] @hasMany
 }
 
 type Language {

@@ -3,6 +3,7 @@
 namespace App\GraphQL\Queries;
 
 use GraphQL\Type\Definition\ResolveInfo;
+use KD\Wallet\Models\Transaction;
 use KD\Wallet\Models\Wallet;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -12,15 +13,13 @@ class GetWallet
     {
         $user = auth()->user();
 
-        $relations = ['transactions' => function ($query) {
-            return $query->orderBy('created_at', 'desc');
-        }];
+        $wallet = Wallet::where(['user_id' => $user->id])->first();
 
-        return Wallet::with($relations)
-            ->where('user_id', $user->id)
-            ->whereHas('transactions', function ($query) {
-                return $query->where('status', 'success');
-            })
-            ->first();
+        $wallet['transactions'] = Transaction::query()
+            ->where(['wallet_id' => $wallet->id, 'status' => 'success'])
+            ->latest()
+            ->get();
+
+        return $wallet;
     }
 }

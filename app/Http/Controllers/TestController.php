@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Jobs\TestQuizStatus;
-use App\Quiz;
-use App\QuizInfo;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Nuwave\Lighthouse\Execution\Utils\Subscription;
+use KD\Wallet\Models\Transaction;
+use KD\Wallet\Models\Wallet;
 
 class TestController extends Controller
 {
@@ -22,15 +20,19 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $quiz_data = Quiz::with('participants', 'quiz_infos')->first();
+        $user = User::first();
 
-        $minimum_participants = $quiz_data->participants()->count() >= $quiz_data->quiz_infos->total_participants;
-        $minimum_winners = $quiz_data->participants()->where('quiz_status', 'started')->count() >= $quiz_data->quiz_infos->total_winners;
+        $wallet = Wallet::where(['user_id' => $user->id])->first();
 
-        if (!$minimum_participants || !$minimum_winners) {
-            return compact('minimum_participants', 'minimum_winners');
-        }
+        $transactions = Transaction::query()
+            ->where(['wallet_id' => $wallet->id, 'status' => 'success'])
+            ->latest()
+            ->get()
+            ->map(function ($transaction) {
+                $transaction['day'] = $transaction->created_at->format('d-m-Y');
+                return $transaction;
+            });
 
-        return 'ban';
+        return $transactions;
     }
 }
