@@ -30,7 +30,7 @@ class QuizRepository implements QuizRepositoryInterface
         Quiz::where('id', $quiz->id)->update(['status' => 'canceled']);
     }
 
-    public function generateQuiz()
+    public function generateQuiz($forceGenerate = false)
     {
         $from = Carbon::parse('today 7am');
         $to = Carbon::parse('today 7pm');

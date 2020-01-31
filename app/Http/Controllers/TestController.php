@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Quiz;
+use App\Repositories\Contracts\QuizRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -15,10 +16,16 @@ class TestController extends Controller
         return $categories;
     }
 
-    public function test(Request $request)
+    public function test(QuizRepositoryInterface $quizRepo)
     {
-        $quiz = Quiz::first();
+        $authUser = auth()->user();
 
-        dd($quiz);
+        if ($authUser) {
+            $quizRepo->generateQuiz(true);
+
+            return 'done';
+        }
+
+        return 'not created';
     }
 }

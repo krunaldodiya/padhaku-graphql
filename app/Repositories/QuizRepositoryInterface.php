@@ -4,6 +4,6 @@ namespace App\Repositories\Contracts;
 
 interface QuizRepositoryInterface
 {
-    public function generateQuiz();
+    public function generateQuiz($forceGenerate);
     public function cancelQuiz($quiz);
 }
