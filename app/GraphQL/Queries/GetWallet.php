@@ -2,9 +2,9 @@
 
 namespace App\GraphQL\Queries;
 
+use App\Transaction;
+use App\Wallet;
 use GraphQL\Type\Definition\ResolveInfo;
-use KD\Wallet\Models\Transaction;
-use KD\Wallet\Models\Wallet;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class GetWallet
@@ -18,11 +18,7 @@ class GetWallet
         $wallet['transactions'] = Transaction::query()
             ->where(['wallet_id' => $wallet->id, 'status' => 'success'])
             ->orderBy('created_at', 'desc')
-            ->get()
-            ->map(function ($transaction) {
-                $transaction['day'] = $transaction->created_at->format('d-m-Y');
-                return $transaction;
-            });
+            ->get();
 
         return $wallet;
     }

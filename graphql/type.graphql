@@ -48,6 +48,7 @@ type Transaction {
     status: String!
     meta: JSON
     created_at: DateTime!
+    day: String!
 }
 
 type Language {

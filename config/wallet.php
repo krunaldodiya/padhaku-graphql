@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 return [
     'user_model' => 'App\User',
-    'wallet_model' => 'KD\Wallet\Models\Wallet',
-    'transaction_model' => 'KD\Wallet\Models\Transaction',
+    'wallet_model' => 'App\Wallet',
+    'transaction_model' => 'App\Transaction',
 ];

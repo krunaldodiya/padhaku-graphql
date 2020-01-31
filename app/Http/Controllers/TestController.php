@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Transaction;
 use App\User;
-use Carbon\Carbon;
+use App\Wallet;
 use Illuminate\Http\Request;
-use KD\Wallet\Models\Transaction;
-use KD\Wallet\Models\Wallet;
 
 class TestController extends Controller
 {
@@ -24,15 +23,11 @@ class TestController extends Controller
 
         $wallet = Wallet::where(['user_id' => $user->id])->first();
 
-        $transactions = Transaction::query()
+        $wallet['transactions'] = Transaction::query()
             ->where(['wallet_id' => $wallet->id, 'status' => 'success'])
             ->orderBy('created_at', 'desc')
-            ->get()
-            ->map(function ($transaction) {
-                $transaction['day'] = $transaction->created_at->format('d-m-Y');
-                return $transaction;
-            });
+            ->get();
 
-        return $transactions;
+        return $wallet;
     }
 }
