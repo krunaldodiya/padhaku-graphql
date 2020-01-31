@@ -18,8 +18,6 @@ class TestController extends Controller
 
     public function test(QuizRepositoryInterface $quizRepo)
     {
-        $authUser = auth()->user();
-
-        return $quizRepo->generateQuiz(true);
+        return 'done';
     }
 }
