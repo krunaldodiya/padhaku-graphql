@@ -3,9 +3,9 @@
 namespace App;
 
 use App\Traits\HasUuid;
-use KD\Wallet\Models\Wallet as KDWallet;
+use Illuminate\Database\Eloquent\Model;
 
-class Wallet extends KDWallet
+class Topic extends Model
 {
     use HasUuid;
 

@@ -13,6 +13,8 @@ use App\Events\QuizGenerated;
 use App\Listeners\GenerateUsername;
 use App\Listeners\AddBonusPoint;
 use App\Listeners\CheckInvitation;
+
+use App\Listeners\GenerateQuizTopic;
 use App\Listeners\GenerateQuizNotification;
 use App\Listeners\HandleQuizGenerated;
 
@@ -35,6 +37,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         QuizGenerated::class => [
+            GenerateQuizTopic::class,
             GenerateQuizNotification::class,
             HandleQuizGenerated::class,
         ],
