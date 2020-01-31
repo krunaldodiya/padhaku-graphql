@@ -71,6 +71,6 @@ class QuizRepository implements QuizRepositoryInterface
 
         event(new QuizGenerated($quiz));
 
-        return 'done';
+        return $quiz;
     }
 }
