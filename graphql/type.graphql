@@ -34,6 +34,11 @@ type DeviceToken {
     token: String!
 }
 
+type Topic {
+    id: ID!
+    name: String!
+}
+
 type Wallet {
     id: ID!
     balance: Int!
@@ -147,6 +152,7 @@ type User {
     language: String
     wallet: Wallet @hasOne
     country: Country @belongsTo
+    topics: [Topic!]! @belongsToMany
     version: String
     status: Boolean
     created_at: DateTime!
