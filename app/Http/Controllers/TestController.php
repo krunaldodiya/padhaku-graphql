@@ -20,10 +20,6 @@ class TestController extends Controller
     {
         $authUser = auth()->user();
 
-        if ($authUser) {
-            return $quizRepo->generateQuiz(true);
-        }
-
-        return 'not created';
+        return $quizRepo->generateQuiz(true);
     }
 }
