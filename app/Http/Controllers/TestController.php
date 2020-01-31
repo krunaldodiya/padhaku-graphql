@@ -21,9 +21,7 @@ class TestController extends Controller
         $authUser = auth()->user();
 
         if ($authUser) {
-            $quizRepo->generateQuiz(true);
-
-            return 'done';
+            return $quizRepo->generateQuiz(true);
         }
 
         return 'not created';

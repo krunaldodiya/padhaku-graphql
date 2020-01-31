@@ -70,5 +70,7 @@ class QuizRepository implements QuizRepositoryInterface
             ->update(['is_answerable' => true]);
 
         event(new QuizGenerated($quiz));
+
+        return 'done';
     }
 }
