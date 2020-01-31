@@ -2,13 +2,10 @@
 
 namespace App;
 
-use App\Traits\HasUuid;
 use KD\Wallet\Models\Transaction as KDWalletTransaction;
 
 class Transaction extends KDWalletTransaction
 {
-    use HasUuid;
-
     protected $appends = [
         'day'
     ];
