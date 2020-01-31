@@ -54,4 +54,8 @@ type Mutation {
 
     createOrder(plan_id: ID! @rules(apply: ["required"])): Order!
         @middleware(checks: ["auth:api"])
+
+    setDeviceToken(
+        device_token: String! @rules(apply: ["required"])
+    ): DeviceToken! @middleware(checks: ["auth:api"])
 }

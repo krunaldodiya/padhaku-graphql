@@ -28,6 +28,12 @@ type Country {
     shortname: String!
 }
 
+type DeviceToken {
+    id: ID!
+    user: User! @belongsTo
+    token: String!
+}
+
 type Wallet {
     id: ID!
     balance: Int!
