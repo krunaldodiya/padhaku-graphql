@@ -36,36 +36,39 @@ class QuizRepository implements QuizRepositoryInterface
         $to = Carbon::parse('today 7pm');
 
         $quizInfo = QuizInfo::where('entry_fee', 10)->first();
+        $validTime = $forceGenerate === false && now()->gte($from) && now()->lte($to);
 
-        if (now()->gte($from) && now()->lte($to)) {
-            $expired_at = now()->addHour($quizInfo->expiry);
-
-            $quiz = Quiz::create([
-                'quiz_info_id' => $quizInfo->id,
-                'expired_at' => $expired_at,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            $all_questions = Question::inRandomOrder()
-                ->limit($quizInfo->all_questions_count)
-                ->pluck('id')
-                ->toArray();
-
-            $answerable_questions = collect(array_rand($all_questions, $quizInfo->answerable_questions_count))
-                ->map(function ($answerable_question_index) use ($all_questions) {
-                    return $all_questions[$answerable_question_index];
-                })
-                ->toArray();
-
-            $quiz->questions()->attach($all_questions);
-
-            DB::table("quiz_questions")
-                ->where(['quiz_id' => $quiz->id])
-                ->whereIn('question_id', $answerable_questions)
-                ->update(['is_answerable' => true]);
-
-            event(new QuizGenerated($quiz));
+        if (!$validTime) {
+            return response(['can not create'], 400);
         }
+
+        $expired_at = now()->addHour($quizInfo->expiry);
+
+        $quiz = Quiz::create([
+            'quiz_info_id' => $quizInfo->id,
+            'expired_at' => $expired_at,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $all_questions = Question::inRandomOrder()
+            ->limit($quizInfo->all_questions_count)
+            ->pluck('id')
+            ->toArray();
+
+        $answerable_questions = collect(array_rand($all_questions, $quizInfo->answerable_questions_count))
+            ->map(function ($answerable_question_index) use ($all_questions) {
+                return $all_questions[$answerable_question_index];
+            })
+            ->toArray();
+
+        $quiz->questions()->attach($all_questions);
+
+        DB::table("quiz_questions")
+            ->where(['quiz_id' => $quiz->id])
+            ->whereIn('question_id', $answerable_questions)
+            ->update(['is_answerable' => true]);
+
+        event(new QuizGenerated($quiz));
     }
 }
