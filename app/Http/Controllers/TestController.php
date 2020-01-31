@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Quiz;
-use App\Topic;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -20,6 +19,6 @@ class TestController extends Controller
     {
         $quiz = Quiz::first();
 
-        Topic::create(['name' => "App\Quiz::{$quiz->id}"]);
+        dd($quiz);
     }
 }

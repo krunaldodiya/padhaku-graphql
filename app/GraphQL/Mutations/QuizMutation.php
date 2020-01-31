@@ -5,6 +5,7 @@ namespace App\GraphQL\Mutations;
 use Error;
 
 use App\Quiz;
+use App\Topic;
 use Carbon\Carbon;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -44,6 +45,9 @@ class QuizMutation
         }
 
         $quiz->participants()->attach($user->id);
+
+        $topic = Topic::where('name', "App\Quiz::{$quiz->id}")->first();
+        $user->topics()->attach($topic->id);
 
         $transaction = $user->createTransaction($quiz->quiz_infos->entry_fee, 'withdraw', [
             'points' => [
