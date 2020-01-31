@@ -46,7 +46,7 @@ class QuizMutation
 
         $quiz->participants()->attach($user->id);
 
-        $topic = Topic::where('name', "App\Quiz::{$quiz->id}")->first();
+        $topic = Topic::where('name', "quiz_reminder_{$quiz->id}")->first();
         $user->topics()->attach($topic->id);
 
         $transaction = $user->createTransaction($quiz->quiz_infos->entry_fee, 'withdraw', [

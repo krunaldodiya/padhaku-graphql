@@ -29,6 +29,6 @@ class GenerateQuizTopic
     {
         $quiz = $event->quiz;
 
-        Topic::create(['name' => "App\Quiz::{$quiz->id}"]);
+        Topic::create(['name' => "quiz_reminder_{$quiz->id}"]);
     }
 }
