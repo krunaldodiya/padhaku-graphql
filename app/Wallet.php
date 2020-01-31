@@ -8,10 +8,4 @@ use KD\Wallet\Models\Wallet as KDWallet;
 class Wallet extends KDWallet
 {
     use HasUuid;
-
-    public $incrementing = false;
-
-    protected $guarded = [];
-
-    public $timestamps = false;
 }

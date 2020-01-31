@@ -9,12 +9,6 @@ class Transaction extends KDWalletTransaction
 {
     use HasUuid;
 
-    public $incrementing = false;
-
-    protected $guarded = [];
-
-    public $timestamps = false;
-
     protected $appends = [
         'day'
     ];
