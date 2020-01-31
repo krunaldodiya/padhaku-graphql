@@ -26,7 +26,7 @@ class TestController extends Controller
 
         $transactions = Transaction::query()
             ->where(['wallet_id' => $wallet->id, 'status' => 'success'])
-            ->latest()
+            ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($transaction) {
                 $transaction['day'] = $transaction->created_at->format('d-m-Y');
