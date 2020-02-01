@@ -8,6 +8,7 @@ use App\Question;
 use App\QuizInfo;
 use App\Repositories\Contracts\QuizRepositoryInterface;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 
 class QuizRepository implements QuizRepositoryInterface
@@ -72,5 +73,29 @@ class QuizRepository implements QuizRepositoryInterface
         event(new QuizGenerated($quiz));
 
         return $quiz;
+    }
+
+    public function notify($topic, $data)
+    {
+        $url = "https://fcm.googleapis.com/fcm/send";
+
+        $client = new Client();
+
+        try {
+            $client->request("POST", $url, [
+                'headers' => [
+                    'Authorization' => env('FIREBASE_SERVER_KEY')
+                ],
+                'json' => [
+                    'to' => $topic,
+                    'notification' => $data,
+                    'data' => $data,
+                ]
+            ]);
+
+            return true;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

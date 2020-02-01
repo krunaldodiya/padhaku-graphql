@@ -2,33 +2,21 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Repositories\Contracts\QuizRepositoryInterface;
 use GraphQL\Type\Definition\ResolveInfo;
-use GuzzleHttp\Client;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class SendPushToTopic
 {
+    public $quizRepository;
+
+    public function __construct(QuizRepositoryInterface $quizRepository)
+    {
+        $this->quizRepository = $quizRepository;
+    }
+
     public function handle($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $url = "https://fcm.googleapis.com/fcm/send";
-
-        $client = new Client();
-
-        try {
-            $client->request("POST", $url, [
-                'headers' => [
-                    'Authorization' => env('FIREBASE_SERVER_KEY')
-                ],
-                'json' => [
-                    'to' => $args['topic'],
-                    'notification' => $args['data'],
-                    'data' => $args['data'],
-                ]
-            ]);
-
-            return true;
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return $this->quizRepository->notify($args['topic'], $args['data']);
     }
 }
