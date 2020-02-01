@@ -25,7 +25,7 @@ class Register
             $public_topic = Topic::where(['name' => 'public'])->first();
             $user->topics()->attach($public_topic->id);
 
-            $private_topic = Topic::create(['name' => 'private_{$user->id}']);
+            $private_topic = Topic::create(['name' => "private_{$user->id}"]);
             $user->topics()->attach($private_topic->id);
 
             $token = auth('api')->tokenById($user->id);
