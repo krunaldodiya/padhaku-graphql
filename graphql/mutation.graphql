@@ -62,4 +62,11 @@ type Mutation {
     generateQuiz(force: Boolean! @rules(apply: ["required"])): Quiz!
         @middleware(checks: ["auth:api"])
         @field(resolver: "App\\GraphQL\\Mutations\\GenerateQuiz@handle")
+
+    sendPushToTopic(
+        topic: String! @rules(apply: ["required"])
+        data: NotificationDataInput! @rules(apply: ["required"])
+    ): Boolean!
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\SendPushToTopic@handle")
 }
