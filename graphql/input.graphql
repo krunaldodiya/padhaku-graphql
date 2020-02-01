@@ -30,3 +30,9 @@ input ChecksumInput {
     CUST_ID: String!
     CALLBACK_URL: String!
 }
+
+input NotificationDataInput {
+    title: String!
+    body: String!
+    image: String
+}
