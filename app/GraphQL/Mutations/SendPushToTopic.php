@@ -17,7 +17,7 @@ class SendPushToTopic
         try {
             $client->request("POST", $url, [
                 'headers' => [
-                    'Authorization' => env('FIREBASE_AUTH_KEY')
+                    'Authorization' => env('FIREBASE_SERVER_KEY')
                 ],
                 'json' => [
                     'to' => $args['topic'],
