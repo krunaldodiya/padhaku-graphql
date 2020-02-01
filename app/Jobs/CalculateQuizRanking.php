@@ -40,11 +40,11 @@ class CalculateQuizRanking implements ShouldQueue
         $quiz_started_participants = $quiz_data->participants()->where('quiz_status', 'started')->count();
 
         if ($quiz_started_participants < $quiz_data->quiz_infos->total_winners) {
-            if ($quizRepo->cancelQuiz($quiz_data)) {
-                return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                    'title' => 'Sorry', 'body' => 'Quiz is canceled'
-                ]);
-            }
+            $quizRepo->cancelQuiz($quiz_data);
+
+            return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
+                'title' => 'Sorry', 'body' => 'Quiz is canceled'
+            ]);
         }
 
         $quiz_participants = DB::table('quiz_participants')
