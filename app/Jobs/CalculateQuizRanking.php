@@ -41,7 +41,7 @@ class CalculateQuizRanking implements ShouldQueue
 
         if ($quiz_started_participants < $quiz_data->quiz_infos->total_winners) {
             if ($quizRepo->cancelQuiz($quiz_data)) {
-                return $quizRepo->notify("quiz_reminder_{$quiz_data->id}", [
+                return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
                     'title' => 'Sorry', 'body' => 'Quiz is canceled'
                 ]);
             }

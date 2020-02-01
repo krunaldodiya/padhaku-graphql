@@ -19,15 +19,6 @@ class TestController extends Controller
 
     public function test(QuizRepositoryInterface $quizRepository)
     {
-        $quiz = Quiz::first();
-        // SendQuizNotification::dispatch($quiz);
-
-        try {
-            $quizRepository->notify("public", [
-                'title' => 'Reminder', 'body' => 'Quiz will start in 15 minutes'
-            ]);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return 'done';
     }
 }

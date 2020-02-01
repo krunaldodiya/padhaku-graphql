@@ -40,7 +40,7 @@ class CheckQuizStatus implements ShouldQueue
 
         if ($quiz_joined_participants < $quiz_data->quiz_infos->total_participants) {
             if ($quizRepo->cancelQuiz($quiz_data)) {
-                return $quizRepo->notify("quiz_reminder_{$quiz_data->id}", [
+                return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
                     'title' => 'Sorry', 'body' => 'Quiz is canceled'
                 ]);
             }
@@ -50,7 +50,7 @@ class CheckQuizStatus implements ShouldQueue
 
         CalculateQuizRanking::dispatch($quiz_data)->delay($quiz_data->expired_at->addMinutes(15));
 
-        return $quizRepo->notify("quiz_reminder_{$quiz_data->id}", [
+        return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
             'title' => 'Reminder', 'body' => 'Quiz is started'
         ]);
     }
