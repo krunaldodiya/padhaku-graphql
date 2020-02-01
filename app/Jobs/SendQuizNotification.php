@@ -15,17 +15,15 @@ class SendQuizNotification implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $quiz;
-    public $quizRepository;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Quiz $quiz, QuizRepositoryInterface $quizRepository)
+    public function __construct(Quiz $quiz)
     {
         $this->quiz = $quiz;
-        $this->quizRepository = $quizRepository;
     }
 
     /**
@@ -33,9 +31,9 @@ class SendQuizNotification implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(QuizRepositoryInterface $quizRepository)
     {
-        $this->quizRepository->notify("quiz_reminder_{$this->quiz->id}", [
+        $quizRepository->notify("quiz_reminder_{$this->quiz->id}", [
             'title' => 'Reminder', 'body' => 'Quiz will start in 15 minutes'
         ]);
     }

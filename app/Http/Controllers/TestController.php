@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Jobs\SendQuizNotification;
 use App\Quiz;
 use App\Repositories\Contracts\QuizRepositoryInterface;
 use Illuminate\Http\Request;
@@ -16,8 +17,13 @@ class TestController extends Controller
         return $categories;
     }
 
-    public function test(QuizRepositoryInterface $quizRepo)
+    public function test(QuizRepositoryInterface $quizRepository)
     {
-        return 'done';
+        $quiz = Quiz::first();
+        // SendQuizNotification::dispatch($quiz);
+
+        $quizRepository->notify("public", [
+            'title' => 'Reminder', 'body' => 'Quiz will start in 15 minutes'
+        ]);
     }
 }
