@@ -31,25 +31,21 @@ class OtpRepository implements OtpRepositoryInterface
 
     public function requestOtp($country, $mobile)
     {
-        dump("test");
+        $app_name = config('app.name');
+        $otp = mt_rand(1000, 9999);
 
-        return "1234";
+        $message = "$otp is Your otp for phone verification for $app_name.";
+        $url = $this->generateUrl("request_otp", $country, $mobile, $otp, $message);
 
-        // $app_name = config('app.name');
-        // $otp = mt_rand(1000, 9999);
+        $client = new \GuzzleHttp\Client();
+        $response = $client->get($url);
+        $body = json_decode($response->getBody());
 
-        // $message = "$otp is Your otp for phone verification for $app_name.";
-        // $url = $this->generateUrl("request_otp", $country, $mobile, $otp, $message);
+        if ($body->type == "success") {
+            return $otp;
+        }
 
-        // $client = new \GuzzleHttp\Client();
-        // $response = $client->get($url);
-        // $body = json_decode($response->getBody());
-
-        // if ($body->type == "success") {
-        //     return $otp;
-        // }
-
-        // throw new Error($body->message);
+        throw new Error($body->message);
     }
 
     public function verifyOtp($country, $mobile, $otp)

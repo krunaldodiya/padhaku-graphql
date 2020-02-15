@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Country;
 use App\Jobs\SendQuizNotification;
 use App\Quiz;
 use App\Repositories\Contracts\QuizRepositoryInterface;
+use App\Repositories\OtpRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -17,8 +19,10 @@ class TestController extends Controller
         return $categories;
     }
 
-    public function test(QuizRepositoryInterface $quizRepository)
+    public function test(Request $request, OtpRepositoryInterface $otpRepository)
     {
-        return 'done';
+        $country = Country::find($request->country_id);
+
+        return $otpRepository->requestOtp($country, $request->mobile);
     }
 }
