@@ -2,10 +2,13 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Exceptions\InvalidCredentials;
+use App\User;
+
+use App\Exceptions\ValidationFailed;
 use App\Repositories\UserRepositoryInterface;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class Login
 {
@@ -18,13 +21,16 @@ class Login
 
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        try {
-            $token = auth('api')->attempt($args);
-            $user = auth('api')->user($token);
+        $type = filter_var($args['username'], FILTER_VALIDATE_EMAIL) ? "email" : "username";
+        $credentials = [$type => $args['username'], 'password' => $args['password']];
+
+        if (auth()->attempt($credentials)) {
+            $user =   User::where([$type => $args['username']])->first();
+            $token = JWTAuth::fromUser($user);
 
             return $this->userRepository->createToken($user, $token);
-        } catch (\Throwable $th) {
-            throw new InvalidCredentials("Login Failed", "Invalid Credentials");
         }
+
+        throw new ValidationFailed("Login Failed", ['username' => ["Invalid Credentials"]]);
     }
 }

@@ -3,10 +3,10 @@
 namespace App\GraphQL\Mutations;
 
 use App\Repositories\UserRepositoryInterface;
-use App\Topic;
 use App\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class Register
 {
@@ -19,16 +19,17 @@ class Register
 
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $args['username'] = User::generate_username($args['name']);
+        $user = User::create([
+            'mobile' => $args['mobile'],
+            'country_id' => $args['country_id'],
+            'name' => $args['name'],
+            'username' => $args['username'],
+            'email' => "{$args['username']}@pauzr.com",
+            'password' => bcrypt($args['password']),
+        ]);
 
-        if ($user = User::create($args)) {
-            $public_topic = Topic::where(['name' => 'public'])->first();
-            $user->topics()->attach($public_topic->id);
-
-            $private_topic = Topic::create(['name' => "private_{$user->id}"]);
-            $user->topics()->attach($private_topic->id);
-
-            $token = auth('api')->tokenById($user->id);
+        if ($user) {
+            $token = JWTAuth::fromUser($user);
             return $this->userRepository->createToken($user, $token);
         }
     }

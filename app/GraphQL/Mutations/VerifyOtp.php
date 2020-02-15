@@ -2,8 +2,8 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Country;
 use App\Repositories\OtpRepositoryInterface;
-use App\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -18,8 +18,6 @@ class VerifyOtp
 
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $user = User::where('mobile', $args['mobile'])->first();
-
-        return $this->otpRepository->verifyOtp($user, $args['otp']);
+        return $this->otpRepository->verifyOtp(Country::find($args['country_id']), $args['mobile'], $args['otp']);
     }
 }

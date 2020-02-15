@@ -2,8 +2,11 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Repositories\OtpRepositoryInterface;
+use App\Country;
+use App\Exceptions\ValidationFailed;
 use App\User;
+
+use App\Repositories\OtpRepositoryInterface;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -18,8 +21,16 @@ class RequestOtp
 
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $user = User::where('mobile', $args['mobile'])->first();
+        $country = Country::find($args['country_id']);
 
-        return $this->otpRepository->requestOtp($user);
+        if ($args['type'] === 'register') {
+            $exists = User::where(['country_id' => $country->id, 'mobile' => $args['mobile']])->first();
+
+            if ($exists) {
+                throw new ValidationFailed("Request OTP Failed", ['mobile' => ["Account already exists"]]);
+            }
+        }
+
+        return $this->otpRepository->requestOtp($country, $args['mobile']);
     }
 }
