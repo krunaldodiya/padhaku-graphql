@@ -5,15 +5,15 @@ namespace App\Exceptions;
 use Exception;
 use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 
-class InvalidCredentials extends Exception implements RendersErrorsExtensions
+class ValidationFailed extends Exception implements RendersErrorsExtensions
 {
-    private $reason;
+    private $validation;
 
-    public function __construct(string $message, string $reason)
+    public function __construct(string $message, array $validation)
     {
         parent::__construct($message);
 
-        $this->reason = $reason;
+        $this->validation = $validation;
     }
 
     public function isClientSafe(): bool
@@ -30,7 +30,7 @@ class InvalidCredentials extends Exception implements RendersErrorsExtensions
     {
         return [
             'code' => '402',
-            'reason' => $this->reason,
+            'validation' => $this->validation,
         ];
     }
 }
