@@ -104,6 +104,17 @@ type Question {
     pivot: QuizQuestion
 }
 
+type Redeem {
+    id: ID!
+    user: User!
+    gateway: String!
+    amount: Int!
+    mobile: Int!
+    status: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
 type QuizQuestion {
     is_answerable: Boolean!
 }
