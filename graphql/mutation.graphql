@@ -53,6 +53,12 @@ type Mutation {
         meta: [QuizMetaInput!]! @rules(apply: ["required"])
     ): Boolean! @middleware(checks: ["auth:api"])
 
+    withdrawMoney(
+        gateway: String! @rules(apply: ["required"])
+        mobile: String! @rules(apply: ["required", "numeric"])
+        amount: String! @rules(apply: ["required", "numeric"])
+    ): Boolean! @middleware(checks: ["auth:api"])
+
     generatePaytmChecksum(
         checksum: ChecksumInput! @rules(apply: ["required"])
     ): String! @middleware(checks: ["auth:api"])
