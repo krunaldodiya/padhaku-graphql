@@ -110,7 +110,7 @@ type Redeem {
     gateway: String!
     amount: Int!
     mobile: Int!
-    status: Int!
+    status: String!
     created_at: DateTime!
     updated_at: DateTime!
 }
