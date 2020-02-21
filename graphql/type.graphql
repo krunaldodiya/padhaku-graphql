@@ -108,8 +108,8 @@ type Redeem {
     id: ID!
     user: User!
     gateway: String!
-    amount: Int!
-    mobile: Int!
+    amount: String!
+    mobile: String!
     status: String!
     created_at: DateTime!
     updated_at: DateTime!
