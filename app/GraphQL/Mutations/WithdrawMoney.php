@@ -15,6 +15,12 @@ class WithdrawMoney
 
         $cash = $user->wallet->balance / 2;
 
+        $exists = Redeem::where(['user_id' => $user->id, 'status' => 'pending'])->first();
+
+        if ($exists) {
+            throw new Error("You already have a pending request.");
+        }
+
         if ($args['amount'] < 20) {
             throw new Error("You can't withdraw less than Rs. 20");
         }
