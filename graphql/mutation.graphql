@@ -55,8 +55,8 @@ type Mutation {
 
     withdrawMoney(
         gateway: String! @rules(apply: ["required"])
-        mobile: Int! @rules(apply: ["required", "numeric"])
-        amount: Int! @rules(apply: ["required", "numeric"])
+        mobile: String! @rules(apply: ["required", "numeric"])
+        amount: String! @rules(apply: ["required", "numeric"])
     ): Boolean! @middleware(checks: ["auth:api"])
 
     generatePaytmChecksum(
