@@ -20,7 +20,7 @@ class CreateRedeemsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('gateway');
-            $table->integer('mobile');
+            $table->string('mobile');
 
             $table->integer('amount');
             $table->enum('status', ['pending', 'success', 'fail'])->default('pending');

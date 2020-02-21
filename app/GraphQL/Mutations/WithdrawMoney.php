@@ -15,7 +15,7 @@ class WithdrawMoney
 
         $cash = $user->wallet->balance / 2;
 
-        if ($cash < 20) {
+        if ($args['amount'] < 20) {
             throw new Error("You can't withdraw less than Rs. 20");
         }
 
