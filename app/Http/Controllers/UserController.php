@@ -8,6 +8,6 @@ class UserController extends Controller
 {
     public function upload(Request $request)
     {
-        return $request->file('image');
+        dd($request->file('image'));
     }
 }
