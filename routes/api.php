@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->post('/generate-checksum', 'PaytmController@generateChecksum');
 Route::middleware('auth:api')->post('/verify-checksum', 'PaytmController@verifyChecksum');
+Route::middleware('auth:api')->post('/upload', 'UserController@upload');
