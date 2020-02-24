@@ -17,6 +17,6 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update(['avatar' => $filename]);
 
-        return response(['status' => 'done'], 200);
+        return response(['filename' => $filename], 200);
     }
 }
