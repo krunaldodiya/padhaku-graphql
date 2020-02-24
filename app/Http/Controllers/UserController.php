@@ -13,7 +13,7 @@ class UserController extends Controller
 
         $file = $request->file('image');
 
-        $filename = $file->store($user->id);
+        $filename = $file->store($user->id, "avatar.png");
 
         User::where('id', $user->id)->update(['avatar' => $filename]);
 
