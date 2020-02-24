@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -14,9 +13,7 @@ class UserController extends Controller
 
         $file = $request->file('image');
 
-        $filename = "avatar.png";
-
-        Storage::disk('public')->put($filename, $file);
+        $filename = $file->store($user->id);
 
         User::where('id', $user->id)->update(['avatar' => $filename]);
 
