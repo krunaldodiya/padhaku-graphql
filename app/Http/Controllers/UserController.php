@@ -15,7 +15,7 @@ class UserController extends Controller
 
         $filename = $file->store($user->id);
 
-        User::where('id', $user->id)->update(['avatar' => "{$user->id}/avatar.png"]);
+        User::where('id', $user->id)->update(['avatar' => $filename]);
 
         return response(['filename' => $filename], 200);
     }
