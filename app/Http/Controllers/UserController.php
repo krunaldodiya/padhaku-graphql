@@ -8,7 +8,7 @@ class UserController extends Controller
 {
     public function upload(Request $request)
     {
-        dd($request->file('image'));
+        dump($request->file('image'));
 
         return 'done';
     }
