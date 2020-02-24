@@ -9,5 +9,7 @@ class UserController extends Controller
     public function upload(Request $request)
     {
         dd($request->file('image'));
+
+        return 'done';
     }
 }
