@@ -10,6 +10,6 @@ class GetPlans
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return Plan::get();
+        return Plan::orderBy('amount', 'asc')->get();
     }
 }
