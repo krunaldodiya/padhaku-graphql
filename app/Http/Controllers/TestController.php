@@ -21,6 +21,6 @@ class TestController extends Controller
 
     public function test(Request $request, OtpRepositoryInterface $otpRepository)
     {
-        dd(public_path('images/icon.png'));
+        dd(url('images/icon.png'));
     }
 }
