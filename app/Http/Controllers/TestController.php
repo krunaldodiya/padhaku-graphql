@@ -21,8 +21,6 @@ class TestController extends Controller
 
     public function test(Request $request, OtpRepositoryInterface $otpRepository)
     {
-        $country = Country::find($request->country_id);
-
-        return $otpRepository->requestOtp($country, $request->mobile);
+        dd(public_path('images/icon.png'));
     }
 }
