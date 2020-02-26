@@ -43,7 +43,7 @@ class CalculateQuizRanking implements ShouldQueue
             $quizRepo->cancelQuiz($quiz_data);
 
             return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                'title' => 'Sorry', 'body' => 'Quiz is canceled'
+                'title' => 'Sorry', 'body' => 'Quiz is canceled', 'image' => public_path('images/icon.png')
             ]);
         }
 
