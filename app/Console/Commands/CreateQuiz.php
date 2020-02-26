@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Quiz;
 use Illuminate\Console\Command;
 
 use App\Repositories\QuizRepository;
@@ -39,6 +40,8 @@ class CreateQuiz extends Command
      */
     public function handle(QuizRepository $quizRepo)
     {
-        return $quizRepo->generateQuiz(false, 1);
+        $quiz = Quiz::first();
+
+        return $quizRepo->generateQuiz(false, $quiz->id);
     }
 }
