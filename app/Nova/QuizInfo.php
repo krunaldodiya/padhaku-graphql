@@ -50,7 +50,7 @@ class QuizInfo extends Resource
             Text::make('answerable_questions_count'),
             Text::make('Expiry (hours)', 'expiry'),
             Text::make('Notify Before (Minutes)', 'reading'),
-            Text::make('Time (Seconds)', 'time'),
+            Text::make('Time Per Question (Seconds)', 'time'),
             Row::make('Price Distribution', [
                 Number::make('Rank'),
                 Number::make('Coins', 'price'),

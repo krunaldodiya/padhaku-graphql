@@ -39,6 +39,6 @@ class CreateQuiz extends Command
      */
     public function handle(QuizRepository $quizRepo)
     {
-        return $quizRepo->generateQuiz(false);
+        return $quizRepo->generateQuiz(false, 1);
     }
 }

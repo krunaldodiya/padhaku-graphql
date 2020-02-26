@@ -31,12 +31,12 @@ class QuizRepository implements QuizRepositoryInterface
         Quiz::where('id', $quiz->id)->update(['status' => 'canceled']);
     }
 
-    public function generateQuiz($forceGenerate)
+    public function generateQuiz($forceGenerate, $quizInfoId = 1)
     {
         $from = Carbon::parse('today 7am');
         $to = Carbon::parse('today 7pm');
 
-        $quizInfo = QuizInfo::where('entry_fee', 10)->first();
+        $quizInfo = QuizInfo::where('id', $quizInfoId)->first();
         $validTime = now()->gte($from) && now()->lte($to);
 
         if (!$forceGenerate && !$validTime) {

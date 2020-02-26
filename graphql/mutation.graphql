@@ -75,7 +75,10 @@ type Mutation {
         device_token: String! @rules(apply: ["required"])
     ): DeviceToken! @middleware(checks: ["auth:api"])
 
-    generateQuiz(force: Boolean! @rules(apply: ["required"])): Quiz!
+    generateQuiz(
+        force: Boolean! @rules(apply: ["required"])
+        quiz_info_id: ID! @rules(apply: ["required"])
+    ): Quiz!
         @middleware(checks: ["auth:api"])
         @field(resolver: "App\\GraphQL\\Mutations\\GenerateQuiz@handle")
 
