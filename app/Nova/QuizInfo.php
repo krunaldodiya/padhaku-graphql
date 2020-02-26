@@ -43,17 +43,17 @@ class QuizInfo extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('entry_fee'),
+            Text::make('Entry Fee (Coins)', 'entry_fee'),
             Text::make('total_participants'),
             Text::make('total_winners'),
             Text::make('all_questions_count'),
             Text::make('answerable_questions_count'),
             Text::make('Expiry (hours)', 'expiry'),
-            Text::make('Reading (Minutes)', 'reading'),
+            Text::make('Notify Before (Minutes)', 'reading'),
             Text::make('Time (Seconds)', 'time'),
             Row::make('Price Distribution', [
                 Number::make('Rank'),
-                Number::make('Price'),
+                Number::make('Coins', 'price'),
             ], 'distribution'),
         ];
     }
