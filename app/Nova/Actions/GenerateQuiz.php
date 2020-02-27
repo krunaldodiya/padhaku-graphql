@@ -33,14 +33,6 @@ class GenerateQuiz extends Action
         return Action::message("Quiz has been generated. {$quiz_info->id}");
     }
 
-    public function authorizedToSee(Request $request)
-    {
-        return in_array($request->user()->email, [
-            "kunal.dodiya1@gmail.com",
-            "aryanadya@gmail.com"
-        ]);
-    }
-
     /**
      * Get the fields available on the action.
      *
