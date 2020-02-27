@@ -36,6 +36,8 @@ class CheckQuizStatus implements ShouldQueue
     {
         $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
+        dump($quiz_data);
+
         $quiz_joined_participants = $quiz_data->participants()->count();
 
         if ($quiz_joined_participants < $quiz_data->quiz_infos->total_participants) {
