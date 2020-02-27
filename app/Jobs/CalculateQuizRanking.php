@@ -61,7 +61,7 @@ class CalculateQuizRanking implements ShouldQueue
                 'quiz_id' => $quiz_participant->quiz_id,
                 'user_id' => $quiz_participant->user_id,
                 'rank' => $rank,
-                'prize_amount' => $quiz_status !== 'finished' ? 0 : $contribution ? $contribution['price'] : 0,
+                'prize_amount' => $quiz_status === 'finished' && $contribution ? $contribution['price'] : 0,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
