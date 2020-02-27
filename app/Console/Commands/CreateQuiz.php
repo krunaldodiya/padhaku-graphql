@@ -40,8 +40,8 @@ class CreateQuiz extends Command
      */
     public function handle(QuizRepository $quizRepo)
     {
-        $quiz = QuizInfo::first();
+        $quizInfo = QuizInfo::first();
 
-        return $quizRepo->generateQuiz(false, $quiz->id);
+        return $quizRepo->generateQuiz(false, $quizInfo->id);
     }
 }
