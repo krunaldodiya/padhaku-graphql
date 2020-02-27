@@ -28,9 +28,10 @@ class GenerateQuiz extends Action
     {
         $quiz_info = $models[0];
 
-        $quizRepo->generateQuiz(true, $quiz_info->id);
+        // $quizRepo->generateQuiz(true, $quiz_info->id);
 
-        return Action::message("Quiz has been generated.");
+        // return Action::message("Quiz has been generated.");
+        return Action::message($quiz_info);
     }
 
     public function authorizedToSee(Request $request)
