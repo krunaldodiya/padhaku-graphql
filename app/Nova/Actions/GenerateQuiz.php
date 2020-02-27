@@ -16,6 +16,12 @@ class GenerateQuiz extends Action
     use InteractsWithQueue, Queueable;
 
     public $onlyOnDetail = true;
+    public $quizRepo;
+
+    public function __construct(QuizRepositoryInterface $quizRepo)
+    {
+        $this->quizRepo = $quizRepo;
+    }
 
     /**
      * Perform the action on the given models.
@@ -24,14 +30,13 @@ class GenerateQuiz extends Action
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
-    public function handle(ActionFields $fields, Collection $models, QuizRepositoryInterface $quizRepo)
+    public function handle(ActionFields $fields, Collection $models)
     {
         $quiz_info = $models[0];
 
-        // $quizRepo->generateQuiz(true, $quiz_info->id);
+        // $this->quizRepo->generateQuiz(true, $quiz_info->id);
 
-        // return Action::message("Quiz has been generated.");
-        return Action::message($quiz_info);
+        return Action::message("Quiz has been generated. {$quiz_info->id}");
     }
 
     public function authorizedToSee(Request $request)
