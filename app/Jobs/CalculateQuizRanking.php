@@ -47,9 +47,15 @@ class CalculateQuizRanking implements ShouldQueue
             ]);
         }
 
+        DB::table("quiz_participants")
+            ->where('quiz_status', '==', 'joined')
+            ->orWhere('quiz_status', '==', 'started')
+            ->update(['quiz_status' => 'missed']);
+
         $quiz_participants = DB::table('quiz_participants')
             ->where('quiz_id', $this->quiz->id)
             ->orderBy('points', 'desc')
+            ->orderByRaw(DB::raw("FIELD(quiz_status, 'finished', 'missed')"))
             ->get();
 
         $quiz_rankings = $quiz_participants->map(function ($quiz_participant, $index) use ($quiz_data) {
@@ -68,11 +74,6 @@ class CalculateQuizRanking implements ShouldQueue
         });
 
         DB::table("quiz_rankings")->insert($quiz_rankings->toArray());
-
-        DB::table("quiz_participants")
-            ->where('quiz_status', '==', 'joined')
-            ->orWhere('quiz_status', '==', 'started')
-            ->update(['quiz_status' => 'missed']);
 
         $quiz_rankings->each(function ($quiz_ranking) {
             $user = User::find($quiz_ranking['user_id']);
