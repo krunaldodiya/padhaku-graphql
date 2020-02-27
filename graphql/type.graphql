@@ -2,7 +2,7 @@ type QuizRanking {
     user: User!
     quiz: Quiz!
     rank: Int!
-    price_amount: Int!
+    prize_amount: Int!
 }
 
 type Distribution {
