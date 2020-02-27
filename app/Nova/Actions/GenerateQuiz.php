@@ -35,7 +35,10 @@ class GenerateQuiz extends Action
 
     public function authorizedToSee(Request $request)
     {
-        return $request->user()->isAdmin();
+        return in_array($request->user()->email, [
+            "kunal.dodiya1@gmail.com",
+            "aryanadya@gmail.com"
+        ]);
     }
 
     /**
