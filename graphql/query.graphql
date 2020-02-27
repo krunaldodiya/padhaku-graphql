@@ -17,6 +17,8 @@ type Query {
         @middleware(checks: ["auth:api"])
     getQuizById(quiz_id: ID! @rules(apply: ["required"])): Quiz!
         @middleware(checks: ["auth:api"])
+    getQuizWinners(quiz_id: ID! @rules(apply: ["required"])): [QuizRanking]!
+        @middleware(checks: ["auth:api"])
     getPlans: [Plan!]! @middleware(checks: ["auth:api"])
     getWallet: Wallet! @middleware(checks: ["auth:api"])
     getRankings(period: String! @rules(apply: ["required"])): [QuizRanking!]!

@@ -1,6 +1,8 @@
 type QuizRanking {
     user: User!
-    earnings: Int!
+    quiz: Quiz!
+    rank: Int!
+    price_amount: Int!
 }
 
 type Distribution {
