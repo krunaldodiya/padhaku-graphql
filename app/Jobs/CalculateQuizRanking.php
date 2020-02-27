@@ -35,6 +35,8 @@ class CalculateQuizRanking implements ShouldQueue
      */
     public function handle(QuizRepositoryInterface $quizRepo)
     {
+        dump('test');
+
         $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
         $quiz_started_participants = $quiz_data->participants()->where('quiz_status', 'started')->count();
