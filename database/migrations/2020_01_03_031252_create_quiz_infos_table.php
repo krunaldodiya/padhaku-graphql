@@ -21,7 +21,7 @@ class CreateQuizInfosTable extends Migration
             $table->integer('all_questions_count')->default(50);
             $table->integer('answerable_questions_count')->default(10);
             $table->json('distribution')->nullable();
-            $table->integer('expiry')->default(1)->comment('expiry in hours');
+            $table->integer('expiry')->default(60)->comment('expiry in minutes');
             $table->integer('reading')->default(15)->comment('reading in minutes');
             $table->integer('time')->default(10)->comment('time in seconds');
             $table->timestamps();

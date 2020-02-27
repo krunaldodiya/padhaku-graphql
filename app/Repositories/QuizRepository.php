@@ -43,7 +43,7 @@ class QuizRepository implements QuizRepositoryInterface
             return response(['can not create'], 400);
         }
 
-        $expired_at = now()->addHour($quizInfo->expiry);
+        $expired_at = now()->addMinutes($quizInfo->expiry);
 
         $quiz = Quiz::create([
             'quiz_info_id' => $quizInfo->id,
