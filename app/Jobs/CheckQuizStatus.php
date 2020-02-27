@@ -48,7 +48,7 @@ class CheckQuizStatus implements ShouldQueue
 
         Quiz::where('id', $quiz_data->id)->update(['status' => 'started']);
 
-        CalculateQuizRanking::dispatch($quiz_data)->delay($quiz_data->expired_at->addMinutes(15));
+        CalculateQuizRanking::dispatch($quiz_data)->delay($quiz_data->expired_at->addMinutes(5));
 
         return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
             'title' => 'Reminder', 'body' => 'Quiz is started', 'image' => url('images/icon.png')
