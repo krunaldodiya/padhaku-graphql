@@ -60,7 +60,7 @@ class CalculateQuizRanking implements ShouldQueue
                 'quiz_id' => $quiz_participant->quiz_id,
                 'user_id' => $quiz_participant->user_id,
                 'rank' => $rank,
-                'prize_amount' => $contribution['price'],
+                'prize_amount' => $contribution ? $contribution['price'] : 0,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -68,7 +68,7 @@ class CalculateQuizRanking implements ShouldQueue
 
         DB::table("quiz_rankings")->insert($quiz_rankings->toArray());
 
-        DB::table("quiz_participants")->where('quiz_status', '==', 'joined')->update(['quiz_status' => 'missed']);
+        DB::table("quiz_participants")->where('quiz_status', '!=', 'finished')->update(['quiz_status' => 'missed']);
 
         $quiz_rankings->each(function ($quiz_ranking) {
             $user = User::find($quiz_ranking['user_id']);
