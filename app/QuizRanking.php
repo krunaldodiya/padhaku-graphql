@@ -21,7 +21,7 @@ class QuizRanking extends Model
     public function getScoreAttribute()
     {
         $quiz_participants = DB::table('quiz_participants')
-            ->where('user_id', auth()->id)
+            ->where('user_id', auth()->id())
             ->where('quiz_id', $this->quiz_id)
             ->first();
 
