@@ -21,6 +21,6 @@ class TestController extends Controller
 
     public function test(Request $request, OtpRepositoryInterface $otpRepository)
     {
-        dd(url('images/icon.png'));
+        return 'done';
     }
 }
