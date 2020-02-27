@@ -60,13 +60,12 @@ class CalculateQuizRanking implements ShouldQueue
         $quiz_rankings = $quiz_participants->map(function ($quiz_participant, $index) use ($quiz_data) {
             $rank = $index + 1;
             $contribution = collect($quiz_data->quiz_infos->distribution)->where('rank', $rank)->first();
-            $quiz_status =   $quiz_participant['quiz_status'];
 
             return [
                 'quiz_id' => $quiz_participant->quiz_id,
                 'user_id' => $quiz_participant->user_id,
                 'rank' => $rank,
-                'prize_amount' => $quiz_status === 'finished' && $contribution ? $contribution['price'] : 0,
+                'prize_amount' => $quiz_participant->quiz_status === 'finished' && $contribution ? $contribution['price'] : 0,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
