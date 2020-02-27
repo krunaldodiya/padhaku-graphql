@@ -17,6 +17,13 @@ class GenerateQuiz extends Action
 
     public $onlyOnDetail = true;
 
+    public $quizRepo;
+
+    public function __construct($quizRepo)
+    {
+        $this->quizRepo = $quizRepo;
+    }
+
     /**
      * Perform the action on the given models.
      *
@@ -28,9 +35,9 @@ class GenerateQuiz extends Action
     {
         $quiz_info = $models[0];
 
-        // $this->quizRepo->generateQuiz(true, $quiz_info->id);
+        $this->quizRepo->generateQuiz(true, $quiz_info->id);
 
-        return Action::message("Quiz has been generated. {$quiz_info->id}");
+        return Action::message("Quiz has been generated");
     }
 
     /**

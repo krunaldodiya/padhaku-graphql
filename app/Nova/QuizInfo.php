@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\GenerateQuiz;
+use App\Repositories\Contracts\QuizRepositoryInterface;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -100,6 +101,6 @@ class QuizInfo extends Resource
      */
     public function actions(Request $request)
     {
-        return [new GenerateQuiz];
+        return [new GenerateQuiz(new QuizRepositoryInterface)];
     }
 }
