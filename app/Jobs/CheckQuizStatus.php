@@ -34,32 +34,24 @@ class CheckQuizStatus implements ShouldQueue
      */
     public function handle(QuizRepositoryInterface $quizRepo)
     {
-        try {
-            $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
+        $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
-            $quiz_joined_participants = $quiz_data->participants()->count();
+        $quiz_joined_participants = $quiz_data->participants()->count();
 
-            if ($quiz_joined_participants < $quiz_data->quiz_infos->total_participants) {
-                $quizRepo->cancelQuiz($quiz_data);
-
-                return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                    'title' => 'Sorry', 'body' => 'Quiz is canceled', 'image' => url('images/icon.png')
-                ]);
-            }
-
-            dump($quiz_data->id);
-
-            Quiz::where('id', $quiz_data->id)->update(['status' => 'started']);
-
-            dump("quiz updated");
-
-            CalculateQuizRanking::dispatch($quiz_data)->delay($quiz_data->expired_at->addMinutes(5));
+        if ($quiz_joined_participants < $quiz_data->quiz_infos->total_participants) {
+            $quizRepo->cancelQuiz($quiz_data);
 
             return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                'title' => 'Reminder', 'body' => 'Quiz is started', 'image' => url('images/icon.png')
+                'title' => 'Sorry', 'body' => 'Quiz is canceled', 'image' => url('images/icon.png')
             ]);
-        } catch (\Throwable $th) {
-            throw $th;
         }
+
+        Quiz::where('id', $quiz_data->id)->update(['status' => 'started']);
+
+        CalculateQuizRanking::dispatch($quiz_data)->delay($quiz_data->expired_at->addMinutes(5));
+
+        return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
+            'title' => 'Reminder', 'body' => 'Quiz is started', 'image' => url('images/icon.png')
+        ]);
     }
 }
