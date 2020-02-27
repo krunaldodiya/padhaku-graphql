@@ -16,12 +16,6 @@ class GenerateQuiz extends Action
     use InteractsWithQueue, Queueable;
 
     public $onlyOnDetail = true;
-    public $quizRepo;
-
-    public function __construct(QuizRepositoryInterface $quizRepo)
-    {
-        $this->quizRepo = $quizRepo;
-    }
 
     /**
      * Perform the action on the given models.
