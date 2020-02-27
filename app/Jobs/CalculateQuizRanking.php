@@ -55,7 +55,6 @@ class CalculateQuizRanking implements ShouldQueue
         $quiz_participants = DB::table('quiz_participants')
             ->where('quiz_id', $this->quiz->id)
             ->orderBy('points', 'desc')
-            ->orderByRaw(DB::raw("FIELD(quiz_status, 'finished', 'missed')"))
             ->get();
 
         $quiz_rankings = $quiz_participants->map(function ($quiz_participant, $index) use ($quiz_data) {
