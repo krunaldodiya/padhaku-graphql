@@ -44,7 +44,7 @@ class QuizMutation
             throw new Error("Not Enough wallet points");
         }
 
-        $quiz->participants()->attach(["user_id" => $user->id, 'created_at' => now(), 'updated_at' => now()]);
+        $quiz->participants()->attach($user->id);
 
         $topic = Topic::where('name', "quiz_reminder_{$quiz->id}")->first();
         $user->topics()->attach($topic->id);
