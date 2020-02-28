@@ -41,10 +41,10 @@ class RankingQuery
 
                 return [
                     'user' => $user,
-                    'earnings' => $quiz_rankings->sum('prize_amount')
+                    'prize_amount' => $quiz_rankings->sum('prize_amount')
                 ];
             })
-            ->sortByDesc('earnings')
+            ->sortByDesc('prize_amount')
             ->toArray();
     }
 }
