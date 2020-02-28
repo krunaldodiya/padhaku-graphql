@@ -21,7 +21,7 @@ class StartQuiz
             ->first();
 
         if (!$quiz_participant) {
-            throw new Error("Quiz is not joined yet");
+            throw new Error("Quiz has not joined yet");
         }
 
         if ($quiz_participant->quiz_status !== 'joined') {
@@ -29,11 +29,11 @@ class StartQuiz
         }
 
         if (now() >= $quiz->expired_at->addMinutes(15)) {
-            throw new Error("Quiz is expired");
+            throw new Error("Quiz has expired");
         }
 
         if (now() <= $quiz->expired_at) {
-            throw new Error("Quiz is not started yet");
+            throw new Error("Quiz has not started yet");
         }
 
         DB::table("quiz_participants")
