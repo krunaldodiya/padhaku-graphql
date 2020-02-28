@@ -31,10 +31,13 @@ class OtpRepository implements OtpRepositoryInterface
 
     public function requestOtp($country, $mobile)
     {
+        $user = User::where(['country_id' => $country['id'], 'mobile' => $mobile])->first();
+        $username = $user ? $user->username : "guest";
+
         $app_name = config('app.name');
         $otp = mt_rand(1000, 9999);
 
-        $message = "$otp is Your otp for phone verification for $app_name.";
+        $message = "hello @{$username}, $otp is Your otp for phone verification for $app_name.";
         $url = $this->generateUrl("request_otp", $country, $mobile, $otp, $message);
 
         $client = new \GuzzleHttp\Client();
