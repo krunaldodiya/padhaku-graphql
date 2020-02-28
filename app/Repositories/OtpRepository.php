@@ -37,7 +37,7 @@ class OtpRepository implements OtpRepositoryInterface
         $app_name = config('app.name');
         $otp = mt_rand(1000, 9999);
 
-        $message = "hello @{$username}, $otp is Your otp for phone verification for $app_name.";
+        $message = "hello $username, $otp is Your otp for phone verification for $app_name.";
         $url = $this->generateUrl("request_otp", $country, $mobile, $otp, $message);
 
         $client = new \GuzzleHttp\Client();
