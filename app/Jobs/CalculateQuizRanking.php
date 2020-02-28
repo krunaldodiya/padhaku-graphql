@@ -83,7 +83,7 @@ class CalculateQuizRanking implements ShouldQueue
         return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
             'title' => 'Reminder',
             'body' => 'Quiz Winnners are now available',
-            'image' => url('images/icon.png'),
+            'image' => url('images/notify_winners.jpg'),
             'quiz_id' => $quiz_data->id
         ]);
     }
