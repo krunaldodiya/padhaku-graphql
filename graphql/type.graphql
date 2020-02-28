@@ -125,6 +125,7 @@ type QuizQuestion {
 type QuizAnswer {
     question_id: ID!
     time: Int!
+    points: Float!
     current_answer: String!
     answer: String!
 }
