@@ -38,8 +38,10 @@ class CalculateQuizRanking implements ShouldQueue
         $quiz_data = Quiz::with('participants', 'quiz_infos')->find($this->quiz->id);
 
         DB::table("quiz_participants")
-            ->where('quiz_status', '==', 'joined')
-            ->orWhere('quiz_status', '==', 'started')
+            ->where('quiz_id', $quiz_data->id)
+            ->where(function ($query) {
+                return $query->where('quiz_status', 'joined')->orWhere('quiz_status', 'started');
+            })
             ->update(['quiz_status' => 'missed']);
 
         $quiz_participants = DB::table('quiz_participants')
