@@ -43,7 +43,10 @@ class CalculateQuizRanking implements ShouldQueue
             $quizRepo->cancelQuiz($quiz_data);
 
             return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                'title' => 'Sorry', 'body' => 'Quiz is canceled', 'image' => url('images/icon.png')
+                'title' => 'Sorry',
+                'body' => 'Quiz is canceled',
+                'image' => url('images/icon.png'),
+                'quiz_id' => $quiz_data->id
             ]);
         }
 
@@ -87,5 +90,12 @@ class CalculateQuizRanking implements ShouldQueue
         });
 
         Quiz::where('id', $quiz_data->id)->update(['status' => 'finished']);
+
+        return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
+            'title' => 'Reminder',
+            'body' => 'Quiz Winnners are available',
+            'image' => url('images/icon.png'),
+            'quiz_id' => $quiz_data->id
+        ]);
     }
 }
