@@ -44,7 +44,7 @@ class CheckQuizStatus implements ShouldQueue
             return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
                 'title' => 'Sorry',
                 'body' => 'Quiz has canceled',
-                'image' => url('images/notify_canceled.jpg'),
+                'image' => url('images/notify_canceled.png'),
                 'quiz_id' => $quiz_data->id
             ]);
         }
