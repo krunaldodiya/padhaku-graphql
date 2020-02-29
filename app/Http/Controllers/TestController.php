@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Country;
-use App\Jobs\SendQuizNotification;
-use App\Quiz;
-use App\Repositories\Contracts\QuizRepositoryInterface;
-use App\Repositories\OtpRepositoryInterface;
+use App\Invitation;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -19,8 +15,12 @@ class TestController extends Controller
         return $categories;
     }
 
-    public function test(Request $request, OtpRepositoryInterface $otpRepository)
+    public function test(Request $request)
     {
-        return 'done';
+        $invitation = Invitation::with('sender')
+            ->where(['mobile' => $request->mobile])
+            ->count();
+
+        return $invitation;
     }
 }
