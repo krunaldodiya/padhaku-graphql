@@ -36,7 +36,7 @@ class CheckInvitation
             ->first();
 
         if ($invitation) {
-            collect([$receiver, $invitation->sender])->foreach(function ($user) use ($points) {
+            collect([$receiver, $invitation->sender])->each(function ($user) use ($points) {
                 $transaction = $user->createTransaction($points['invitation'], 'deposit', [
                     'points' => [
                         'id' => $user->id,
