@@ -19,7 +19,7 @@ class TestController extends Controller
     {
         $invitation = Invitation::with('sender')
             ->where(['mobile' => $request->mobile])
-            ->count();
+            ->first();
 
         return $invitation;
     }

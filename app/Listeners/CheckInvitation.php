@@ -33,7 +33,7 @@ class CheckInvitation
 
         $invitation = Invitation::with('sender')
             ->where(['mobile' => $receiver['mobile']])
-            ->count();
+            ->first();
 
         if ($invitation) {
             collect([$receiver, $invitation->sender])->foreach(function ($user) use ($points) {
