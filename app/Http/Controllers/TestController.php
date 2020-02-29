@@ -17,10 +17,8 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $invitation = Invitation::with('sender')
-            ->where(['mobile' => $request->mobile])
-            ->first();
+        $points = config('points.invitation');
 
-        return $invitation;
+        dd($points);
     }
 }

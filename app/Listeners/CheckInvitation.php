@@ -37,7 +37,7 @@ class CheckInvitation
 
         if ($invitation) {
             collect([$receiver, $invitation->sender])->each(function ($user) use ($points) {
-                $transaction = $user->createTransaction($points['invitation'], 'deposit', [
+                $transaction = $user->createTransaction($points['points'], 'deposit', [
                     'points' => [
                         'id' => $user->id,
                         'type' => $points['type']
