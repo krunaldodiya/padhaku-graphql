@@ -27,12 +27,12 @@ class CheckInvitation
      */
     public function handle(UserCreated $event)
     {
-        $points = config('points.user_registered');
+        $points = config('points.invitation');
 
         $receiver = $event->user;
 
         $invitation = Invitation::with('sender')
-            ->where(['mobile_cc' => $receiver['mobile_cc']])
+            ->where(['mobile' => $receiver['mobile']])
             ->count();
 
         if ($invitation) {

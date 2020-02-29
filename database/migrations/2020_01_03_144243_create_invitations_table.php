@@ -19,7 +19,7 @@ class CreateInvitationsTable extends Migration
             $table->uuid('sender_id');
             $table->foreign('sender_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('mobile_cc');
+            $table->string('mobile');
             $table->timestamps();
         });
     }
