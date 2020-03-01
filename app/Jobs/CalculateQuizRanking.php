@@ -81,8 +81,8 @@ class CalculateQuizRanking implements ShouldQueue
         Quiz::where('id', $quiz_data->id)->update(['status' => 'finished']);
 
         return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-            'title' => 'Reminder',
-            'body' => 'Quiz Winnners are now available',
+            'title' => 'Winners Announced',
+            'body' => 'Check the list,NOW! Congrats winners!',
             'image' => url('images/notify_winners.png'),
             'quiz_id' => $quiz_data->id
         ]);

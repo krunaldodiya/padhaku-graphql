@@ -42,8 +42,8 @@ class CheckQuizStatus implements ShouldQueue
             $quizRepo->cancelQuiz($quiz_data);
 
             return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                'title' => 'Sorry',
-                'body' => 'Quiz has canceled',
+                'title' => 'Quiz suspended!',
+                'body' => 'Dont worry, more quizzes loaded for you!',
                 'image' => url('images/notify_canceled.png'),
                 'quiz_id' => $quiz_data->id
             ]);
@@ -54,8 +54,8 @@ class CheckQuizStatus implements ShouldQueue
         CalculateQuizRanking::dispatch($quiz_data)->delay($quiz_data->expired_at->addMinutes(5));
 
         return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-            'title' => 'Reminder',
-            'body' => 'Quiz has started',
+            'title' => 'All the Best!',
+            'body' => 'Hurry,Start the quiz NOW!',
             'image' => url('images/notify_started.jpg'),
             'quiz_id' => $quiz_data->id
         ]);
