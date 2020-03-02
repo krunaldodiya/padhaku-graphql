@@ -35,6 +35,11 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect("https://play.google.com/store/apps/details?id=com.pauzr.org");
+        return redirect("https://play.google.com/store/apps/details?id=com.sawaalbemisaal.org");
+    }
+
+    public function rate(Request $request)
+    {
+        return redirect("https://play.google.com/store/apps/details?id=com.sawaalbemisaal.org");
     }
 }
