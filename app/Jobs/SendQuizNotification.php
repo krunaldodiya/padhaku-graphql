@@ -34,7 +34,7 @@ class SendQuizNotification implements ShouldQueue
     public function handle(QuizRepositoryInterface $quizRepository)
     {
         $quizRepository->notify("/topics/quiz_reminder_{$this->quiz->id}", [
-            'title' => 'Quiz will start in {$this->quiz->quiz_infos->reading} minute(s)',
+            'title' => 'Quiz will start in few minutes',
             'body' => "Everyone is preparing, are you?",
             'image' => url('images/notify_soon.jpg'),
             'quiz_id' => $this->quiz->id
