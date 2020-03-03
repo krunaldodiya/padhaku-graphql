@@ -53,6 +53,7 @@ class QuizRepository implements QuizRepositoryInterface
         ]);
 
         $all_questions = Question::inRandomOrder()
+            ->whereRaw('LENGTH(question) < 50')
             ->limit($quizInfo->all_questions_count)
             ->pluck('id')
             ->toArray();
