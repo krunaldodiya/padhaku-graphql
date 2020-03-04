@@ -24,3 +24,4 @@ Route::middleware('auth:api')->post('/upload', 'UserController@upload');
 
 Route::get('/invite/{sender_id}/{mobile}', 'UserController@checkInvitation');
 Route::get('/rate', 'UserController@rate');
+Route::post('/quizzes', 'QuizController@quizzes');
