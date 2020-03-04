@@ -33,14 +33,14 @@ class QuizRepository implements QuizRepositoryInterface
 
     public function generateQuiz($forceGenerate, $quizInfoId)
     {
-        $from = Carbon::parse('today 7am');
-        $to = Carbon::parse('today 7pm');
+        $from = Carbon::parse('today 9am');
+        $to = Carbon::parse('today 9pm');
 
         $quizInfo = QuizInfo::where('id', $quizInfoId)->first();
         $validTime = now()->gte($from) && now()->lte($to);
 
         if (!$forceGenerate && !$validTime) {
-            return response(['can not create'], 400);
+            return response(['can not create at the moment'], 400);
         }
 
         $expired_at = now()->addMinutes($quizInfo->expiry);

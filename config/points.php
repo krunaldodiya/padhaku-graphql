@@ -3,7 +3,7 @@
 return [
     'user_registered' => [
         'type' => 'Joining Bonus',
-        'points' => 10
+        'points' => 19
     ],
 
     'profile_updated' => [
@@ -13,6 +13,6 @@ return [
 
     'invitation' => [
         'type' => 'Referral Bonus',
-        'points' => 5
+        'points' => 9
     ],
 ];
