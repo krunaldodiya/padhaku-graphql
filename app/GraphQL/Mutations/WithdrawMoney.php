@@ -29,6 +29,15 @@ class WithdrawMoney
             throw new Error("Not Enough Balance");
         }
 
+        $transaction = $user->createTransaction($args['amount'], 'withdraw', [
+            'points' => [
+                'id' => $user->id,
+                'type' => "Withdraw Money"
+            ]
+        ]);
+
+        $user->deposit($transaction->transaction_id);
+
         return Redeem::create([
             'user_id' => $user->id,
             'gateway' => $args['gateway'],
