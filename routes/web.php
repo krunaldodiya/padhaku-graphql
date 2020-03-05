@@ -10,3 +10,11 @@ Route::post('/paytm/order/process', 'PaytmController@processOrder')->name('paytm
 Route::get('/paytm/order/{status}', 'PaytmController@orderStatus')->name('paytm-order-status');
 
 Route::get('/categories', 'TestController@categories');
+
+Route::get('/terms', function () {
+    return view('terms');
+});
+
+Route::get('/privacy', function () {
+    return view('privacy');
+});
