@@ -1,10 +1,10 @@
 -- -------------------------------------------------------------
--- TablePlus 2.10(270)
+-- TablePlus 3.1.2(296)
 --
 -- https://tableplus.com/
 --
--- Database: pauzr
--- Generation Time: 2020-01-04 08:38:24.6880
+-- Database: learning
+-- Generation Time: 2020-03-07 08:59:24.1490
 -- -------------------------------------------------------------
 
 
@@ -36,4 +36,3 @@ CREATE TABLE "public"."action_events" (
     PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."action_events" ("id", "batch_id", "user_id", "name", "actionable_type", "actionable_id", "target_type", "target_id", "model_type", "model_id", "fields", "status", "exception", "created_at", "updated_at", "original", "changes") VALUES ('1', '8f2f174e-39ae-4d31-b25b-cd90572c20ca', 'ca55bf22-8440-4771-8fa5-42401e163fe0', 'Create', 'App\Category', '7a70d417-cf69-41d8-950e-6f6ed071d7a1', 'App\Category', '7a70d417-cf69-41d8-950e-6f6ed071d7a1', 'App\Category', '7a70d417-cf69-41d8-950e-6f6ed071d7a1', '', 'finished', '', '2019-11-21 08:16:12', '2019-11-21 08:16:12', NULL, '{"name":"general","background_image":"q6XbCDZZe0Ls8PysX465c6pFa9c5hcSgL2a9dbZ7.jpeg","background_color":"red","id":"7a70d417-cf69-41d8-950e-6f6ed071d7a1"}');
