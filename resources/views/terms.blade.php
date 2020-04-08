@@ -1,171 +1,25 @@
 <html>
 
 <head>
-    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
-    <style type="text/css">
-        < !-- span.cls_002 {
-            font-family: "Book Antiqua Bold", serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        div.cls_002 {
-            font-family: "Book Antiqua Bold", serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
+    <title>Laravel</title>
 
-        span.cls_004 {
-            font-family: "Book Antiqua", serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        div.cls_004 {
-            font-family: "Book Antiqua", serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
+    <!-- Styles -->
+    <style>
+        html,
+        body {
+            background-color: #fff;
+            color: #636b6f;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 200;
+            height: 100vh;
+            margin: 10px 100px;
         }
-
-        span.cls_005 {
-            font-family: "Book Antiqua Italic", serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        div.cls_005 {
-            font-family: "Book Antiqua Italic", serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        span.cls_003 {
-            font-family: Times, serif;
-            font-size: 13.6px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_003 {
-            font-family: Times, serif;
-            font-size: 13.6px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_006 {
-            font-family: Arial, serif;
-            font-size: 13.6px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_006 {
-            font-family: Arial, serif;
-            font-size: 13.6px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_007 {
-            font-family: "Book Antiqua", serif;
-            font-size: 12.1px;
-            color: rgb(255, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_007 {
-            font-family: "Book Antiqua", serif;
-            font-size: 12.1px;
-            color: rgb(255, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_008 {
-            font-family: Arial, serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_008 {
-            font-family: Arial, serif;
-            font-size: 12.1px;
-            color: rgb(0, 0, 0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_009 {
-            font-family: "Book Antiqua", serif;
-            font-size: 12.1px;
-            color: rgb(50, 50, 50);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_009 {
-            font-family: "Book Antiqua", serif;
-            font-size: 12.1px;
-            color: rgb(50, 50, 50);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_010 {
-            font-family: "Book Antiqua Bold", serif;
-            font-size: 12.1px;
-            color: rgb(50, 50, 50);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_010 {
-            font-family: "Book Antiqua Bold", serif;
-            font-size: 12.1px;
-            color: rgb(50, 50, 50);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        -->
     </style>
 </head>
 
