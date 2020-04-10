@@ -23,6 +23,10 @@ Route::get('/privacy', function () {
 });
 
 Route::get('/download', function (Request $request) {
+    if (!$request->query("mobile")) {
+        throw new Error("No mobile provided");
+    }
+
     $url = "https://api.msg91.com/api/v2/sendsms";
 
     $data = [
@@ -48,7 +52,5 @@ Route::get('/download', function (Request $request) {
         ]
     ]);
 
-    $body = json_decode($request->getBody());
-
-    dd($body);
+    return json_decode($request->getBody());
 });
