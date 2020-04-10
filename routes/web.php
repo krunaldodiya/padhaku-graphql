@@ -52,5 +52,5 @@ Route::get('/download', function (Request $request) {
         ]
     ]);
 
-    return json_decode($request->getBody());
+    return $request->getBody();
 });
