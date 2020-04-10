@@ -27,7 +27,7 @@ Route::get('/download', function (Request $request) {
 
     $data = [
         'sender' => "SOCIAL",
-        'route' => "4",
+        'route' => "1",
         'country' => "0",
         "sms" => [
             [
