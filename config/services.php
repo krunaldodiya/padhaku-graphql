@@ -39,4 +39,8 @@ return [
         'industry_type' => env('PAYTM_INDUSTRY_TYPE'),
     ],
 
+    "msg91" => [
+        'key' => config('msg91.auth_key'),
+    ],
+
 ];

@@ -17,6 +17,7 @@
         "php": "^7.2",
         "64robots/nova-fields": "^0.15.0",
         "anandsiddharth/laravel-paytm-wallet": "^1.0",
+        "craftsys/msg91-laravel": "^0.7.1",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "krunaldodiya/wallet": "^1.1",
