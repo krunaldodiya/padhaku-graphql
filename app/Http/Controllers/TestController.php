@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Invitation;
 use App\Question;
+use App\User;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -18,21 +19,10 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $comments = [
-            ['id' => 1, 'post_id' => 1, "post" => ['id' => 1, "title" => "krunal post title", "body" => "krunal post body"], "comment" => "hello"],
-            ['id' => 2, 'post_id' => 2, "post" => ['id' => 2, "title" => "kalpit post title", "body" => "kalpit post body"], "comment" => "hello"]
-        ];
+        $user = new User();
 
-        $posts = [
-            ['id' => 1, "user_id" => 1, "owner" => ['id' => 1, "name" => "krunal"], "title" => "krunal post title", "body" => "krunal post body", "comments" => $comments],
-            ['id' => 2, "user_id" => 2, "owner" => ['id' => 2, "name" => "kalpit"], "title" => "kalpit post title", "body" => "kalpit post body", "comments" => $comments]
-        ];
+        dd($user);
 
-        $users = [
-            ['id' => 1, "name" => "krunal", "posts" => $posts],
-            ['id' => 2, "name" => "kalpit", "posts" => $posts]
-        ];
-
-        return response(["users" => $users], 200);
+        // return $user->quizzes()->whereIn("id", ["84ac6207-b793-4b05-90ee-c2367c30aec1"])->get();
     }
 }
