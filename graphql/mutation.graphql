@@ -33,7 +33,7 @@ type Mutation {
 
     editProfile(
         name: String @rules(apply: ["min:5"])
-        email: String @rules(apply: ["sometimes", "required, email", "unique:users"])
+        email: String @rules(apply: ["sometimes", "required, "email", "unique:users"])
         dob: String
         gender: String
         language: String
