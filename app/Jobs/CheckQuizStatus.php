@@ -60,7 +60,7 @@ class CheckQuizStatus implements ShouldQueue
             'body' => 'Hurry,Start the quiz NOW!',
             'image' => url('images/notify_started.jpg'),
             'quiz_id' => $quiz_data->id,
-            'status' => $quiz_data->status,
+            'status' => "started",
             'quiz_status' => $quiz_data->quiz_status,
         ]);
     }
