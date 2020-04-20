@@ -86,6 +86,7 @@ class CalculateQuizRanking implements ShouldQueue
             'image' => url('images/notify_winners.png'),
             'quiz_id' => $quiz_data->id,
             'status' => $quiz_data->status,
+            'quiz_status' => $quiz_data->quiz_status,
         ]);
     }
 }

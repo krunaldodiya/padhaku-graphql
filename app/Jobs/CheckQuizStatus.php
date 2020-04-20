@@ -47,6 +47,7 @@ class CheckQuizStatus implements ShouldQueue
                 'image' => url('images/notify_canceled.png'),
                 'quiz_id' => $quiz_data->id,
                 'status' => $quiz_data->status,
+                'quiz_status' => $quiz_data->quiz_status,
             ]);
         }
 
@@ -60,6 +61,7 @@ class CheckQuizStatus implements ShouldQueue
             'image' => url('images/notify_started.jpg'),
             'quiz_id' => $quiz_data->id,
             'status' => $quiz_data->status,
+            'quiz_status' => $quiz_data->quiz_status,
         ]);
     }
 }
