@@ -45,7 +45,7 @@ class CheckQuizStatus implements ShouldQueue
                 'title' => 'Quiz suspended!',
                 'body' => 'Dont worry, more quizzes loaded for you!',
                 'image' => url('images/notify_canceled.png'),
-                'quiz_id' => $quiz_data->id
+                'quiz' => $quiz_data
             ]);
         }
 
@@ -57,7 +57,7 @@ class CheckQuizStatus implements ShouldQueue
             'title' => 'All the Best!',
             'body' => 'Hurry,Start the quiz NOW!',
             'image' => url('images/notify_started.jpg'),
-            'quiz_id' => $quiz_data->id
+            'quiz' => $quiz_data
         ]);
     }
 }

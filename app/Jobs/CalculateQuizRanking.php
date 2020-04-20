@@ -84,7 +84,7 @@ class CalculateQuizRanking implements ShouldQueue
             'title' => 'Winners Announced',
             'body' => 'Check the list,NOW! Congrats winners!',
             'image' => url('images/notify_winners.png'),
-            'quiz_id' => $quiz_data->id
+            'quiz' => $quiz_data
         ]);
     }
 }
