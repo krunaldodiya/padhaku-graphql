@@ -37,7 +37,8 @@ class SendQuizNotification implements ShouldQueue
             'title' => 'Quiz will start in few minutes',
             'body' => "Everyone is preparing, are you?",
             'image' => url('images/notify_soon.jpg'),
-            'quiz' => $this->quiz
+            'quiz_id' => $this->quiz->id,
+            'status' => $this->quiz->status,
         ]);
     }
 }
