@@ -22,6 +22,12 @@ Route::get('/privacy', function () {
     return view('privacy');
 });
 
+Route::get('/download/app', function () {
+    $file = public_path("app/app-release.apk");
+
+    return response()->download($file);
+});
+
 Route::get('/download', function (Request $request) {
     if (!$request->query("mobile")) {
         throw new Error("No mobile provided");
@@ -35,7 +41,7 @@ Route::get('/download', function (Request $request) {
         'country' => "91",
         "sms" => [
             [
-                "message" => "Sending of personalized and customized information",
+                "message" => "Get the Sawal Bemisaal app and enjoy Quizzing on the go! \n Learn & Earn ! Click https://bit.ly/2Voj9zy to download now!",
                 "to" => [$request->query("mobile")]
             ]
         ]
