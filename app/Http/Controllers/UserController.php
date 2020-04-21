@@ -35,7 +35,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect("https://play.google.com/store/apps/details?id=com.sawaalbemisaal.org");
+        return redirect("/download/app");
     }
 
     public function rate(Request $request)
