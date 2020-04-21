@@ -32,6 +32,6 @@ class HandleQuizGenerated
 
         SendQuizNotification::dispatch($quiz)->delay($quiz->expired_at->subMinutes($quiz->quiz_infos->reading));
 
-        CheckQuizStatus::dispatch($quiz)->delay($quiz->expired_at->subSeconds(5));
+        CheckQuizStatus::dispatch($quiz)->delay($quiz->expired_at);
     }
 }
