@@ -23,7 +23,7 @@ Route::get('/privacy', function () {
 });
 
 Route::get('/download/app', function () {
-    $file = public_path("app/app-release.apk");
+    $file = public_path("app/sawal-bemisaal.apk");
 
     return response()->download($file);
 });
