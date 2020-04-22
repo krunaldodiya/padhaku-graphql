@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('create:quiz')->cron('0 */2 * * *');
+        $schedule->command('create:quiz')->everyThirtyMinutes();
     }
 
     /**
