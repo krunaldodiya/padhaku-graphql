@@ -25,7 +25,11 @@ Route::get('/privacy', function () {
 Route::get('/download/app', function () {
     $file = public_path("app/sawal-bemisaal.apk");
 
-    return response()->download($file);
+    $headers = array(
+        'Content-Type: application/vnd.android.package-archive',
+    );
+
+    return response()->download($file, 'sawal-bemisaal.apk', $headers);
 });
 
 Route::get('/download', function (Request $request) {
