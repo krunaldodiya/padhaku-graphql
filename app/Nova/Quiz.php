@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 
 class Quiz extends Resource
 {
@@ -41,7 +42,9 @@ class Quiz extends Resource
     {
         return [
             ID::make()->sortable(),
+            DateTime::make('created_at')->sortable(),
             DateTime::make('expired_at')->sortable(),
+            Text::make('status'),
         ];
     }
 
