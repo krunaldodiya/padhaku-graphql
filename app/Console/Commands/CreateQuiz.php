@@ -40,8 +40,10 @@ class CreateQuiz extends Command
      */
     public function handle(QuizRepository $quizRepo)
     {
-        $quizInfo = QuizInfo::find("a5b598af-8768-40a7-9974-8fa020de6e7c");
+        $quizInfos = QuizInfo::all();
 
-        return $quizRepo->generateQuiz(false, $quizInfo->id);
+        $quizInfos->foreach(function ($quizInfo) use ($quizRepo) {
+            return $quizRepo->generateQuiz(false, $quizInfo->id);
+        });
     }
 }
