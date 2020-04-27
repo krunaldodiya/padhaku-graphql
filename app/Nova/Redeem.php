@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 
 class Redeem extends Resource
 {
@@ -51,7 +52,11 @@ class Redeem extends Resource
 
             Text::make("Amount"),
 
-            Text::make("Status"),
+            Select::make("Status")->options([
+                'pending' => 'Pending',
+                'success' => 'Success',
+                'fail' => 'Fail',
+            ]),
         ];
     }
 
