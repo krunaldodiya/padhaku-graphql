@@ -4,7 +4,8 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
 
 class Redeem extends Resource
 {
@@ -41,6 +42,16 @@ class Redeem extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            BelongsTo::make('User'),
+
+            Text::make("Gateway"),
+
+            Text::make("Mobile"),
+
+            Text::make("Amount"),
+
+            Text::make("Status"),
         ];
     }
 
