@@ -27,7 +27,7 @@ class WalletPoint extends Action
         $description = $fields->description;
 
         foreach ($models as $user) {
-            $transaction = $user->createTransaction($points, 'withdraw', [
+            $transaction = $user->createTransaction($points, 'deposit', [
                 'points' => [
                     'id' => $user->id,
                     'type' => $description
