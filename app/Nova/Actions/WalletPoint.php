@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 
 class WalletPoint extends Action
 {
@@ -49,6 +50,10 @@ class WalletPoint extends Action
     public function fields()
     {
         return [
+            Select::make("Status")->options([
+                'deposit' => 'deposit',
+                'withdraw' => 'Withdraw',
+            ]),
             Text::make('Points'),
             Text::make('Description'),
         ];
