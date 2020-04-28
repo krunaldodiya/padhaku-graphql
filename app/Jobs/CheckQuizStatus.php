@@ -38,11 +38,11 @@ class CheckQuizStatus implements ShouldQueue
 
         $quiz_joined_participants = $quiz_data->participants()->count();
 
-        if ($quiz_joined_participants < $quiz_data->quiz_infos->total_participants) {
+        if ($quiz_joined_participants < $quiz_data->quiz_infos->total_winners) {
             $quizRepo->cancelQuiz($quiz_data);
 
             return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
-                'title' => 'Quiz suspended!',
+                'title' => 'Quiz suspended! Due to less participants',
                 'body' => 'Dont worry, more quizzes loaded for you!',
                 'image' => url('images/notify_canceled.png'),
                 'quiz_id' => $quiz_data->id,
