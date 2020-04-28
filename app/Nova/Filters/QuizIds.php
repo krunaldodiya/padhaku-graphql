@@ -38,7 +38,7 @@ class QuizIds extends Filter
      */
     public function options(Request $request)
     {
-        $quiz = \App\Quiz::where('status', 'pending');
+        $quiz = \App\Quiz::where('status', 'pending')->get();
 
         $list = [];
 
