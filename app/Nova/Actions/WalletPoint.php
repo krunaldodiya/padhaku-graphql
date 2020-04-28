@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Text;
 
 class WalletPoint extends Action
 {
@@ -22,13 +23,14 @@ class WalletPoint extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-        $points = $fields['points'];
+        $points = $fields->points;
+        $description = $fields->description;
 
         foreach ($models as $user) {
             $transaction = $user->createTransaction($points, 'withdraw', [
                 'points' => [
                     'id' => $user->id,
-                    'type' => "Joined Quiz"
+                    'type' => $description
                 ]
             ]);
 
@@ -45,6 +47,9 @@ class WalletPoint extends Action
      */
     public function fields()
     {
-        return [];
+        return [
+            Text::make('Points'),
+            Text::make('Description'),
+        ];
     }
 }
