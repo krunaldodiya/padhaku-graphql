@@ -45,7 +45,7 @@ class Quiz extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('QuizInfo'),
+            BelongsTo::make('QuizInfo', "quiz_info"),
 
             DateTime::make('created_at')->sortable(),
             DateTime::make('expired_at')->sortable(),
