@@ -50,10 +50,11 @@ class WalletPoint extends Action
     public function fields()
     {
         return [
-            Select::make("Status")->options([
-                'deposit' => 'deposit',
-                'withdraw' => 'Withdraw',
-            ]),
+            Select::make("Type")
+                ->options([
+                    'deposit' => 'deposit',
+                    'withdraw' => 'Withdraw',
+                ]),
             Text::make('Points'),
             Text::make('Description'),
         ];
