@@ -26,7 +26,11 @@ class WalletPoint extends Action
     {
         $points = $fields->points;
         $description = $fields->description;
-        $type = $fields->type || "deposit";
+        $type = $fields->type;
+
+        if (!$type) {
+            return Action::message("Select a type");
+        }
 
         foreach ($models as $user) {
             $transaction = $user->createTransaction($points, $type, [
@@ -52,7 +56,7 @@ class WalletPoint extends Action
         return [
             Select::make("Type")
                 ->options([
-                    'deposit' => 'deposit',
+                    'deposit' => 'Deposit',
                     'withdraw' => 'Withdraw',
                 ]),
             Text::make('Points'),
