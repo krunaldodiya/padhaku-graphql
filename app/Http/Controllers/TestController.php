@@ -8,6 +8,7 @@ use App\Player;
 use App\Football;
 use App\Religion;
 use App\Question;
+use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -23,11 +24,14 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        app()->singleton("Hello", function () {
-            return Str::random();
-        });
+        $quiz = Quiz::all();
 
-        dump(resolve("Hello"));
-        dump(resolve("Hello"));
+        $list = [];
+
+        foreach ($quiz as $item) {
+            $list[$item->id] = $item->id;
+        }
+
+        return $list;
     }
 }

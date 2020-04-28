@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Lenses\Test;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -84,7 +85,7 @@ class Quiz extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [new Test()];
     }
 
     /**

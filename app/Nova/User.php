@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\WalletPoint;
+use App\Nova\lenses\QuizNotJoined;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -96,7 +97,7 @@ class User extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [new QuizNotJoined()];
     }
 
     /**
