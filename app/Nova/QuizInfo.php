@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Nova\Actions\GenerateQuiz;
 use App\Repositories\QuizRepository;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use R64\NovaFields\Number;
@@ -45,6 +46,7 @@ class QuizInfo extends Resource
     {
         return [
             ID::make()->sortable(),
+            Boolean::make("Auto"),
             Text::make('Entry Fee (Coins)', 'entry_fee'),
             Text::make('total_participants'),
             Text::make('total_winners'),

@@ -15,6 +15,7 @@ class CreateQuizInfosTable extends Migration
     {
         Schema::create('quiz_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
+
             $table->integer('entry_fee')->default(0);
             $table->integer('total_participants')->default(100);
             $table->integer('total_winners')->default(10);
@@ -24,6 +25,9 @@ class CreateQuizInfosTable extends Migration
             $table->integer('expiry')->default(60)->comment('expiry in minutes');
             $table->integer('reading')->default(15)->comment('reading in minutes');
             $table->integer('time')->default(10)->comment('time in seconds');
+
+            $table->boolean('auto')->default(true);
+
             $table->timestamps();
         });
     }

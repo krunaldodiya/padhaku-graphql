@@ -40,7 +40,7 @@ class CreateQuiz extends Command
      */
     public function handle(QuizRepository $quizRepo)
     {
-        $quizInfos = QuizInfo::get();
+        $quizInfos = QuizInfo::where('auto', true)->get();
 
         collect($quizInfos)->foreach(function ($quizInfo) use ($quizRepo) {
             return $quizRepo->generateQuiz(false, $quizInfo->id);
