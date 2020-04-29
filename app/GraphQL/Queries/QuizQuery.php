@@ -3,7 +3,6 @@
 namespace App\GraphQL\Queries;
 
 use App\Quiz;
-use Carbon\Carbon;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -14,7 +13,7 @@ class QuizQuery
         return Quiz::with('quiz_infos', 'participants', 'questions')
             ->where('expired_at', '>=', now())
             ->orWhere('status', 'started')
-            ->orderBy('expired_at', 'desc')
+            ->orderBy('expired_at', 'asc')
             ->get();
     }
 }
