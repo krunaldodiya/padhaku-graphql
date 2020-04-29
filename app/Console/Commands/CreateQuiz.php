@@ -42,6 +42,8 @@ class CreateQuiz extends Command
     {
         $quizInfos = QuizInfo::where('auto', true)->get();
 
+        dump(["$quizInfos" => $quizInfos]);
+
         collect($quizInfos)->each(function ($quizInfo) use ($quizRepo) {
             dump($quizInfo);
 
