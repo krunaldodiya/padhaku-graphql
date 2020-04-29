@@ -6,7 +6,7 @@ use App\Quiz;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class QuizQuery
+class GetActiveQuizzes
 {
     public function getActiveQuizzes($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {

@@ -9,9 +9,7 @@ type Query {
         @middleware(checks: ["auth:api"])
     categories: [Category!]! @all @middleware(checks: ["auth:api"])
     languages: [Language!]! @all @middleware(checks: ["auth:api"])
-    getActiveQuizzes: [Quiz!]!
-        @middleware(checks: ["auth:api"])
-        @field(resolver: "App\\GraphQL\\Queries\\QuizQuery@getActiveQuizzes")
+    getActiveQuizzes: [Quiz!]! @middleware(checks: ["auth:api"])
     getUserQuizzes: [Quiz!]! @middleware(checks: ["auth:api"])
     getQuizAnswers(quiz_id: ID! @rules(apply: ["required"])): [QuizAnswer!]!
         @middleware(checks: ["auth:api"])
