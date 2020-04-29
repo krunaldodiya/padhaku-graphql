@@ -24,14 +24,6 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $quiz = Quiz::all();
-
-        $list = [];
-
-        foreach ($quiz as $item) {
-            $list[$item->id] = $item->id;
-        }
-
-        return $list;
+        //
     }
 }
