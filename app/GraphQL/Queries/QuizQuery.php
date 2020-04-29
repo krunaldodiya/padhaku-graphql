@@ -12,8 +12,9 @@ class QuizQuery
     public function getActiveQuizzes($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         return Quiz::with('quiz_infos', 'participants', 'questions')
-                ->where('expired_at', '>=', now())
-                ->orWhere('status', 'started')
-                ->get();
+            ->where('expired_at', '>=', now())
+            ->orWhere('status', 'started')
+            ->orderBy('expired_at', 'desc')
+            ->get();
     }
 }
