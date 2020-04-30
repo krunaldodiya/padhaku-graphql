@@ -29,9 +29,9 @@ Route::get('/privacy', function () {
 Route::get('/download/app', function (Request $request) {
     $file = public_path("app/sawal-bemisaal.apk");
 
-    $refer_source_id = $request->utm_id ? ReferSource::find($request->utm_id)->id : ReferSource::first()->id;
+    $utm_id = $request->utm_id ? $request->utm_id : "4c5e0683-252a-483b-a37e-6b11f100aa21";
 
-    dump($refer_source_id);
+    $refer_source_id = ReferSource::find($utm_id)->id;
 
     $agent = new Agent();
 
@@ -57,7 +57,9 @@ Route::get('/download/app', function (Request $request) {
 });
 
 Route::get('/download/app/test', function (Request $request) {
-    $refer_source_id = $request->utm_id ? ReferSource::find($request->utm_id)->id : ReferSource::first()->id;
+    $utm_id = $request->utm_id ? $request->utm_id : "4c5e0683-252a-483b-a37e-6b11f100aa21";
+
+    $refer_source_id = ReferSource::find($utm_id)->id;
 
     dd($refer_source_id);
 });
