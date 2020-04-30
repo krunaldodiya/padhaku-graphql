@@ -4,6 +4,7 @@ use App\Refer;
 use App\ReferSource;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Jenssegers\Agent\Agent;
 
 Route::get('/', function () {
@@ -27,8 +28,6 @@ Route::get('/privacy', function () {
 });
 
 Route::get('/download/app', function (Request $request) {
-    $file = public_path("app/sawal-bemisaal.apk");
-
     $utm_id = $request->utm_id ? $request->utm_id : "4c5e0683-252a-483b-a37e-6b11f100aa21";
 
     $refer_source_id = ReferSource::find($utm_id)->id;
@@ -49,11 +48,7 @@ Route::get('/download/app', function (Request $request) {
 
     Refer::create($data);
 
-    $headers = array(
-        'Content-Type: application/vnd.android.package-archive',
-    );
-
-    return response()->download($file, 'sawal-bemisaal.apk', $headers);
+    return Storage::disk("public")->download("apps/sawal-bemisaal.apk");
 });
 
 Route::get('/download', function (Request $request) {
