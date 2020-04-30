@@ -1,6 +1,10 @@
 <?php
 
+use App\Refer;
+use App\ReferSource;
+
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Agent;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,8 +26,26 @@ Route::get('/privacy', function () {
     return view('privacy');
 });
 
-Route::get('/download/app', function () {
+Route::get('/download/app', function (Request $request) {
     $file = public_path("app/sawal-bemisaal.apk");
+
+    $agent = new Agent();
+
+    $utm_id = $request->utm_id ? ReferSource::find($request->utm_id)->id : ReferSource::first()->id;
+
+    $data = [
+        'utm_id' => $utm_id,
+        'ip_address' => $request->ip(),
+        'languages' => json_encode($agent->languages()),
+        'device' => $agent->device(),
+        'platform' => $agent->platform(),
+        'platform_version' => $agent->version($agent->platform()),
+        'browser' => $agent->browser(),
+        'browser_version' => $agent->version($agent->browser()),
+        'robot' => $agent->robot(),
+    ];
+
+    Refer::create($data);
 
     $headers = array(
         'Content-Type: application/vnd.android.package-archive',
