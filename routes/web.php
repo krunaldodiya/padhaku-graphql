@@ -57,33 +57,9 @@ Route::get('/download/app', function (Request $request) {
 });
 
 Route::get('/download/app/test', function (Request $request) {
-    $file = public_path("app/sawal-bemisaal.apk");
-
     $refer_source_id = $request->utm_id ? ReferSource::find($request->utm_id)->id : ReferSource::first()->id;
 
     dd($refer_source_id);
-
-    $agent = new Agent();
-
-    $data = [
-        'refer_source_id' => $refer_source_id,
-        'ip_address' => $request->ip(),
-        'languages' => json_encode($agent->languages()),
-        'device' => $agent->device(),
-        'platform' => $agent->platform(),
-        'platform_version' => $agent->version($agent->platform()),
-        'browser' => $agent->browser(),
-        'browser_version' => $agent->version($agent->browser()),
-        'robot' => $agent->robot(),
-    ];
-
-    Refer::create($data);
-
-    $headers = array(
-        'Content-Type: application/vnd.android.package-archive',
-    );
-
-    return response()->download($file, 'sawal-bemisaal.apk', $headers);
 });
 
 Route::get('/download', function (Request $request) {
