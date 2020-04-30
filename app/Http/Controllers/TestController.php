@@ -19,6 +19,7 @@ class TestController extends Controller
     public function test(Request $request)
     {
         $client = new FcmClient(env('FIREBASE_SERVER_KEY'), env('FIREBASE_SENDER_ID'));
+        $device_id = "dKbQw6QfBEo:APA91bEMxB5vUhQkMaIAhyw9hwzOeHM3b1Jt24svjmD72TkDGmGyPvRd8fWn52DLu_wfwxDFercbHOibWoWNktmdu3Hkkv746E-VnSAUscOTmd_2rMCCT16iOiwgNJ_h0hsH_eoyaI4L";
 
         if ($request->subscribe) {
 
@@ -28,11 +29,11 @@ class TestController extends Controller
             //     $client->topicSubscribe('testing', $device_token->token);
             // }
 
-            $client->topicSubscribe("testing", "dKbQw6QfBEo:APA91bEMxB5vUhQkMaIAhyw9hwzOeHM3b1Jt24svjmD72TkDGmGyPvRd8fWn52DLu_wfwxDFercbHOibWoWNktmdu3Hkkv746E-VnSAUscOTmd_2rMCCT16iOiwgNJ_h0hsH_eoyaI4L");
+            $client->topicSubscribe("testing", $device_id);
         }
 
         if ($request->notify) {
-            $client->pushNotification("testing", "test", "/topics/testing");
+            $client->pushNotification("testing", "test", $device_id);
         }
     }
 }
