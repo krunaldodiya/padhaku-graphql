@@ -47,7 +47,7 @@ class Order extends Resource
 
             BelongsTo::make('User'),
 
-            Text::make("Status")
+            Text::make("Status")->sortable()
         ];
     }
 
