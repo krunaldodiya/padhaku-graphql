@@ -26,6 +26,6 @@ class TestController extends Controller
             $client->topicSubscribe('testing', $device_token->token);
         }
 
-        dd($user->device_tokens);
+        dd($user->device_tokens->toArray());
     }
 }
