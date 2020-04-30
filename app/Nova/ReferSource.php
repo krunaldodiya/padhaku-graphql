@@ -52,7 +52,7 @@ class ReferSource extends Resource
             Text::make('Facebook')->sortable(),
             Text::make('Website')->sortable(),
 
-            HasMany::make('Refer History', 'refers')
+            HasMany::make('Refer Source', 'refers')
         ];
     }
 
