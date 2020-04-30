@@ -2,7 +2,8 @@
 
 namespace App\Nova;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Nova\Fields\BelongsTo;
+
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
