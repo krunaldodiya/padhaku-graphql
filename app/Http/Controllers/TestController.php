@@ -25,5 +25,7 @@ class TestController extends Controller
         foreach ($user->device_tokens as $device_token) {
             $client->topicSubscribe('testing', $device_token->token);
         }
+
+        dd($user->device_tokens);
     }
 }
