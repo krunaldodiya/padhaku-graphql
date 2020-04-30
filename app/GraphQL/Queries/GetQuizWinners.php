@@ -10,6 +10,9 @@ class GetQuizWinners
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return QuizRanking::with('quiz', 'user')->where('quiz_id', $args['quiz_id'])->get();
+        return QuizRanking::with('quiz', 'user')
+            ->where('quiz_id', $args['quiz_id'])
+            ->orderBy('rank', 'asc')
+            ->get();
     }
 }
