@@ -56,14 +56,6 @@ Route::get('/download/app', function (Request $request) {
     return response()->download($file, 'sawal-bemisaal.apk', $headers);
 });
 
-Route::get('/download/app/test', function (Request $request) {
-    $utm_id = $request->utm_id ? $request->utm_id : "4c5e0683-252a-483b-a37e-6b11f100aa21";
-
-    $refer_source_id = ReferSource::find($utm_id)->id;
-
-    dd($refer_source_id);
-});
-
 Route::get('/download', function (Request $request) {
     if (!$request->query("mobile")) {
         throw new Error("No mobile provided");
