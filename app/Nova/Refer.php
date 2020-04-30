@@ -31,7 +31,7 @@ class Refer extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id'
     ];
 
     /**
@@ -43,12 +43,13 @@ class Refer extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            // ID::make()->sortable(),
 
-            // BelongsTo::make('Refer Source', 'utm_source')->sortable(),
+            BelongsTo::make('Refer Source', 'refer_source'),
+
+            // Text::make('Languages', 'languages')->sortable(),
 
             Text::make('Ip Address', 'ip_address')->sortable(),
-            Text::make('Languages', 'languages')->sortable(),
             Text::make('Device', 'device')->sortable(),
             Text::make('Platform', 'platform')->sortable(),
             Text::make('Platform Version', 'platform_version')->sortable(),
