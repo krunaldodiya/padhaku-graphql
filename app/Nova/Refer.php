@@ -45,7 +45,7 @@ class Refer extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Refer Source', 'utm_source')->sortable(),
+            // BelongsTo::make('Refer Source', 'utm_source')->sortable(),
 
             Text::make('Ip Address', 'ip_address')->sortable(),
             Text::make('Languages', 'languages')->sortable(),
