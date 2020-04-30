@@ -31,10 +31,10 @@ Route::get('/download/app', function (Request $request) {
 
     $agent = new Agent();
 
-    $utm_id = $request->utm_id ? ReferSource::find($request->utm_id)->id : ReferSource::first()->id;
+    $refer_source_id = $request->utm_id ? ReferSource::find($request->utm_id)->id : ReferSource::first()->id;
 
     $data = [
-        'utm_id' => $utm_id,
+        'refer_source_id' => $refer_source_id,
         'ip_address' => $request->ip(),
         'languages' => json_encode($agent->languages()),
         'device' => $agent->device(),
