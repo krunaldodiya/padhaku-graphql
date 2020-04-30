@@ -41,13 +41,14 @@ class Order extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
 
             BelongsTo::make('Plan'),
 
             BelongsTo::make('User'),
 
-            Text::make("Status")->sortable()
+            Text::make("Status")->sortable(),
+
+            Text::make('Created At')->sortable(),
         ];
     }
 
