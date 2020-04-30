@@ -66,6 +66,11 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function device_tokens()
+    {
+        return $this->hasMany(DeviceToken::class);
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
