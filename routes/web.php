@@ -48,14 +48,16 @@ Route::get('/download/app', function (Request $request) {
 
     Refer::create($data);
 
+    $file_name = "sawal-bemisaal.apk";
+
+    $path = storage_path("app/public/apps/$file_name");
+
     $headers = [
-        'Content-Type' => 'application/vnd.android.package-archive',
-        'Content-Disposition' => 'attachment; filename="sawal-bemisaal.apk"',
+        "Content-Type" => "application/vnd.android.package-archive",
+        "Content-Disposition" => "attachment; filename='$file_name'",
     ];
 
-    $path = storage_path("app/public/apps/sawal-bemisaal.apk");
-
-    return response()->download($path, "sawal-bemisaal.apk", $headers);
+    return response()->download($path, "$file_name", $headers);
 });
 
 Route::get('/download', function (Request $request) {
