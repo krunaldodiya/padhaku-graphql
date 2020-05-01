@@ -5,8 +5,11 @@ namespace App\Nova;
 use App\Nova\Actions\WalletPoint;
 use App\Nova\lenses\QuizNotJoined;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
@@ -64,9 +67,11 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            Text::make('Mobile'),
+            Text::make('Mobile')->sortable(),
 
             HasMany::make('Device Token', "device_tokens"),
+
+            HasOne::make('Wallet'),
         ];
     }
 
