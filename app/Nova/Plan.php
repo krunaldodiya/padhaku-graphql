@@ -22,7 +22,7 @@ class Plan extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'amount';
 
     /**
      * The columns that should be searched.

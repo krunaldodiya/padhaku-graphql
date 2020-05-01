@@ -4,7 +4,6 @@ namespace App\Nova;
 
 use App\Nova\Filters\OrderStatus;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 
@@ -42,7 +41,7 @@ class Order extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('Plan'),
+            BelongsTo::make('Amount', 'plan', 'App\Nova\Plan'),
 
             BelongsTo::make('User'),
 
