@@ -46,7 +46,7 @@ class Invitation extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Mobile', "mobile_cc"),
+            Text::make('Mobile'),
 
             BelongsTo::make('User', 'sender'),
         ];
