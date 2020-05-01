@@ -76,7 +76,7 @@ class User extends Resource
 
             Date::make('Created At')
                 ->resolveUsing(function ($date) {
-                    return $date->format('d/m/Y');
+                    return $date->format('d/m/Y h:m A');
                 })
                 ->sortable(),
         ];
