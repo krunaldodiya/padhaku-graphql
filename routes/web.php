@@ -4,7 +4,6 @@ use App\Refer;
 use App\ReferSource;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Jenssegers\Agent\Agent;
 
 Route::get('/', function () {

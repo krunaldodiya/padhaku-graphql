@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\OrderStatus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
@@ -70,7 +71,7 @@ class Order extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [new OrderStatus()];
     }
 
     /**
