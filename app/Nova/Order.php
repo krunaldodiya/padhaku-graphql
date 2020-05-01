@@ -41,7 +41,6 @@ class Order extends Resource
     public function fields(Request $request)
     {
         return [
-
             BelongsTo::make('Plan'),
 
             BelongsTo::make('User'),
