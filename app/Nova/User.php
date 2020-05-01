@@ -7,6 +7,7 @@ use App\Nova\lenses\QuizNotJoined;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
@@ -72,6 +73,12 @@ class User extends Resource
             HasMany::make('Device Token', "device_tokens"),
 
             HasOne::make('Wallet'),
+
+            Date::make('Created At')
+                ->resolveUsing(function ($date) {
+                    return $date->format('d/m/Y');
+                })
+                ->sortable(),
         ];
     }
 
