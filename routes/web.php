@@ -50,7 +50,7 @@ Route::get('/download/app', function (Request $request) {
 
     $headers = [
         'Content-Type' => 'application/vnd.android.package-archive',
-        'Content-Disposition' => 'attachment; filename="android.apk"',
+        'Content-Disposition' => 'attachment; filename="sawal-bemisaal.apk"',
     ];
 
     $path = storage_path("app/public/apps/sawal-bemisaal.apk");
