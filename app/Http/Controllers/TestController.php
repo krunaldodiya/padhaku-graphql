@@ -18,7 +18,7 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $topics = Topic::groupBy('name')->get();
+        $topics = Topic::get();
 
         return $topics;
     }
