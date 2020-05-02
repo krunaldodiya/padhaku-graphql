@@ -2,13 +2,13 @@
 
 namespace App\Nova;
 
-use App\Nova\Lenses\Test;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class Quiz extends Resource
 {
@@ -47,6 +47,7 @@ class Quiz extends Resource
             ID::make()->sortable(),
 
             BelongsTo::make('Quiz Info', "quiz_infos"),
+            BelongsToMany::make('Participants', 'participants', User::class)->searchable(),
 
             DateTime::make('created_at')->sortable(),
             DateTime::make('expired_at')->sortable(),
@@ -85,7 +86,7 @@ class Quiz extends Resource
      */
     public function lenses(Request $request)
     {
-        return [new Test()];
+        return [];
     }
 
     /**
