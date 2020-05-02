@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Repositories\UserRepositoryInterface;
+use App\Topic;
 use App\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -27,6 +28,12 @@ class Register
             'email' => "{$args['username']}@pauzr.com",
             'password' => bcrypt($args['password']),
         ]);
+
+        $public_topic = Topic::where(["name" => "user_all"])->first();
+        $public_topic->subscribers()->attach($user);
+
+        $private_topic = Topic::create(["name" => "user_{$user->id}"]);
+        $private_topic->subscribers()->attach($user);
 
         if ($user) {
             $token = JWTAuth::fromUser($user);

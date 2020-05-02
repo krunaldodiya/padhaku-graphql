@@ -12,4 +12,9 @@ class Topic extends Model
     public $incrementing = false;
 
     protected $guarded = [];
+
+    public function subscribers()
+    {
+        return $this->belongsToMany(User::class, 'topic_subscribers');
+    }
 }
