@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -43,7 +44,9 @@ class Topic extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make("name")
+            Text::make("name"),
+
+            BelongsToMany::make('Subscribers', 'subscribers', User::class)->searchable(),
         ];
     }
 
