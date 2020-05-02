@@ -20,13 +20,6 @@ class TestController extends Controller
     {
         $users = User::get();
 
-        foreach ($users as $user) {
-            $public_topic = Topic::where(["name" => "user_all"])->first();
-            $public_topic->subscribers()->attach($user);
-
-            $private_topic = Topic::create(["name" => "user_{$user->id}"]);
-            $private_topic->subscribers()->attach($user);
-        }
-        return "done";
+        return $users;
     }
 }
