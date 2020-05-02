@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Topic;
-use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -18,7 +18,10 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $topics = Topic::get();
+        $topics = Topic::query()
+            ->where('name', 'LIKE', 'quiz_reminder_%')
+            ->whereDate('created_at', "!=", Carbon::today())
+            ->delete();
 
         return $topics;
     }
