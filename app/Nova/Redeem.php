@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\RedeemStatus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
@@ -44,19 +45,19 @@ class Redeem extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')->sortable(),
 
-            Text::make("Gateway"),
+            Text::make("Gateway")->sortable(),
 
-            Text::make("Mobile"),
+            Text::make("Mobile")->sortable(),
 
-            Text::make("Amount"),
+            Text::make("Amount")->sortable(),
 
             Select::make("Status")->options([
                 'pending' => 'Pending',
                 'success' => 'Success',
                 'fail' => 'Fail',
-            ]),
+            ])->sortable(),
         ];
     }
 
@@ -79,7 +80,7 @@ class Redeem extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [new RedeemStatus()];
     }
 
     /**

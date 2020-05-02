@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Quiz;
 use App\Repositories\Contracts\QuizRepositoryInterface;
+use App\Topic;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -80,11 +81,13 @@ class CalculateQuizRanking implements ShouldQueue
 
         Quiz::where('id', $quiz_data->id)->update(['status' => 'finished']);
 
-        return $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
+        $quizRepo->notify("/topics/quiz_reminder_{$quiz_data->id}", [
             'title' => 'Winners Announced',
             'body' => 'Check the list,NOW! Congrats winners!',
             'image' => url('images/notify_winners.png'),
             'quiz_id' => $quiz_data->id,
         ]);
+
+        Topic::where(['name' => "quiz_reminder_{$quiz_data->id}"])->delete();
     }
 }
