@@ -18,6 +18,8 @@ class Redeem extends Resource
      */
     public static $model = 'App\Redeem';
 
+    public static $group = 'Customers';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *

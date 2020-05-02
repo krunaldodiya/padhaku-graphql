@@ -18,6 +18,8 @@ class DeviceToken extends Resource
      */
     public static $model = 'App\DeviceToken';
 
+    public static $group = 'Push Notification';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *

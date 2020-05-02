@@ -20,6 +20,8 @@ class QuizInfo extends Resource
      */
     public static $model = 'App\QuizInfo';
 
+    public static $group = 'Quiz';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *

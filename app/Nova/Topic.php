@@ -17,6 +17,8 @@ class Topic extends Resource
      */
     public static $model = 'App\Topic';
 
+    public static $group = 'Push Notification';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *

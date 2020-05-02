@@ -16,6 +16,8 @@ class Order extends Resource
      */
     public static $model = 'App\Order';
 
+    public static $group = 'Customers';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *

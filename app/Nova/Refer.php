@@ -18,6 +18,8 @@ class Refer extends Resource
      */
     public static $model = 'App\Refer';
 
+    public static $group = 'Referral System';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *

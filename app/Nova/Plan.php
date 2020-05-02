@@ -17,6 +17,8 @@ class Plan extends Resource
      */
     public static $model = 'App\Plan';
 
+    public static $group = 'Customers';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
