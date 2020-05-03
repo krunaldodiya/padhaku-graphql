@@ -14,6 +14,8 @@ class CreateQuizRankingsTable extends Migration
     public function up()
     {
         Schema::create('quiz_rankings', function (Blueprint $table) {
+            $table->primary(['quiz_id', 'user_id']);
+
             $table->uuid('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
 
@@ -22,10 +24,10 @@ class CreateQuizRankingsTable extends Migration
 
             $table->integer('rank')->nullable();
             $table->integer('prize_amount')->nullable();
+            $table->decimal('points', 8, 2)->default(0);
+            $table->enum('quiz_status', ['joined', 'finished', 'canceled', 'left', 'missed', 'started', 'pending'])->default('joined');
 
             $table->timestamps();
-
-            $table->primary(['quiz_id', 'user_id']);
         });
     }
 

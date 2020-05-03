@@ -10,36 +10,30 @@ use Carbon\Carbon;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class QuizMutation
+class JoinQuiz
 {
-    public function joinQuiz($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         $quiz_id = $args['quiz_id'];
         $user = auth()->user();
 
         $quiz = Quiz::with('quiz_infos', 'participants', 'questions')->where('id', $quiz_id)->first();
 
-        if ($quiz->status !== 'pending') {
+        if ($quiz->status === 'expired') {
             throw new Error("Quiz has expired");
         }
 
-        // check if already joined
         if ($quiz->is_joined) {
             throw new Error("Already joined");
         }
 
-        // check if registation is not closed
-        $registration_on_till = Carbon::parse($quiz->expired_at);
-        if (now() >= $registration_on_till) {
-            throw new Error("Registration line is closed");
-        }
-
-        // check if vacancy is not full
         if ($quiz->participants->count() === $quiz->quiz_infos->total_participants) {
+            $quiz->status = 'full';
+            $quiz->save();
+
             throw new Error("Participants are full");
         }
 
-        // check if user wallet has enough points
         if ($quiz->quiz_infos->entry_fee > $user->wallet->balance) {
             throw new Error("Not Enough wallet points");
         }
