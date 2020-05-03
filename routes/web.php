@@ -27,17 +27,16 @@ Route::get('/privacy', function () {
 });
 
 Route::get('/refer', function (Request $request) {
-    $utm_id = $request->utm_id ? $request->utm_id : ReferSource::first()->id;
-
-    $request->session()->put('utm_id', $utm_id);
+    if ($request->has('utm_id')) {
+        $request->session()->put('utm_id', $request->get('utm_id'));
+    }
 
     return redirect("https://www.sawalbemisaal.com");
 });
 
 Route::get('/download/app', function (Request $request) {
-    $utm_id = $request->session()->has('utm_id') ? $request->session()->get('utm_id') : ReferSource::first()->id;
-
-    $refer_source_id = ReferSource::find($utm_id)->id;
+    $refer_source_id = $request->session()->has('utm_id') ? $request->session()->get('utm_id') : ReferSource::first()->id;
+    dump($refer_source_id);
 
     $agent = new Agent();
 
