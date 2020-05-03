@@ -17,7 +17,8 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        dd(ReferSource::first()->id);
+        $test = ReferSource::first();
+        dd($test);
 
         $refer_source_id = $request->session()->has('utm_id') ? $request->session()->get('utm_id') : ReferSource::first()->id;
         dd($refer_source_id);
