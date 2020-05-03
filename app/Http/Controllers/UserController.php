@@ -35,7 +35,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect("https://www.sawalbemisaal.com");
+        return redirect("/refer");
     }
 
     public function rate(Request $request)

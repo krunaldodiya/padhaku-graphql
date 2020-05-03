@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 
 class Quiz extends Resource
 {
@@ -49,9 +50,11 @@ class Quiz extends Resource
             ID::make()->sortable(),
 
             BelongsTo::make('Quiz Info', "quiz_infos"),
+
             BelongsToMany::make('Participants', 'participants', User::class)->searchable(),
 
             DateTime::make('created_at')->sortable(),
+
             DateTime::make('expired_at')->sortable(),
 
             Text::make('status')->sortable(),
