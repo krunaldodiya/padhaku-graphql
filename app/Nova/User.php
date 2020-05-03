@@ -73,11 +73,11 @@ class User extends Resource
 
             Text::make('Mobile')->sortable(),
 
-            HasMany::make('Device Token', "device_tokens"),
-
             HasOne::make('Wallet'),
 
             BelongsToMany::make('Topics', 'topics', Topic::class)->searchable(),
+
+            BelongsToMany::make('Quizzes', 'quizzes', Quiz::class)->searchable(),
 
             Date::make('Created At')
                 ->resolveUsing(function ($date) {

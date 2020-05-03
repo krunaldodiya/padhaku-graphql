@@ -3,27 +3,24 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Category extends Resource
+class QuizRanking extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Category';
-
-    public static $group = 'Quiz';
+    public static $model = 'App\QuizRanking';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -44,10 +41,6 @@ class Category extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Text::make('Name')->sortable(),
-
-            HasMany::make("Questions")
         ];
     }
 
