@@ -35,7 +35,7 @@ Route::get('/refer', function (Request $request) {
 });
 
 Route::get('/download/app', function (Request $request) {
-    $utm_id = $request->session()->has('utm_id') ? $request->session()->has('utm_id') : ReferSource::first()->id;
+    $utm_id = $request->session()->has('utm_id') ? $request->session()->get('utm_id') : ReferSource::first()->id;
 
     $refer_source_id = ReferSource::find($utm_id)->id;
 
