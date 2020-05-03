@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\BelongsTo;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -58,6 +59,7 @@ class Refer extends Resource
             Text::make('Browser', 'browser')->sortable(),
             Text::make('Browser Version', 'browser_version')->sortable(),
             Text::make('Robot', 'robot')->sortable(),
+            DateTime::make('created_at')->sortable(),
         ];
     }
 
