@@ -27,7 +27,7 @@ Route::get('/privacy', function () {
 });
 
 Route::get('/refer', function (Request $request) {
-    $utm_id = $request->utm_id ? $request->utm_id : "4c5e0683-252a-483b-a37e-6b11f100aa21";
+    $utm_id = $request->utm_id ? $request->utm_id : ReferSource::first()->id;
 
     $request->session()->put('utm_id', $utm_id);
 
@@ -35,7 +35,7 @@ Route::get('/refer', function (Request $request) {
 });
 
 Route::get('/download/app', function (Request $request) {
-    $utm_id = $request->session()->has('utm_id') ? $request->session()->has('utm_id') : "4c5e0683-252a-483b-a37e-6b11f100aa21";
+    $utm_id = $request->session()->has('utm_id') ? $request->session()->has('utm_id') : ReferSource::first()->id;
 
     $refer_source_id = ReferSource::find($utm_id)->id;
 
@@ -80,7 +80,7 @@ Route::get('/download', function (Request $request) {
         'country' => "91",
         "sms" => [
             [
-                "message" => "Get the Sawal Bemisaal app and enjoy Quizzing on the go! \n Learn & Earn ! Click https://bit.ly/SawalBemisaalAPK to download now!",
+                "message" => "Get the Sawal Bemisaal app and enjoy Quizzing on the go! \n Learn & Earn ! Click https://bit.ly/SawalBemisaal to download now!",
                 "to" => [$request->query("mobile")]
             ]
         ]
