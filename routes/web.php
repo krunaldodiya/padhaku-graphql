@@ -36,7 +36,7 @@ Route::get('/refer', function (Request $request) {
 
 Route::get('/download/app', function (Request $request) {
     $refer_source_id = $request->session()->has('utm_id') ? $request->session()->get('utm_id') : ReferSource::first()->id;
-    dump($refer_source_id);
+    dd($refer_source_id);
 
     $agent = new Agent();
 
