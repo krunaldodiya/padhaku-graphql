@@ -38,32 +38,32 @@ Route::get('/download/app', function (Request $request) {
     $refer_source_id = $request->session()->has('utm_id') ? $request->session()->get('utm_id') : ReferSource::first()->id;
     dd($refer_source_id);
 
-    $agent = new Agent();
+    // $agent = new Agent();
 
-    $data = [
-        'refer_source_id' => $refer_source_id,
-        'ip_address' => $request->ip(),
-        'languages' => json_encode($agent->languages()),
-        'device' => $agent->device(),
-        'platform' => $agent->platform(),
-        'platform_version' => $agent->version($agent->platform()),
-        'browser' => $agent->browser(),
-        'browser_version' => $agent->version($agent->browser()),
-        'robot' => $agent->robot(),
-    ];
+    // $data = [
+    //     'refer_source_id' => $refer_source_id,
+    //     'ip_address' => $request->ip(),
+    //     'languages' => json_encode($agent->languages()),
+    //     'device' => $agent->device(),
+    //     'platform' => $agent->platform(),
+    //     'platform_version' => $agent->version($agent->platform()),
+    //     'browser' => $agent->browser(),
+    //     'browser_version' => $agent->version($agent->browser()),
+    //     'robot' => $agent->robot(),
+    // ];
 
-    Refer::create($data);
+    // Refer::create($data);
 
-    $file_name = "sawal-bemisaal.apk";
+    // $file_name = "sawal-bemisaal.apk";
 
-    $path = storage_path("app/public/apps/$file_name");
+    // $path = storage_path("app/public/apps/$file_name");
 
-    $headers = [
-        "Content-Type" => "application/vnd.android.package-archive",
-        "Content-Disposition" => "attachment; filename='$file_name'",
-    ];
+    // $headers = [
+    //     "Content-Type" => "application/vnd.android.package-archive",
+    //     "Content-Disposition" => "attachment; filename='$file_name'",
+    // ];
 
-    return response()->download($path, "$file_name", $headers);
+    // return response()->download($path, "$file_name", $headers);
 });
 
 Route::get('/download', function (Request $request) {
