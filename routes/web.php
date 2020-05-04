@@ -86,7 +86,7 @@ Route::get('/download', function (Request $request) {
         'country' => "91",
         "sms" => [
             [
-                "message" => "Get the Sawal Bemisaal app and enjoy Quizzing on the go! \n Learn & Earn ! Click https://bit.ly/SawalBemisaal to download now!",
+                "message" => "Get the Sawal Bemisaal app and enjoy Quizzing on the go! \n Learn & Earn ! Click https://bit.ly/SawalBemisaalApp to download now!",
                 "to" => [$request->query("mobile")]
             ]
         ]
