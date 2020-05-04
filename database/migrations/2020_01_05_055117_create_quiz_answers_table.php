@@ -14,6 +14,10 @@ class CreateQuizAnswersTable extends Migration
     public function up()
     {
         Schema::create('quiz_answers', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+
+            $table->primary(['quiz_id', 'user_id', 'question_id']);
+
             $table->uuid('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
 
@@ -24,14 +28,12 @@ class CreateQuizAnswersTable extends Migration
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
 
             $table->decimal('points', 8, 2)->default(0);
-
             $table->integer('time')->nullable();
+
             $table->string('current_answer')->nullable();
-            $table->string('answer')->nullable();
+            $table->string('correct_answer')->nullable();
 
             $table->timestamps();
-
-            $table->primary(['quiz_id', 'user_id', 'question_id']);
         });
     }
 

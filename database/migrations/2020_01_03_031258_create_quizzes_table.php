@@ -23,7 +23,7 @@ class CreateQuizzesTable extends Migration
             $table->foreign('quiz_info_id')->references('id')->on('quiz_infos')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamp('expired_at')->nullable();
-            $table->enum('status', ['pending', 'finished', 'started', 'canceled', 'full'])->default('pending');
+            $table->enum('status', ['pending', 'finished', 'started', 'suspended', 'full'])->default('pending');
 
             $table->timestamps();
         });

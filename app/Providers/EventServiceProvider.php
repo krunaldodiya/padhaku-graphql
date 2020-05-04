@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 
 use App\Events\UserCreated;
 use App\Events\QuizGenerated;
+use App\Events\TopicSubscribed;
 
 use App\Listeners\GenerateUsername;
 use App\Listeners\AddBonusPoint;
@@ -17,6 +18,7 @@ use App\Listeners\CheckInvitation;
 use App\Listeners\GenerateQuizTopic;
 use App\Listeners\GenerateQuizNotification;
 use App\Listeners\HandleQuizGenerated;
+use App\Listeners\CreateTopicListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,10 @@ class EventServiceProvider extends ServiceProvider
             GenerateQuizTopic::class,
             GenerateQuizNotification::class,
             HandleQuizGenerated::class,
+        ],
+
+        TopicSubscribed::class => [
+            CreateTopicListener::class,
         ],
     ];
 
