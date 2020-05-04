@@ -69,6 +69,10 @@ Route::get('/download/app', function (Request $request) {
     return response()->download($path, "$file_name", $headers);
 });
 
+Route::get('/download/start', function (Request $request) {
+    return view('download');
+});
+
 Route::get('/download', function (Request $request) {
     if (!$request->query("mobile")) {
         throw new Error("No mobile provided");
