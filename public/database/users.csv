@@ -1,0 +1,2 @@
+id,email,email_verified_at,mobile,mobile_verified_at,username,password,name,dob,gender,avatar,bio,language,country_id,version,fcm_token,status,remember_token,created_at,updated_at
+dcbfcf8d-7fd5-4dd0-8dd4-59cae979601b,kunal.dodiya1@gmail.com,,9426726815,,krunaldodiya,$2y$10$Qwcgj9eBHJ2z/iX.A.hwdeqkF0HQdDzV2B2n1K.kSW2qtzy9KvuvO,krunal,01-01-1990,None,,,,e1c417cf-550a-4457-b744-1db7fd5c86fb,,,t,,2020-05-04 11:31:23,2020-05-04 11:31:23

@@ -19,8 +19,8 @@ class JoinQuiz
 
         $quiz = Quiz::with('quiz_infos', 'participants', 'questions')->where('id', $quiz_id)->first();
 
-        if ($quiz->status === 'expired') {
-            throw new Error("Quiz has expired");
+        if ($quiz->status !== 'pending') {
+            throw new Error("Can't join now, Quiz is already {$quiz->status}");
         }
 
         if ($quiz->is_joined) {

@@ -1,10 +1,10 @@
 -- -------------------------------------------------------------
--- TablePlus 2.10(270)
+-- TablePlus 3.4.0(304)
 --
 -- https://tableplus.com/
 --
--- Database: pauzr
--- Generation Time: 2019-11-01 14:01:11.1200
+-- Database: padhaku
+-- Generation Time: 2020-05-04 17:06:52.8610
 -- -------------------------------------------------------------
 
 
@@ -20,7 +20,8 @@ CREATE TABLE "public"."countries" (
     PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."countries" ("id", "name", "shortname", "phonecode") VALUES ('01ce458c-42a9-4f04-8e4d-b39bfffd2dc8', 'American Samoa', 'AS', '1684'),
+INSERT INTO "public"."countries" ("id", "name", "shortname", "phonecode") VALUES
+('01ce458c-42a9-4f04-8e4d-b39bfffd2dc8', 'American Samoa', 'AS', '1684'),
 ('022d43d7-4715-4bbb-b4b0-150a01880950', 'Guernsey and Alderney', 'XU', '44'),
 ('022db12f-9d12-4365-81c0-5d4a56e4f241', 'Heard and McDonald Islands', 'HM', '0'),
 ('0242473b-dfc9-42be-a2f2-4a10120b975b', 'Martinique', 'MQ', '596'),
