@@ -51,4 +51,9 @@ class Quiz extends Model
     {
         return $this->belongsToMany(User::class, 'quiz_participants');
     }
+
+    public function scopeOrderAndFilter($query, $args)
+    {
+        return $query->orderBy("expired_at", "DESC");
+    }
 }
