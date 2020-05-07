@@ -21,7 +21,7 @@ class TestController extends Controller
         $user = User::where(['username' => 'abhijits'])->first();
 
         return Quiz::with('quiz_infos', 'participants', 'questions')
-            ->where('participants', function ($query) use ($user) {
+            ->whereHas('participants', function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
             })
             ->get();
