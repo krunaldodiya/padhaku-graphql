@@ -139,7 +139,7 @@ type QuizInfo {
     answerable_questions_count: Int!
     distribution: [Distribution]
     expiry: Int!
-    reading: Int!
+    notify: Int!
     time: Int!
 }
 
