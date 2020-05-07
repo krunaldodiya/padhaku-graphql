@@ -11,7 +11,7 @@ type Query {
     languages: [Language!]! @all @middleware(checks: ["auth:api"])
     getActiveQuizzes: [Quiz!]! @middleware(checks: ["auth:api"])
     getUserQuizzes: [Quiz!]!
-        @paginate(scopes: ["OrderAndFilter"])
+        @paginate(builder: "App\\Quiz@myQuizzes", scopes: ["OrderAndFilter"])
         @middleware(checks: ["auth:api"])
     getQuizAnswers(quiz_id: ID! @rules(apply: ["required"])): [QuizAnswer!]!
         @middleware(checks: ["auth:api"])

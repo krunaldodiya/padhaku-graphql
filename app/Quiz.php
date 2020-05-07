@@ -3,8 +3,10 @@
 namespace App;
 
 use App\Traits\HasUuid;
+use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class Quiz extends Model
 {
@@ -55,5 +57,15 @@ class Quiz extends Model
     public function scopeOrderAndFilter($query, $args)
     {
         return $query->orderBy("expired_at", "DESC");
+    }
+
+    public function myQuizzes($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        $user = auth()->user();
+
+        return Quiz::with('quiz_infos', 'participants', 'questions')
+            ->whereHas('participants', function ($query) use ($user) {
+                return $query->where('user_id', $user->id);
+            });
     }
 }
