@@ -15,7 +15,6 @@ class GetUserQuizzes
         return Quiz::with('quiz_infos', 'participants', 'questions')
             ->whereHas('participants', function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
-            })
-            ->get();
+            });
     }
 }
