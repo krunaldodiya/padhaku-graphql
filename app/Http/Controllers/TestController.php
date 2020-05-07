@@ -24,6 +24,8 @@ class TestController extends Controller
             ->whereHas('participants', function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
             })
+            ->orderBy("expired_at", "DESC")
+            ->limit(10)
             ->get();
     }
 }
