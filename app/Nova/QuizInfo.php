@@ -55,7 +55,7 @@ class QuizInfo extends Resource
             Text::make('all_questions_count')->sortable(),
             Text::make('answerable_questions_count')->sortable(),
             Text::make('Expiry (minutes)', 'expiry')->sortable(),
-            Text::make('Notify Before (Minutes)', 'reading')->sortable(),
+            Text::make('Notify Before (Minutes)', 'notify')->sortable(),
             Text::make('Time Per Question (Seconds)', 'time')->sortable(),
             Row::make('Price Distribution', [
                 Number::make('Rank'),

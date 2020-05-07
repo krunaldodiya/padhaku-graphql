@@ -17,7 +17,6 @@ use App\Listeners\CheckInvitation;
 
 use App\Listeners\GenerateQuizTopic;
 use App\Listeners\GenerateQuizNotification;
-use App\Listeners\HandleQuizGenerated;
 use App\Listeners\CreateTopicListener;
 
 class EventServiceProvider extends ServiceProvider
@@ -40,7 +39,6 @@ class EventServiceProvider extends ServiceProvider
         QuizGenerated::class => [
             GenerateQuizTopic::class,
             GenerateQuizNotification::class,
-            HandleQuizGenerated::class,
         ],
 
         TopicSubscribed::class => [
