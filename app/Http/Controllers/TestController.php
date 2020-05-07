@@ -18,13 +18,12 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $user = User::first();
+        $user = User::where(['username' => 'abhijits'])->first();
 
         return Quiz::with('quiz_infos', 'participants', 'questions')
             ->whereHas('participants', function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
             })
-            ->orderBy('expired_at', 'desc')
             ->get();
     }
 }
