@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Topic;
+use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -19,10 +19,12 @@ class TestController extends Controller
     public function test(Request $request)
     {
         $user = User::first();
-        $topic = Topic::first();
 
-        $topic->subscribers()->attach($user);
-
-        return "done";
+        return Quiz::with('quiz_infos', 'participants', 'questions')
+            ->whereHas('participants', function ($query) use ($user) {
+                return $query->where('user_id', $user->id);
+            })
+            ->orderBy('expired_at', 'desc')
+            ->get();
     }
 }
