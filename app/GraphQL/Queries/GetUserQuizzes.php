@@ -16,7 +16,7 @@ class GetUserQuizzes
             ->whereHas('participants', function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
             })
-            ->orderBy('expired_at', 'asc')
+            ->orderBy('expired_at', 'desc')
             ->get();
     }
 }
