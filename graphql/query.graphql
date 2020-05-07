@@ -10,7 +10,7 @@ type Query {
     categories: [Category!]! @all @middleware(checks: ["auth:api"])
     languages: [Language!]! @all @middleware(checks: ["auth:api"])
     getActiveQuizzes: [Quiz!]! @middleware(checks: ["auth:api"])
-    getUserQuizzes: [Quiz!]! @middleware(checks: ["auth:api"])
+    getUserQuizzes: [Quiz!]! @middleware(checks: ["auth:api"]) @paginate
     getQuizAnswers(quiz_id: ID! @rules(apply: ["required"])): [QuizAnswer!]!
         @middleware(checks: ["auth:api"])
     getQuizById(quiz_id: ID! @rules(apply: ["required"])): Quiz!
