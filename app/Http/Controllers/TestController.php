@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Quiz;
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -18,14 +17,12 @@ class TestController extends Controller
 
     public function test(Request $request)
     {
-        $user = User::where(['username' => 'abhijits'])->first();
+        try {
+            DB::statement("ALTER TABLE quizzes MODIFY COLUMN status ENUM('pending', 'finished', 'started', 'suspended', 'full')");
 
-        return Quiz::with('quiz_infos', 'participants', 'questions')
-            ->whereHas('participants', function ($query) use ($user) {
-                return $query->where('user_id', $user->id);
-            })
-            ->orderBy("expired_at", "DESC")
-            ->limit(10)
-            ->get();
+            return 'done';
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }
