@@ -27,7 +27,7 @@ class JoinQuiz
             throw new Error("Already joined");
         }
 
-        if ($quiz->participants->count() === $quiz->quiz_infos->total_winners) {
+        if ($quiz->participants->count() >= $quiz->quiz_infos->total_winners) {
             $quiz->status = 'full';
             $quiz->save();
 
