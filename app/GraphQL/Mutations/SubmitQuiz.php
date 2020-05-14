@@ -26,7 +26,8 @@ class SubmitQuiz
 
         $answers = collect($args['meta'])
             ->map(function ($answer) use ($user, $quiz) {
-                $points = $answer['answer'] == $answer['current_answer'] ? 10000 / $answer['seconds'] : 0;
+                $is_correct = $answer['answer'] == $answer['current_answer'];
+                $points = $is_correct ? 10 + (10000 / $answer['seconds']) : 0;
 
                 return [
                     'user_id' => $user->id,
